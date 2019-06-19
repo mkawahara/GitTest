@@ -1,0 +1,6 @@
+{
+	"error_code": 0,
+	"message": "",
+	"content": "<xml><document_property><title>サンプル文書データ</title></document_property><section_list><section indexDepth='0' title='中学校数学2'><paragraph_id_list>1</paragraph_id_list></section><section indexDepth='1' title='問題'><paragraph_id_list></paragraph_id_list></section><section indexDepth='2' title='[正の数と負の数]'><paragraph_id_list></paragraph_id_list></section><section indexDepth='2' title='[文字と式]'><paragraph_id_list></paragraph_id_list></section><section indexDepth='2' title='[方程式と連立方程式]'><paragraph_id_list></paragraph_id_list></section><section indexDepth='2' title='[比例・反比例・１次関数]'><paragraph_id_list></paragraph_id_list></section><section indexDepth='2' title='[平面図形と空間図形]'><paragraph_id_list></paragraph_id_list></section><section indexDepth='2' title='[図形の説明と証明]'><paragraph_id_list></paragraph_id_list></section><section indexDepth='2' title='[場合の数・確率]'><paragraph_id_list></paragraph_id_list></section><section indexDepth='1' title='問題の解答'><paragraph_id_list></paragraph_id_list></section><section indexDepth='0' title='2年のまとめ'><paragraph_id_list></paragraph_id_list></section></section_list></xml>"
+}
+

@@ -1,0 +1,46 @@
+@CHARSET "UTF-8";
+
+div.CA_style {
+  width: 170px;
+  overflow: visible;
+  position: absolute;
+  top: 0px;
+  visibility: hidden;
+  z-index: 14;
+}
+
+/*-----------------------------------------------------*/
+/* 入力フィールドのスタイル */
+/*-----------------------------------------------------*/
+div.CA_style input {
+  width: 168px;
+  border: solid 1px gray;
+  border-bottom: none;
+}
+
+div.CA_style input::-ms-clear {
+    visibility:hidden;  /* クリアボタンを除去 */
+}
+
+/*-----------------------------------------------------*/
+/* 入力支援テーブルのスタイル */
+/*-----------------------------------------------------*/
+div.CA_style div {
+  width: 100%;
+/*   overflow-x: hidden; */
+/*   overflow-y: auto; */
+  border: solid 1px gray;
+}
+
+div.CA_style table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+div.CA_style td {
+  border: solid 1px gray;
+  border-left: none;
+  height: 2em;
+  padding-left: 5px;
+  padding-right: 5px;
+}

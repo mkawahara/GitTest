@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>ルビ設定</title>
+
+	<script src="../../../../lib/MathJax-master/MathJax.js?config=TeX-AMS-MML_HTMLorMML&delayStartupUntil=configured"></script>
+	<script src="../../../../lib/jquery-1.11.2.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="./../../dataClass/common/styleSheet.css">
+
+	<script src="./../../managers/documentManager.js"></script>
+
+	<script src="./../../dataClass/common/enum.js"></script>
+	<script src="./../../dataClass/common/utility.js"></script>
+
+	<script src="./../../dataClass/layout/layoutBase.js"></script>
+	<script src="./../../dataClass/group/groupBase.js" ></script>
+
+	<!-- データクラス読み込み -->
+	<!--*  - - - - - - - - UniElement 系 -->
+	<script src="./../../dataClass/uni/characterElement.js"></script>
+	<script src="./../../dataClass/uni/lineBreak.js"></script>
+	<script src="./../../dataClass/uni/image.js"></script>
+
+	<!--*  - - - - - - - - LayoutElement 系 -->
+	<script src="./../../dataClass/layout/cornerElement.js"></script>
+	<script src="./../../dataClass/layout/cornerTagTable.js"></script>
+	<script src="./../../dataClass/layout/fractionElement.js"></script>
+	<script src="./../../dataClass/layout/integralElement.js"></script>
+	<script src="./../../dataClass/layout/rootElement.js"></script>
+	<script src="./../../dataClass/layout/topBottomElement.js"></script>
+	<script src="./../../dataClass/layout/topElement.js"></script>
+	<script src="./../../dataClass/layout/bottomElement.js"></script>
+	<script src="./../../dataClass/layout/underlineElement.js"></script>
+	<script src="./../../dataClass/layout/decoBoxElement.js"></script>
+	<script src="./../../dataClass/layout/rubyElement.js"></script>
+	<script src="./../../dataClass/layout/readElement.js"></script>
+	<script src="./../../dataClass/layout/bracketBase.js"></script>
+	<script src="./../../dataClass/layout/openBracketElement.js"></script>
+	<script src="./../../dataClass/layout/closeBracketElement.js"></script>
+	<script src="./../../dataClass/layout/tableBase.js"></script>
+	<script src="./../../dataClass/layout/matrixElement.js"></script>
+	<script src="./../../dataClass/layout/tableElement.js"></script>
+
+	<!--*  - - - - - - - - GroupElement 系-->
+	<script src="./../../dataClass/group/groupElement.js"></script>
+	<script src="./../../dataClass/group/paragraph.js"></script>
+	<script src="./../../dataClass/group/matrixCellElement.js"></script>
+	<script src="./../../dataClass/group/tableCellElement.js"></script>
+
+	<script src="./../../dataClass/idManager.js"></script>
+	<script src="./../../dataClass/paragraphParser.js"></script>
+
+	<script src="main.js"></script>
+	<script src="rubyDialog.js"></script>
+	<script src="../dialogCommon.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="../dialog.css">
+	<style>
+	</style>
+</head>
+
+<body style="width: 395px;">
+	<div class="frame multiColumn">
+		<table>
+			<tr>
+			<td>ルビ
+			<td><input type="text" id="rubyTextbox" style="width: 239px; ime-mode:active;">
+			<tr>
+			<td>文字
+			<td><div class="textPane" id="textPane"></div>
+		</table>
+	</div>
+
+	<div class="frame multiColumn" style="width: 90px;">
+		<input type="button" class="button" value="適用" onclick="onClickSubmit()">
+		<input type="button" class="button" value="適用して次に" onclick="onClickSubmitAndNext()">
+		<input type="button" class="button" value="次を検索" onclick="onClickNextFind()">
+		<input type="button" class="button" value="全て適用" onclick="onClickSubmitAll()">
+		<input type="button" class="button" value="キャンセル" onclick="onCancel()">
+	</div>
+
+
+
+</body>
+</html>

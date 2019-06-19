@@ -1,0 +1,41 @@
+﻿div.dns_color_picker_background
+{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background-color:rgba(0,0,0,0.0);
+    z-index:99999;
+}
+table.dns_color_picker
+{
+    position:absolute;
+    top:0;
+    left:0;
+    border-style:outset;
+    border-width:2px;
+    border-color:#CCC;
+    background:#EEE;
+    box-shadow:2px 2px 1px 1px rgba(0,0,0,0.25);
+}
+
+table.dns_color_picker > tbody > tr > td
+{
+    border-style:inset;    
+    border-width:1px;
+    border-color:#CCC;
+    width:16px;
+    height:16px;
+    font-size:4px;
+    padding:0;
+    margin:0;
+}
+
+table.dns_color_picker > tbody > tr > td:hover
+{
+   outline-color:invert;
+   outline-style:dotted;
+   outline-width:2px;       
+   outline-offset:initial;
+}

@@ -1,0 +1,348 @@
+﻿html, body
+{
+    width:100%;
+    height:100%;
+    margin:0;
+    padding:0;
+    overflow:hidden;
+}
+
+body *
+{
+    font-family: 'Meiryo UI';
+    outline: 0px solid transparent;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+}
+
+table#dns_userdic_editor
+{
+    border-collapse:collapse;
+    border-style:none;
+    margin:4px;
+    padding:0px;
+}
+
+table#dns_userdic_editor > tbody > tr > td
+{
+    white-space:nowrap;
+    border-style:none;
+    overflow:hidden;
+    padding:0;
+    margin:0;
+}
+
+/*table#dns_userdic_editor > tbody > tr:nth-child(1) > td { background-color:rgba(0,255,255,0.10); }                  */
+/*table#dns_userdic_editor > tbody > tr:nth-child(2) > td { background-color:rgba(0,255,0,0.10); }                    */
+/*table#dns_userdic_editor > tbody > tr:nth-child(3) > td:nth-child(1) { background-color:rgba(255,0,255,0.10); }     */
+/*table#dns_userdic_editor > tbody > tr:nth-child(3) > td:nth-child(2) { background-color:rgba(0,0,255,0.10); }       */
+/*table#dns_userdic_editor > tbody > tr:nth-child(4) > td { background-color:rgba(255,255,0,0.10); }                  */
+
+table#dns_userdic_editor > tbody > tr:nth-child(1) > td { height:20px; }
+table#dns_userdic_editor > tbody > tr:nth-child(2) > td { height:28px; }
+table#dns_userdic_editor > tbody > tr:nth-child(3) > td { height:20px; }
+table#dns_userdic_editor > tbody > tr:nth-child(4) > td { vertical-align:top; }
+table#dns_userdic_editor > tbody > tr:nth-child(5) > td:nth-child(1) { height:104px; vertical-align:top; }
+table#dns_userdic_editor > tbody > tr:nth-child(5) > td:nth-child(2) { height:104px; vertical-align:top; }
+table#dns_userdic_editor > tbody > tr:nth-child(6) > td { height:30px; }
+
+
+#dns_dic_list 
+{
+    /*background-color:rgba(0,0,255,0.10); */
+    padding:0;
+    margin:0;
+}
+#dns_dic_list > .dng_grid
+{
+    /*background-color:rgba(255,0,0,0.10); */
+}
+
+.dns_narrow_selection
+{
+    display:none;
+}
+.dns_narrow_label
+{
+    display:inline-block;
+    text-align:center;
+    border-style:solid;
+    border-width:1px;
+    border-bottom-style:none;
+    border-top-left-radius:6px;
+    border-top-right-radius:6px;
+    width:48px;
+    height:20px;
+    padding:1px 0;
+    margin-left:-1px;
+}
+#dns_ud_all+label
+{
+    margin-left:0px;
+}
+
+label.dns_narrow_label:last-child
+{
+    border-right-style:solid;
+}
+
+input[type="radio"]:checked + label
+{
+    box-shadow:1px 1px 2px 1px rgba(0,0,0,0.25) inset;
+    text-shadow:1px 1px 1.5px rgba(0,0,0,1);
+	color: #FFF;
+    background-color:#F00;
+}
+
+input[type="radio"] + label:focus
+{
+    color:#FFF;
+    background-image: -webkit-gradient(linear, left top, left bottom, 
+    color-stop(  0%,rgba(0,0,0,0.10)), 
+    color-stop(100%,rgba(0,0,0,0.10)));
+    background-image: -moz-linear-gradient(top,  
+    rgba(0,0,0,0.10)   0%, 
+    rgba(0,0,0,0.10) 100%);
+    background-image: -ms-linear-gradient(top,  
+    rgba(0,0,0,0.10)   0%, 
+    rgba(0,0,0,0.10) 100%);
+    outline-style:dotted;
+    outline-color:invert;
+    outline-width:1px;
+    outline-offset:initial;
+}
+
+/* 画面下段のコマンドボタン領域のスタイル */
+td#dns_userdic_commands
+{
+    white-space:nowrap;
+    overflow:hidden;
+}
+/* 画面下段のコマンドボタンのスタイル */
+input[type=button].dns_userdic_command
+{
+    height:28px !important;
+}
+
+#dic_data_1, #dic_data_2, #add_dic_data_3, #add_dic_data_1, #add_dic_data_2, #add_dic_data_3 
+{
+    width:200px;
+}
+
+input[disabled]#dic_name
+{
+    color:#000;
+    background-color:#FFF;
+    border-style:inset;
+    border-width:1px;
+    border-radius:4px;
+    margin-right:4px;
+    padding:0em 0.2em;
+    height:21px;
+}
+input[disabled]#dic_name
+{
+    color:#666;
+    background-color:#FFFFF0;
+}
+
+input#dic_name_update
+{
+    font-size:12px;
+}
+
+input[disabled]#dic_data_1
+{
+    color:#000;
+    background-color:#FFD;
+    border-style:inset;
+    border-width:1px;
+}
+
+
+.dic_data_4
+{
+    display:none;
+}
+
+.dic_data_4_label
+{
+    display:inline-block;
+    text-align:center;
+    border-style:solid;
+    border-width:1px;
+    width:40px;
+    height:20px;
+}
+
+input[disabled].dic_data_4 + label.dic_data_4_label
+{
+    background-color: #AAAAAA;
+    border-color:#AAAAAA;
+    color:#666;
+}
+
+
+#dic_data_4_2_label, #dic_data_4_3_label, #dic_data_4_4_label, #dic_data_4_5_label,
+#add_dic_data_4_2_label, #add_dic_data_4_3_label, #add_dic_data_4_4_label, #add_dic_data_4_5_label
+{
+    border-left-color:rgba(255,255,255,0.5) !important;
+}
+
+#dic_data_4_1_label, #add_dic_data_4_1_label
+{
+    border-left-style:solid;
+    border-top-left-radius:6px;
+    border-bottom-left-radius:6px;
+    border-left-style:solid;
+}
+#dic_data_4_5_label, #add_dic_data_4_5_label
+{
+    border-top-right-radius:6px;
+    border-bottom-right-radius:6px;
+}
+
+.dic_data_accent, .add_dic_data_accent 
+{
+    background-color:#FFF;
+    border-style:inset;
+    border-color:#FFF;
+    border-width:1px;
+    border-radius:2px;
+    min-width:100px;
+    height:92px;
+    min-height:92px;
+    overflow:hidden;
+    position:relative;
+}
+.dic_data_accent[disabled]
+{
+    background-color:#E0E0E0;
+    border-style:solid;
+    border-color:#CCC;
+}
+.dic_data_accent > table.dic_data_accent_table
+{
+    margin:4px;
+    font-size:16px;
+    line-height:16px;
+    height:84px;
+    border-collapse:collapse;
+    border:solid 1px rgba(0,0,0,0);
+}
+.dic_data_accent > table.dic_data_accent_table > tbody > tr > td
+{
+    height:14px;
+    padding:2px 6px;
+    vertical-align:bottom;
+    border:solid 1px rgba(0,0,0,0);
+}
+.dic_data_accent_svg, .add_dic_data_accent_svg
+{
+    position:absolute;
+    left:0;
+    top:0;
+    width:100px;
+    height:100px;
+    background-color:rgba(0,0,0,0.01);
+    overflow:hidden;
+}
+
+.dic_data_accent_on
+{
+    stroke-width:5px;
+    cursor:pointer;
+    stroke:rgba(0,0,0,0.0);
+    fill:#0000FF;
+}
+.dic_data_accent_off
+{
+    stroke-width:5px;
+    cursor:pointer;
+    stroke:rgba(0,0,0,0.0);
+    fill:rgba(0,0,0,0.1);
+}
+.dic_data_accent_off:hover
+{
+    cursor:pointer;
+    stroke:rgba(0,0,255,0.4);
+    fill:rgba(0,0,255,0.7);
+}
+.dic_data_accent_grid
+{
+    stroke-width:1px;
+    stroke:rgba(0,0,0,0.1);
+}
+.dic_data_accent_span
+{
+    stroke-width:1px;
+    stroke:none;
+    fill:rgba(0,0,0,0);
+    cursor:pointer;
+}
+.dic_data_accent_line
+{
+    stroke-width:1px;
+    stroke:#0000FF;
+}
+.dic_data_accent_separate
+{
+    stroke-width:1px;
+    stroke:transparent;
+}
+.dic_data_accent_span:hover
+{
+    fill:rgba(0,0,0,0.0);
+}
+.dic_data_accent_span:hover + .dic_data_accent_line
+{
+    stroke:#FF0000;
+}
+.dic_data_accent_span:hover + .dic_data_accent_separate
+{
+    stroke:#FF0000;
+    stroke-dasharray: 2px, 2px;
+}
+
+/* 一覧表の変更された行(項目)の先頭セル(列)にアイコンを追加 */
+.dng_table_body > tr > td:first-child > p
+{
+    margin-left:20px;
+}
+.dng_table_body > tr > td:first-child
+{
+    background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB9UlEQVR42n2TzWsaQRTAX2iGXryFsCBSQUQQQWytKEoPBpFYzUEQW0EqsQ2GhoLBjz+l1xzanup1wJs0CbSBpW6aIDTQtDIRLLvajxwsRnc7szY7aYg78Pa9w/x+8x68XYB/JxKJLKmqukgDNE0Dlq/XlyHL8i9FUf4wboF9wuHwUjab/Wa3229fv3w1plMVRqMRNBpvX7VaraeGIBQKCfV6naTTaQQ3HNqEEcPhD1hbe4gPDj6kDEEgENAFmUwGmcG0CV2QSsWxKIpc4Pf7dQEdA5nBM8EQkskYbrfbXODz+XRBLpdDZjCrB4MhJBJRfHT0iQu8Xq9Qq9VIPp9HZjDLTLC6+gB3Oh0u8Hg8uqBQKCAzeCYYQDwewScnn7nA7XYL1WqVrK8XkRnMakUZQCwWxKenX7jA5XLpHRSLz5AZPOtAgZWV+7jb7XKB0+kUKpUq2dgoITOYZVlWIBq9i3u9My5wOBzC9naFlErP0TyYbeHFxZSOoNAR7uF+v88FdIV1webmCzTv5UbjDYjiezg//6nt7e2+JoQ8MQQ2m00olytka6uMboJZ3tl5SV/vac1m850kfXxMse+GwGq1LicSya/BYBixVlVVg/+zCsfH7VuSJO4fHkqPLmFDYLFYACF0ZzweW9jvOy8mk8kZvf776rr/BRaIsCCtK9SlAAAAAElFTkSuQmCC);
+    background-repeat:no-repeat;
+    background-position-x:2px;
+    background-position-y:4px;
+}
+/* 一覧表の変更された行(項目)は先頭セル(列)は、アイコンを変更する */
+.dng_table_body > tr[modified=true] > td:first-child
+{
+    background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACw0lEQVR42nWT70sTcRzH30tPSRcoEkc6GsgYiTBWUzIXQtIDw4RksiaGUqTD/BXN7Fl/QPignggZ1BPNBwNJbc3EctqU1DV/4u+cehebY2pzGvO23XU7dDPJD7y/3/vC5/W6D8d9RTgstVqdwrJsLB9wHIfwfvJZCMdCXCGWjj8bHwtzovCSm5ubotVo1qRpafH/NJ9MKASbd0IUdy2RNbea6xfaF14LgpycHLKpoYEqLiggcFrxgv5VC74ExmD79oMdHR6lfNM+hSDIzs4WBCWFhcRpsI22o8c/CPv3SYxYRg62HdtaTKJbEKhUKkGgLSoi/gcvuZfwZtOI9RUKNsso/HOMxWl33Yh8A6VSSTbV11OlxcXESdjhWUWr0wiXyw2reQhlGbfQ2TZompmdvR0RKBQK8ikvuKfREMdht9eJFqoDTo8bFtMASuT5eHK9HHmVlaa5+fmoIDMzUxBUaLXEEby7v4MXC63YYw/Q39mHm2lZaL5jgHfnN9S8YHF5OSrIyMggG+vqqAelpUQY3v/jxcvld9gnguh53wXlORladc9xVhSDra0tXOUFPx2OqEAulwsTPOQFXIBBN/0BtgANc8dHkGwSjPebkXAmFggG4fF4kFVVZVqnqKhAJpORjbW1lF6nI4LMLtZDVrzt68Lo1C8YK14hOS5BgBEICILLer2JdjqjgvT0dNJQXU094idYoaYRGz+Mvb0QkkR5kIgvCDDLMAj5/fBsb+NKTY3J5XZHBVKplDTo9VQtL+j52od81SUkxiRDFAxF3tw+MADr2gZ8Pi83ZLW2UTRdHhFIJBLSUFlJPS4rI8LNAnSU8JlPS28vaA7cZ/OnQfvUlI7HNiOC1NTU84X5+Y5chYJg+WaOvzQsD3Ph0Q8zsbERY1tctE7OzNw9giMCsVgMgiAuMgwjDl/f0xIMBmm+fff4z/oXtBKiTphu/1cAAAAASUVORK5CYII=);
+}
+
+
+#dic_append_area_back
+{
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    border-collapse:collapse;
+    border-style:none;
+    z-index:9000;
+    background-color:rgba(0,0,0,0.8);
+}
+#add_dic_command_area
+{
+    text-align:right;
+}
+#add_dic_command_area input[type=button]
+{
+    font-size:12px;
+    height:16px;
+}

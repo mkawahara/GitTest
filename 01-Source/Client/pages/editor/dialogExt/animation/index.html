@@ -1,0 +1,157 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="IE=Edge">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <title>アニメーション編集</title>
+    <script type="text/javascript" src="../../../../lib/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="../../../../lib/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="../../managers/messageManager.js"></script>
+    <script type="text/javascript" src="../../../../js/communicator.js"></script>
+    <script type="text/javascript" src="../dnslibrary/dns.js"></script>
+    <script type="text/javascript" src="./animationedit.js"></script>
+    <link type="text/css" rel="stylesheet" href="./animationedit.css" />
+</head>
+<body>
+    <table class="mainFrame">
+        <tbody>
+            <tr>
+                <td id="frameArea" rowspan="2">
+                    <div id="framelist">
+                        <table id="framelist_table">
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </td>
+                <td id="commandArea1" class="commandArea">
+                    <!-- ========================================================= -->
+                    <fieldset id="gp_read_area" class="dns_ae_group">
+                        <legend id="gp_read_area_label">READ TEXT</legend>
+                        <table id="readArea">
+                            <tbody>
+                                <tr>
+                                    <td><input type="text" id="read_text" /></td>
+                                    <td><input type="button" id="read_test" class="button color cmdbuttonS" disabled="disabled" value="A" /></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </fieldset>
+                    <!-- ========================================================= -->
+                    <fieldset id="gp_edit_area" class="dns_ae_group">
+                        <legend id="gp_edit_area_label">EDIT</legend>
+                        <table id="editArea">
+                            <tbody>
+                                <tr>
+                                    <td><input type="button" class="button cmdbuttonL color" id="edit_copy" disabled="disabled" value="COPY" /></td>
+                                    <td><input type="button" class="button cmdbuttonL color" id="edit_delete" disabled="disabled" value="DELETE" /></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span id="edit_file_span" style="display:none;">
+                                            <input type="file" class="button cmdbuttonL color" id="edit_file_select" accept="image/jpeg,image/png,image/bmp" style="display:none;" />
+                                        </span><input type="button" class="button cmdbuttonL color" id="edit_file" disabled="disabled" value="FILE" />
+                                    </td>
+                                    <td><input type="button" class="button cmdbuttonL color" id="edit_clipbord" disabled="disabled" value="CLIPBOARD" style="display:none;" /></td>
+                                <tr>
+                                    <td><input type="button" class="button cmdbuttonL color" id="edit_moveup" disabled="disabled" value="MOVE UP" /></td>
+                                    <td><input type="button" class="button cmdbuttonL color" id="edit_movedown" disabled="disabled" value="MOVE DOWN" /></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="button" class="button cmdbuttonL color" id="edit_masking" disabled="disabled" value="MASKING TOOL" /></td>
+                                    <td><input type="button" class="button cmdbuttonL color" id="edit_paint" disabled="disabled" value="PRINT" style="display:none;" /></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </fieldset>
+                </td>
+            </tr>
+            <tr>
+                <td id="commandArea2" style="text-align:right;">
+                    <table id="commandSubArea2">
+                        <tbody>
+                            <tr>
+                                <td><br /></td>
+                                <td><input type="button" class="button cmdbuttonM color" id="cmd_play" disabled="disabled" value="TEST PLAY" /></td>
+                                <td>&nbsp;&nbsp;&nbsp;</td>
+                                <td><input type="button" class="button cmdbuttonM color" id="cmd_enter" disabled="disabled" value="ENTER" /></td>
+                                <td><input type="button" class="button cmdbuttonM color" id="cmd_cancel" value="CANCEL" /></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td id="statusArea" colspan="2"><br /></td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- ========================================================= -->
+    <!-- リサイズダイアログ -->
+    <div class="dns_overlap_area" id="resize_image_area" style="display:none;background-color:rgba(0,0,0,0.2);">
+        <img id="resize_image_source" style="display:none;" />
+        <div class="dns_message_box" id="resize_image_dialog">
+            <div class="dns_message_caption color"><span id="resize_image_caption" style="display:inline-block;"></span><div id="resize_image_close" class="dns_message_button_close">M</div></div>
+            <div id="resize_image" class="dns_message_text">
+                <span id="resize_image_info"></span><br />
+                <div class="resize_image_type" id="resize_image_type_1"></div>
+                <div class="resize_image_type" id="resize_image_type_2"></div>
+                <div class="resize_image_type" id="resize_image_type_3"></div>
+                <div class="resize_image_button_group">
+                    <input type="button" id="resize_image_trim_option" class="button color resize_image_button" />
+                    <span id="resize_image_color_area" style="background-color:#FFF;">&nbsp;</span>
+                    <input type="button" id="resize_image_color_select" class="button color resize_image_button" />
+                    <input type="button" id="resize_image_cancel" class="button color resize_image_button" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ========================================================= -->
+    <!-- トリミング設定ダイアログ -->
+    <div class="dns_overlap_area" id="trim_image_area" style="display:none;background-color:rgba(0,0,0,0.2);">
+        <div class="dns_message_box" id="trim_image_dialog">
+            <div class="dns_message_caption color"><span id="trim_image_caption" style="display:inline-block;"></span><div id="trim_image_close" class="dns_message_button_close">M</div></div>
+            <div class="trim_group_area">
+                <fieldset id="trim_horz_group" class="trim_gtoup">
+                    <legend id="trim_horz_group_label">Horizontal Align</legend>
+                    <input type="radio" name="trim_horz" id="trim_horz_left" /><label for="trim_horz_left">Left</label><br />
+                    <input type="radio" name="trim_horz" id="trim_horz_center" /><label for="trim_horz_center">Center</label><br />
+                    <input type="radio" name="trim_horz" id="trim_horz_right" /><label for="trim_horz_right">Right</label><br />
+                </fieldset>
+                <fieldset id="trim_vert_group" class="trim_gtoup">
+                    <legend id="trim_vert_group_label">Horizontal Align</legend>
+                    <input type="radio" name="trim_vert" id="trim_vert_top" /><label for="trim_vert_top">TOP</label><br />
+                    <input type="radio" name="trim_vert" id="trim_vert_middle" /><label for="trim_vert_middle">MIDDLE</label><br />
+                    <input type="radio" name="trim_vert" id="trim_vert_bottom" /><label for="trim_vert_bottom">BOTTOM</label><br />
+                </fieldset>
+                <div>
+                    <input type="button" id="trim_image_enter" class="button color trim_image_button" value="OK" /><br />
+                    <input type="button" id="trim_image_cancel" class="button color trim_image_button" value="CANCEL" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ========================================================= -->
+    <table class="amination_play_area" id="amination_play_area" style="display:none;">
+        <tbody>
+            <tr>
+                <td>
+                    <audio id="amination_play_audio" style="display:none;"></audio>
+                    <p id="amination_play_info" style="max-width: 100px; min-width:100px;width:100px;"></p>
+                    <br>
+                    <img id="amination_play_image" playmode="play" src="" style="width:100px;height:100px;">
+                    <br>
+                    <span class="amination_play_cmd" id="amination_play_cmd_stop">a</span>&nbsp;&nbsp;
+                    <span class="amination_play_cmd" id="amination_play_cmd_back">e</span>
+                    <span class="amination_play_cmd" id="amination_play_cmd_pause">b</span>
+                    <span class="amination_play_cmd" id="amination_play_cmd_play">c</span>
+                    <span class="amination_play_cmd" id="amination_play_cmd_next">d</span>
+                    <span class="amination_play_cmd" id="amination_play_cmd_close">f</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- ========================================================= -->
+</body>
+</html>

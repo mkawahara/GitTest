@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>文書設定</title>
+
+	<link rel="stylesheet" type="text/css" href="jquery-ui.min.css">
+
+	<script src="../../../../lib/jquery-1.11.2.min.js"></script>
+	<script src="../../../../lib/jquery-ui.min.js"    ></script>
+
+	<script src="../fontData.js"></script>
+	<script src="main.js"></script>
+	<script src="docProperty.js"></script>
+	<script src="../../managers/configManager.js"></script>
+	<script src="../dialogCommon.js"></script>
+
+	<script>
+	</script>
+
+	<link rel="stylesheet" type="text/css" href="../dialog.css">
+	<style>
+	table.color {
+		background-color: white;
+		border-spacing: 0px;
+	}
+	</style>
+</head>
+
+<body style="width: 350px;">
+	<div style='clear:both;' id="settingTab">
+
+	<ul>
+		<li><a href="#_fontTab">フォント</a></li>
+	</ul>
+
+	<!-- 第一タブ ***************************************************************** -->
+
+	<div id="_fontTab">
+		<div class="multiColumn" style="width: 66%;">
+			<select id="_fontNameList" size="12" style="width: 97%;">
+			</select>
+		</div>
+
+		<div class="multiColumn" style="width: 100px;">
+			<input type="number" class="number" id="_fontSize" style="width: 75%;"> pt
+			<br>
+			<select id="_fontSizeList" size="10" style="width: 100%; margin-top: 0.5em;" onchange="onChangeSizeSelect(event)">
+			</select>
+		</div>
+<!-- 		<div class="oneColumn"> -->
+<!-- 			<label> -->
+<!-- 				<input type="checkbox" id="_fontAsDefault"> -->
+<!-- 				新規文書のデフォルト値としても設定する -->
+<!-- 			</label> -->
+<!-- 		</div> -->
+	</div>
+
+	<div>
+		<div class="oneColumn"></div>
+	</div>
+
+	</div>
+
+	<div style="margin-top: 0.5em;">
+		<span>
+			<input type="button" class="button" value="既定に設定" onclick="onSave(true)">
+		</span>
+		<span style="float: right">
+			<input type="button" class="button" value="OK" onclick="onSave(false)">
+			<input type="button" class="button" value="キャンセル" onclick="onCancel()">
+		</span>
+	</div>
+</body>
+</html>

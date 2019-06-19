@@ -1,0 +1,132 @@
+﻿.dng_grid
+{
+    display: inline-block;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    border: solid 1px #888;
+    font-family: 'Meiryo UI';
+    font-size: 14px;
+    background-color: #888;
+}
+/*
+.dng_grid_span
+{
+    display:inline-block;position:absolute;
+    background: #fceabb;
+    background: -moz-linear-gradient(top,  #fceabb 0%, #fccd4d 50%, #f8b500 51%, #fbdf93 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fceabb), color-stop(50%,#fccd4d), color-stop(51%,#f8b500), color-stop(100%,#fbdf93));
+    background: -webkit-linear-gradient(top,  #fceabb 0%,#fccd4d 50%,#f8b500 51%,#fbdf93 100%);
+    background: -o-linear-gradient(top,  #fceabb 0%,#fccd4d 50%,#f8b500 51%,#fbdf93 100%);
+    background: -ms-linear-gradient(top,  #fceabb 0%,#fccd4d 50%,#f8b500 51%,#fbdf93 100%);
+    background: linear-gradient(to bottom,  #fceabb 0%,#fccd4d 50%,#f8b500 51%,#fbdf93 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fceabb', endColorstr='#fbdf93',GradientType=0 );
+}
+*/
+.dng_table
+{
+    display:inline-table;
+    overflow: hidden;
+    border-collapse: collapse;
+    font-family: 'Meiryo UI';
+    font-size: 14px; /*background-color:#888;*/
+    margin:0;
+    padding:0;
+}
+
+.dng_table *
+{
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -kh1tml-user-select: none;
+    -webkit-user-select: none;
+}
+
+.dng_table_head
+{
+    display: block;
+    left: 0px;
+    position: relative;
+    border: none;
+    overlow: hidden;
+}
+
+.dng_table_body
+{
+    display: block;
+    height: 200px;
+    overflow: auto;
+    outline: none;
+    border: none;
+    background-color: #F8F8F8;
+}
+
+.dns_table_glipper
+{
+    position: absolute;
+    top: 0;
+    display: block;
+    overflow: hidden;
+    cursor: w-resize;
+    width: 4px;
+    height: 100px;
+    background: transparent;
+}
+
+.dng_table_body > tr
+{
+    background-color: #FFF;
+}
+.dng_table_body > tr[modified=true]
+{
+    background-color: #FEE;
+}
+
+.dng_table_body > tr.dns_select_tr
+{
+    background-color: #88B;
+    color: #FFF;
+}
+
+.dns_grid_active > tr.dns_select_tr
+{
+    background-color: #44A;
+    color: #FFF;
+}
+
+.dng_table_head > tr > th
+{
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: solid 1px #A86;
+    padding: 3px;
+    margin: 0;
+    font-weight: normal;
+    color: #640;
+    text-shadow: 1px 1px 2px #FFF;
+}
+
+.dng_table_body > tr > td
+{
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: solid 1px #DDD;
+    padding: 3px;
+    margin: 0;
+    border-bottom: solid 1px #DDD;
+}
+
+.dng_table_body > tr > td > p
+{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0px;
+    margin: 0;
+    cursor: default;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    outline: none;
+    line-height: 1.25em;
+}

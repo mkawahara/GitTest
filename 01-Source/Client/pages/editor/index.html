@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8"><!-- このタグより前で大量のコメントを入れていはいけない -->
+
+<!-- Project: [PJ-0136] ChattyInfty -->
+<!-- Module : DVM_C_Display -->
+<!-- ====================================================================== -->
+<!-- ==                         ChattyInfty-Online                       == -->
+<!-- ==                                                                  == -->
+<!-- ==                      株式会社知能情報システム                    == -->
+<!-- ====================================================================== -->
+<!-- -    ファイル名     ： TB_toolBar.html                                 -->
+<!-- -                                                                      -->
+<!-- -    概      要     ： ツールバー htmlソース                           -->
+<!-- -                                                                      -->
+<!-- -  開  発  環  境   ： Wiondows 8.1 Pro 64bit, Firefox 35.0.1          -->
+<!-- -                                                                      -->
+<!-- -  担当 / 最終更新  ： 湯本 直杉 / 2015年05月26日                      -->
+
+<!-- =================== ツールバークラス 命名規則 (暫定) ==================== -->
+<!-- TBC_ : Tool Bar Common    : 全クラス共通                                  -->
+<!-- MB_  : MenuBar            : メニューバー                                  -->
+<!-- MT_  : Main   Toolbar     : メインツールバー（大アイコン表示）            -->
+<!-- MIC_ : Mini Icon Common   : 小アイコン用共通仕様                          -->
+<!-- IT_  : Index  Toolbar     : インデックス操作用ツールバー（小アイコン表示）-->
+<!-- ET_  : Editor Toolbar     : エディタ部用ツールバー（小アイコン表示）      -->
+<!-- ST_  : Section Title bar  : セクションタイトルバー（小アイコン表示）      -->
+<!-- SB_  : Status Bar         : ステータスバー                                -->
+<!-- ※HTMLタグIDは、上記接頭文字から始めます。                                -->
+<!-- ※CSS classは、cl_ の後、上記接頭文字を続ける形とします。                 -->
+<!--========================================================================== -->
+
+<!-- ====================== ツールバークラス 基本方針 ======================== -->
+<!-- ・アイコンの disable/enable 状態及び、チェックマークの状態は、            -->
+<!-- 　当モジュール内では管理しません。                                        -->
+<!-- ========================================================================= -->
+
+	<!-- jQuery, jQuery-UI -->
+	<link rel="stylesheet" type="text/css" href="../../lib/jquery-ui.min.css">
+	<link rel="stylesheet" type="text/css" href="../../css/init_editor.css">
+	<link rel="stylesheet" type="text/css" href="../../css/base_editor.css">
+	<link rel="stylesheet" type="text/css" href="dialog/dialog.css">
+	<link rel="stylesheet" type="text/css" href="page.css">
+	<script src="../../lib/jquery-1.11.2.min.js"></script>
+	<script src="../../lib/jquery-ui.min.js"    ></script>
+
+	<!-- 通信管理 -->
+	<script src="../../js/communicator.js"></script>
+
+	<!-- ページ間共通 -->
+	<script src="../../js/common.js"></script>
+
+	<!-- ツールバー、メニューバー -->
+	<link rel="stylesheet" type="text/css" href="editorCommon.css">
+	<link rel="stylesheet" type="text/css" href="mainbar/menuBar.css">
+	<link rel="stylesheet" type="text/css" href="mainbar/mainToolBar.css">
+	<link rel="stylesheet" type="text/css" href="mainbar/miniToolBar.css">
+	<link rel="stylesheet" type="text/css" href="indexPane/indexTool.css">
+
+	<script src="editorCommon.js"></script>
+	<script src="mainbar/menuBar.js"></script>
+	<script src="mainbar/mainToolBar.js"></script>
+	<script src="mainbar/fileMenuEvent.js"></script>
+	<script src="mainbar/editMenuEvent.js"></script>
+	<script src="mainbar/formatMenuEvent.js"></script>
+	<script src="mainbar/readMenuEvent.js"></script>
+	<script src="indexPane/indexEvent.js"></script>
+	<script src="indexPane/indexTool.js"></script>
+	<script src="editorPane/editorToolBar.js"></script>
+	<script src="editorPane/editorToolBarEvent.js"></script>
+	<script src="editorPane/editorPane.js"></script>
+	<script src="uiUpdater/rendererUtil.js"></script>
+	<script src="uiUpdater/renderer.js"></script>
+	<script src="uiUpdater/highlightRenderer.js"></script>
+	<script src="uiUpdater/selectionUpdater.js"></script>
+	<script src="mainbar/statusBar.js"></script>
+	<script src="popupMenu/popupMenu.js"></script>
+	<script src="popupMenu/fileMenuData.js"></script>
+	<script src="popupMenu/indexMenuData.js"></script>
+	<script src="popupMenu/editMenuData.js"></script>
+	<script src="popupMenu/searchMenuData.js"></script>
+	<script src="popupMenu/formatMenuData.js"></script>
+	<script src="popupMenu/viewMenuData.js"></script>
+	<script src="popupMenu/readingMenuData.js"></script>
+	<script src="popupMenu/settingMenuData.js"></script>
+	<script src="popupMenu/helpMenuData.js"></script>
+	<script src="popupMenu/editorRightMenuData.js"></script>
+	<script src="editorPane/scrollManager.js"></script>
+	<script src="mainbar/helpMenuEvent.js"></script>
+
+	<!-- マネージャ -->
+	<script src="managers/searchManager.js"></script>
+	<script src="managers/messageManager.js"></script>
+	<script src="managers/readManager.js"></script>
+	<script src="managers/windowManager.js"></script>
+	<script src="managers/statusManager.js"></script>
+	<script src="managers/viewManager.js"></script>
+	<script src="managers/documentManager.js"></script>
+	<script src="managers/configManager.js"></script>
+	<script src="managers/serverManager.js"></script>
+	<script src="selectedRange/selectedRangeManager.js"></script>
+	<script src="selectedRange/selectedRange.js"></script>
+	<script src="managers/editManager.js"></script>
+	<script src="managers/clipboardManager.js"></script>
+	<script src="managers/storageManager.js"></script>
+	<script src="exitPage.js"></script>
+
+	<!-- ダイアログ -->
+	<script src="dialog/fontData.js"></script>
+
+
+	<!-- コマンドラッパー -->
+	<script src="uiCommandWrapper.js"></script>
+
+	<!-- 入力支援 -->
+	<link rel="stylesheet" href="codeAssist/codeAssist.css">
+	<script src="codeAssist/codeAssist.js"></script>
+	<script src="codeAssist/assistHandler.js"></script>
+	<script src="codeAssist/inputData.js"></script>
+
+	<!-- データクラス用共通部分ソース -->
+	<link rel="stylesheet" type="text/css" href="dataClass/common/styleSheet.css" title="rewritableStyleClass">
+
+	<script src="dataClass/common/enum.js"></script>
+	<script src="dataClass/common/utility.js"></script>
+
+	<script src="dataClass/layout/layoutBase.js"></script>
+	<script src="dataClass/group/groupBase.js" ></script>
+
+	<!-- データクラス読み込み -->
+	<!--*  - - - - - - - - UniElement 系 -->
+	<script src="dataClass/uni/characterElement.js"></script>
+	<script src="dataClass/uni/chemCharElement.js"></script>
+	<script src="dataClass/uni/lineBreak.js"></script>
+	<script src="dataClass/uni/image.js"></script>
+	<script src="dataClass/uni/pageDelimitor.js"></script>
+	<script src="dataClass/uni/pauseElement.js"></script>
+	<script src="dataClass/uni/highlightDivElement.js"></script>
+
+	<!--*  - - - - - - - - LayoutElement 系 -->
+	<script src="dataClass/layout/cornerElement.js"></script>
+	<script src="dataClass/layout/cornerTagTable.js"></script>
+	<script src="dataClass/layout/fractionElement.js"></script>
+	<script src="dataClass/layout/integralElement.js"></script>
+	<script src="dataClass/layout/rootElement.js"></script>
+	<script src="dataClass/layout/topBottomElement.js"></script>
+	<script src="dataClass/layout/topElement.js"></script>
+	<script src="dataClass/layout/bottomElement.js"></script>
+	<script src="dataClass/layout/underlineElement.js"></script>
+	<script src="dataClass/layout/decoBoxElement.js"></script>
+	<script src="dataClass/layout/rubyElement.js"></script>
+	<script src="dataClass/layout/bracketBase.js"></script>
+	<script src="dataClass/layout/openBracketElement.js"></script>
+	<script src="dataClass/layout/closeBracketElement.js"></script>
+	<script src="dataClass/layout/tableBase.js"></script>
+	<script src="dataClass/layout/matrixElement.js"></script>
+	<script src="dataClass/layout/tableElement.js"></script>
+	<script src="dataClass/layout/eqNumber.js"></script>
+	<script src="dataClass/layout/readElement.js"></script>
+	<script src="dataClass/layout/phraseElement.js"></script>
+
+
+
+	<!--*  - - - - - - - - GroupElement 系-->
+	<script src="dataClass/group/groupElement.js"></script>
+	<script src="dataClass/group/paragraph.js"></script>
+	<script src="dataClass/group/matrixCellElement.js"></script>
+	<script src="dataClass/group/tableCellElement.js"></script>
+
+	<script src="dataClass/edit/caret.js"></script>
+	<script src="dataClass/doc/section.js"></script>
+	<script src="dataClass/doc/sectionList.js"></script>
+	<script src="dataClass/doc/documentProperty.js"></script>
+	<script src="dataClass/doc/document.js"></script>
+
+	<script src="dataClass/idManager.js"></script>
+	<script src="dataClass/paragraphParser.js"></script>
+	<!-- <script src="dataClass/Loader.js"></script > -->
+	<script src="dataClass/loader/paraLoader.js"></script >
+	<script src="dataClass/loader/docLoader.js"></script >
+
+	<!-- MathJax -->
+	<script src="../../lib/MathJax-master/MathJax.js?config=TeX-AMS-MML_HTMLorMML&delayStartupUntil=configured"></script>
+	<!-- &delayStartupUntil=configured はあってもなくても良い気が。。 -->
+
+	<!-- 複合処理層 -->
+	<script src="editorClass/textEditor.js"></script>
+	<script src="editorClass/nodeCreator.js"></script>
+	<script src="editorClass/indexEditor.js"></script>
+	<script src="editorClass/rangedEditor.js"></script>
+	<script src="editorClass/tableEditor.js"></script>
+	<script src="editorClass/formatter.js"></script>
+	<script src="editorClass/statusEditor.js"></script>
+
+
+	<!-- イベントハンドラ機能群 -->
+	<script src="eventHandler/logoutEventHandler.js"></script>		<!-- 基本機能群 -->
+	<script src="eventHandler/keyEventHandler.js"></script>			<!-- 基本機能群 -->
+	<script src="eventHandler/keyShortCuts.js"></script>			<!-- キーボードショートカット -->
+	<script src="eventHandler/shortCutCommand.js"></script>			<!-- ショートカットの実行インターフェース -->
+	<script src="eventHandler/clipBoardEventHandler.js"></script>	<!-- クリップボードイベント -->
+	<script src="eventHandler/ignoreKeyList.js"></script>			<!-- ショートカットの実行インターフェース -->
+	<script src="eventHandler/searchMenuEvent.js"></script>			<!-- 検索メニューイベント -->
+	<script src="eventHandler/indexPaneShortcutHandler.js"></script><!-- 検索メニューイベント -->
+	<script src="eventHandler/documentShortcutHandler.js"></script>	<!-- 検索メニューイベント -->
+	<script src="eventHandler/pasteDialogHandler.js"></script>		<!-- 画像貼り付けダイアログのイベント -->
+
+	<!-- コマンドクラス層 -->
+	<script src="commandClass/baseCommand.js"></script>				<!-- ベース    コマンドクラス -->
+	<script src="commandClass/alignCommand.js"></script>			<!-- アラインコマンドクラス -->
+	<script src="commandClass/insertCharCommand.js"></script>		<!-- 一文字挿入コマンドクラス -->
+	<script src="commandClass/insertImageCommand.js"></script>		<!-- 画像挿入コマンドクラス -->
+	<script src="commandClass/removeNodeCommand.js"></script>		<!-- 一文字削除コマンドクラス -->
+	<script src="commandClass/removeMultiNodeCommand.js"></script>	<!-- 範囲削除コマンドクラス -->
+	<script src="commandClass/insertMultiNodeCommand.js"></script>	<!-- 複数挿入コマンド -->
+	<script src="commandClass/divideParagraphCommand.js"></script>	<!-- 段落分割コマンドクラス -->
+	<script src="commandClass/deleteParagraphCommand.js"></script>	<!-- 段落削除コマンドクラス -->
+	<script src="commandClass/combineParagraphCommand.js"></script>	<!-- 段落結合コマンドクラス -->
+	<script src="commandClass/setSectionTitleCommand.js"></script>	<!-- セクションタイトル設定コマンドクラス -->
+	<script src="commandClass/shiftIndexCommand.js"></script>		<!-- インデックス深度変更コマンドクラス -->
+	<script src="commandClass/moveIndexCommand.js"></script>		<!-- インデックス位置変更コマンドクラス -->
+	<script src="commandClass/appendSectionCommand.js"></script>	<!-- セクション追加コマンドクラス -->
+	<script src="commandClass/removeSectionCommand.js"></script>	<!-- セクション削除コマンドクラス -->
+	<script src="commandClass/combineSectionCommand.js"></script>	<!-- セクション結合コマンドクラス -->
+	<script src="commandClass/divideSectionCommand.js"></script>	<!-- セクション分割コマンドクラス -->
+	<script src="commandClass/boldCommand.js"></script>				<!-- -->
+	<script src="commandClass/italicCommand.js"></script>			<!-- -->
+	<script src="commandClass/underLineCommand.js"></script>		<!-- -->
+	<script src="commandClass/strikeCommand.js"></script>			<!-- -->
+	<script src="commandClass/footNoteCommand.js"></script>			<!-- -->
+	<script src="commandClass/frameBorderCommand.js"></script>		<!-- 囲み枠コマンドクラス -->
+	<script src="commandClass/phraseCommand.js"></script>			<!-- フレーズコマンドクラス -->
+	<script src="commandClass/rubyCommand.js"></script>				<!-- -->
+	<script src="commandClass/insertTableCommand.js"></script>		<!-- -->
+	<script src="commandClass/removeRowCommand.js"></script>		<!-- テーブルから 1 行削除-->
+	<script src="commandClass/insertRowCommand.js"></script>		<!-- テーブルへ 1 行挿入-->
+	<script src="commandClass/removeColCommand.js"></script>		<!-- テーブルから 1 行削除-->
+	<script src="commandClass/insertColCommand.js"></script>		<!-- テーブルから 1 行削除-->
+	<script src="commandClass/imagePropertyCommand.js"></script>	<!-- -->
+	<script src="commandClass/pasteCommand.js"></script>			<!-- -->
+	<script src="commandClass/replaceCommand.js"></script>			<!-- -->
+	<script src="commandClass/fontSizeCommand.js"></script>			<!-- -->
+	<script src="commandClass/pageNumberCommand.js"></script>		<!-- -->
+	<script src="commandClass/formulaNumberCommand.js"></script>	<!-- -->
+	<script src="commandClass/convertModeCommand.js"></script>		<!-- -->
+	<script src="commandClass/speakerCommand.js"></script>	        <!-- -->
+	<script src="commandClass/silentCommand.js"></script>	        <!-- -->
+	<script src="commandClass/readingCommand.js"></script>	        <!-- -->
+	<script src="commandClass/insertPauseCommand.js"></script>	        <!-- -->
+	<script src="commandClass/insertHighlightCtrlCommand.js"></script> <!-- -->
+	<script src="commandClass/multiCommand.js"></script>	        <!-- -->
+	<script src="commandClass/commandExecutor.js"></script>			<!-- -->
+	<script src="commandClass/stack.js"></script>					<!-- -->
+
+	<!-- ハイライト -->
+	<script src="highlight/highlightData.js"></script>
+	<script src="highlight/highlightList.js"></script>
+
+	<script src="for_converter.js"></script>
+
+	<!-- ページロード時の初期化処理 -->
+	<script src="main.js"></script>
+
+	<title>ChattyInftyOnline - 編集</title>
+</head>
+
+<!-- body領域を把握するため、赤枠で囲む -->
+<body ondragover="ToolbarUtilityClass.onDragOver(event)" ondrop="ToolbarUtilityClass.onDrop(event)" onscroll="scrollTop=0;">
+
+    <!-- タイトルバー -->
+    <div id="title_bar" class="cs_content_header">
+        <div id="title" class="cs_content_header_title">
+             <div class="user_name">
+                <span id="user_name"></span>&nbsp;
+                <input type="button" class="logout_btn ui-widget ui-state-default ui-corner-all" value="文書管理へ戻る" onclick="window.location.href='../filer/index.html'">
+            </div>
+            <!-- パンくずリスト -->
+            <div id="breadcrumb_bar" class="breadcrumb_bar">[&nbsp;<a href="../menu/index.html">メニュー</a> &gt;<a href="../filer/index.html">文書管理</a> &gt;編集&nbsp;(<span id="_fileNameLabel"></span>)]</div>
+       </div>
+    </div>
+
+    <!--* div エディタページ全体のコンテナ -->
+    <div id="appArea" class="cs_content_main" style="height: 90%;">
+
+        <!-- ===================================== エディタページ大枠 =================================== -->
+        <div ID="ID_EditorPage">
+        <!-- ==================================================================================================== -->
+
+            <!--* div ヘッダ的なdiv: メニューバーとメインツールバーを格納 -->
+            <!-- ===================================== メニューバー、メインツールバー =================================== -->
+            <!-- 20px+32px = 52px -->
+            <div ID="ID_ToolHeader">
+
+                <!-- ==================================================================================================== -->
+                <!-- ============================== メニューバー : 全体の動作に関わる機能 =============================== -->
+                <!-- ==                                         MB_: Menu Bar                                          == -->
+                <!-- ==================================================================================================== -->
+                <!--* div メニューバー マスターレイヤ -->
+                <!-- メニューバーを、コンテキストメニューも含めて包含しています -->
+                <div id="MB_MasterLayer" tabindex=1 class="cl_MB_MasterLayer cl_TBC_PrevDrag">
+
+                	<!--* div メニューバー本体レイヤ -->
+                	<div id="MB_FrontLayer" class="cl_MB_FrontLayer">
+                		<!--* div ファイル(F) -->
+                		<div id="MB_File" class="cl_TBC_Main_Highlight cl_MB_MainMenu_Height"
+                			onclick="MenuBarClass.MB_Open()">
+                			<div id="MB_File_CheckMark" class="cl_TBC_Highlight_Style cl_TBC_MenuFont cl_MB_MainItem">
+                				ファイル
+                			</div>
+                		</div>
+                		<!--* div インデックス操作(D) -->
+                		<div id="MB_Index" class="cl_TBC_Main_Highlight cl_MB_MainMenu_Height"
+                			onclick="MenuBarClass.MB_Index()">
+                			<div id="MB_Index_CheckMark" class="cl_TBC_Highlight_Style cl_TBC_MenuFont cl_MB_MainItem">
+               					インデックス操作
+                			</div>
+                		</div>
+                		<!--* div 編集(E) -->
+                		<div id="MB_Edit" class="cl_TBC_Main_Highlight cl_MB_MainMenu_Height"
+                			onclick="MenuBarClass.MB_Edit()">
+                			<div id="MB_Edit_CheckMark" class="cl_TBC_Highlight_Style cl_TBC_MenuFont cl_MB_MainItem">
+               					編集
+                			</div>
+                		</div>
+                		<!--* div 検索(I) -->
+                		<div id="MB_Search" class="cl_TBC_Main_Highlight cl_MB_MainMenu_Height"
+                			onclick="MenuBarClass.MB_Search()">
+                			<div id="MB_Search_CheckMark" class="cl_TBC_Highlight_Style cl_TBC_MenuFont cl_MB_MainItem">
+               					検索
+                			</div>
+                		</div>
+                		<!--* div 書式(O) -->
+                		<div id="MB_Format" class="cl_TBC_Main_Highlight cl_MB_MainMenu_Height"
+                			onclick="MenuBarClass.MB_Format()">
+                			<div id="MB_Format_CheckMark" class="cl_TBC_Highlight_Style cl_TBC_MenuFont cl_MB_MainItem">
+               					書式
+                			</div>
+                		</div>
+                		<!--* div 表示(V) -->
+                		<!--  div id="MB_View" class="cl_TBC_Main_Highlight cl_MB_MainMenu_Height"
+                			onclick="MenuBarClass.MB_View()">
+                			<div id="MB_View_CheckMark" class="cl_TBC_Highlight_Style cl_TBC_MenuFont cl_MB_MainItem">
+               					表示(V)
+                			</div>
+                		</div -->
+                		<!--* div 読み上げ機能(P) -->
+                		<div id="MB_Reading" class="cl_TBC_Main_Highlight cl_MB_MainMenu_Height"
+                			onclick="MenuBarClass.MB_Reading()">
+                			<div id="MB_Reading_CheckMark" class="cl_TBC_Highlight_Style cl_TBC_MenuFont cl_MB_MainItem">
+               					読み上げ機能
+                			</div>
+                		</div>
+                		<!--* div 設定(S) -->
+                		<div id="MB_Setting" class="cl_TBC_Main_Highlight cl_MB_MainMenu_Height"
+                			onclick="MenuBarClass.MB_Setting()">
+                			<div id="MB_Setting_CheckMark" class="cl_TBC_Highlight_Style cl_TBC_MenuFont cl_MB_MainItem">
+               					設定
+                			</div>
+                		</div>
+                		<!--* div ヘルプ(H) -->
+                		<div id="MB_Help" class="cl_TBC_Main_Highlight cl_MB_MainMenu_Height"
+                			onclick="MenuBarClass.MB_Help()">
+                			<div id="MB_Help_CheckMark" class="cl_TBC_Highlight_Style cl_TBC_MenuFont cl_MB_MainItem">
+               					ヘルプ
+                			</div>
+                		</div>
+                	</div><!-- (3)メニューバー本体レイヤ用divタグ ここまで -->
+
+                	<!-- - - - - - - - - - - - - - - - - - - - - ファイル系メニュー - - - - - - - - - - - - - - - - - - - - -->
+                	<!--* ul ファイル(F) -->
+                	<ul id="MB_File_ConMenu"    class="cl_TBC_MenuFont cl_TBC_DropDownMenu"></ul>
+
+                	<!-- - - - - - - - - - - - - - - - - - - - - インデックス系メニュー - - - - - - - - - - - - - - - - - - - - -->
+                	<!--* ul インデックス操作(D) -->
+                	<ul  id="MB_Index_ConMenu"  class="cl_TBC_MenuFont cl_TBC_DropDownMenu"></ul>
+
+                	<!-- - - - - - - - - - - - - - - - - - - - - 編集系メニュー - - - - - - - - - - - - - - - - - - - - -->
+                	<!--* ul 編集(E) -->
+                	<ul  id="MB_Edit_ConMenu"   class="cl_TBC_MenuFont cl_TBC_DropDownMenu"></ul>
+
+                	<!-- - - - - - - - - - - - - - - - - - - - - 検索系メニュー - - - - - - - - - - - - - - - - - - - - -->
+                	<!--* ul 検索(I) -->
+                	<ul  id="MB_Search_ConMenu" class="cl_TBC_MenuFont cl_TBC_DropDownMenu"></ul>
+
+                	<!-- - - - - - - - - - - - - - - - - - - - - 書式系メニュー - - - - - - - - - - - - - - - - - - - - -->
+                	<!--* ul 書式(O) -->
+                	<ul  id="MB_Format_ConMenu" class="cl_TBC_MenuFont cl_TBC_DropDownMenu"></ul>
+
+                	<!--* ul 囲み枠 [重複] (ツールバー用) -->
+                	<!-- - - - - - - - 囲み枠系コンテキストメニュー -->
+                	<ul  id="ET_Format_FrameBorder_ConMenu" class="cl_TBC_MenuFont cl_TBC_DropDownMenu"></ul>
+
+                	<!--* ul フォントサイズ [重複] (ツールバー用) -->
+                	<!-- - - - - - - - フォントサイズ系コンテキストメニュー -->
+                	<ul  id="ET_Format_FontSize_ConMenu" class="cl_TBC_MenuFont cl_TBC_DropDownMenu"></ul>
+
+                	<!--* ul 表示(V) -->
+                	<!-- - - - - - - - - - - - - - - - - - - - - 表示系メニュー - - - - - - - - - - - - - - - - - - - - -->
+                	<!-- [CM-060] [メインメニュー]「表示(V)」コンテキストメニュー -->
+                	<ul  id="MB_View_ConMenu" class="cl_TBC_MenuFont cl_TBC_DropDownMenu"></ul>
+
+                	<!--* ul 読み上げ機能 -->
+                	<!-- - - - - - - - - - - - - - - - - - - - - 設定系メニュー - - - - - - - - - - - - - - - - - - - - -->
+                	<ul  id="MB_Reading_ConMenu" class="cl_TBC_MenuFont cl_TBC_DropDownMenu"></ul>
+
+                	<!--* ul 設定(S) -->
+                	<!-- - - - - - - - - - - - - - - - - - - - - 設定系メニュー - - - - - - - - - - - - - - - - - - - - -->
+                	<ul  id="MB_Setting_ConMenu" class="cl_TBC_MenuFont cl_TBC_DropDownMenu"></ul>
+
+                			<!-- [CM-072] 重複!! [CM-172] --> <!-- 工事中: ここに書く -->
+
+                	<!--* ul ヘルプ(H) -->
+                	<!-- - - - - - - - - - - - - - - - - - - - - ヘルプ系メニュー - - - - - - - - - - - - - - - - - - - - -->
+                	<!-- [CM-080] [メインメニュー]「ヘルプ(H)」コンテキストメニュー -->
+                	<ul  id="MB_Help_ConMenu" class="cl_TBC_MenuFont cl_TBC_DropDownMenu"></ul>
+                </div><!-- メニューバー マスターレイヤdiv ここまで-->
+
+                <!--* div メインツールバー マスターレイヤ -->
+                <!-- ========================================= メインツールバー ========================================= -->
+                <!-- ==                                       MT_ : Main Toolbar                                       == -->
+                <!-- ==================================================================================================== -->
+                <!-- マスターレイヤ用divタグ -->
+                <div id="MT_MasterLayer" class="cl_MT_MasterLayer cl_TBC_PrevDrag" >
+
+                	<!--* div メインツールバー 背景レイヤ -->
+                	<!-- アイコン背景レイヤ用divタグ-->
+                	<div id="MT_BackLayer" class="cl_MT_BackLayer"></div>
+
+                	<!--* div メインツールバー 本体レイヤ -->
+                	<!-- アイコン本体レイヤ用divタグ -->
+                	<div id="MT_FrontLayer" class="cl_MT_FrontLayer">
+
+                		<!-- ================ ファイル操作系アイコン ================ -->
+                		<!--* div 上書き保存 -->
+                		<div id="MT_Save" title="上書き保存"
+                			class="cl_TBC_Main_Highlight cl_MT_DropMark" onClick="FileMenuEventHandler.onClickSave()">
+                			<img src="icons/71.png" class="cl_MT_IconDrop_IconStyle">
+                		</div>
+
+                		<!--* div - - - - セパレータ -->
+                		<div id="MT_Sep01" class="cl_MT_Separator"></div>
+
+                		<!-- ================ 編集系アイコン ================ -->
+                		<!--* div 元に戻す -->
+                		<div id="MT_Undo" title="元に戻す"
+                			class=" cl_TBC_Main_Highlight cl_MT_Icon cl_TBC_DarkHighlight"
+                			onclick="EditMenuEventHandler.onClickUndo();">
+               				<img src="icons/53.png" class="cl_TBC_Centering">
+                		</div>
+                		<!--* div やり直し -->
+                		<div id="MT_Redo" title="やり直し"
+                			class=" cl_TBC_Main_Highlight cl_MT_Icon cl_TBC_DarkHighlight"
+                			onclick="EditMenuEventHandler.onClickRedo();">
+               				<img src="icons/51.png" class="cl_TBC_Centering">
+                		</div>
+
+                		<!--* div - - - - セパレータ -->
+                		<div id="MT_Sep02" class="cl_MT_Separator"></div>
+
+                		<!-- ================ 音声系アイコン ================ -->
+                		<!--* div 音声 On/Off -->
+                		<div id="MT_Voice" title="音声 ON/OFF"
+                			class=" cl_TBC_Main_Highlight cl_MT_Icon cl_TBC_DarkHighlight"
+                			onclick="ReadMenuEventHandler.onClickVoice()">
+               				<div id="MT_Voice_CheckMark"
+               					class="cl_MT_Icon cl_TBC_CheckArea cl_TBC_Highlight_Style">
+               					<img src="icons/336.png" class="cl_TBC_Centering">
+                			</div>
+                		</div>
+                		<!--* div ハイライトモード On/Off -->
+                		<div id="MT_Hilight" title="ハイライトモード ON/OFF"
+                			class=" cl_TBC_Main_Highlight cl_MT_Icon cl_TBC_DarkHighlight"
+                			onclick="ReadMenuEventHandler.onClickHilight()">
+               				<div id="MT_Hilight_CheckMark"
+               					class="cl_MT_Icon cl_TBC_CheckArea cl_TBC_Highlight_Style">
+               					<img src="icons/338.png" class="cl_TBC_Centering">
+                			</div>
+                		</div>
+
+                		<!-- ================ 色系アイコン ================ -->
+                		<!--* div 配色の変更 -->
+<!--                 		<div id="MT_ChangeColor" title="配色の変更"
+                			class=" cl_TBC_Main_Highlight cl_MT_Icon"
+                			onclick="MainToolClass.MT_ChangeColor()">
+                			<div class="cl_MT_Icon cl_TBC_DarkHighlight">
+                				<img src="icons/217.png" class="cl_TBC_Centering">
+                			</div>
+                		</div>
+ -->
+                		<!--* div - - - - セパレータ -->
+<!--                 		<div id="MT_Sep03" class="cl_MT_Separator"></div> -->
+
+                		<!--* div OCR画像を表示 -->
+                		<!-- ================ OCR系アイコン ================ -->
+                		<!-- 将来的には使用するので、テスト用に入れてあります。 -->
+<!--                 		<div id="MT_ShowOCR" title="OCR画像を表示"
+                			class=" cl_TBC_Main_Highlight cl_MT_Icon cl_TBC_DarkHighlight" onclick="MainToolClass.MT_ShowOCR()">
+               				<img src="icons/57.png" class="cl_TBC_Centering">
+                		</div>
+ -->                		<div class="cl_FloatClear"></div>
+                	</div><!-- アイコン本体レイヤ用divタグ ここまで -->
+
+                </div><!-- メインツールバーのマスターレイヤ div　ここまで -->
+
+            </div><!-- メニューバーとメインツールバーを格納するヘッダー的 div ここまで -->
+
+            <div class="cl_FloatClear"></div>
+
+            <!--* div インデックス操作エリアとエディタ部 -->
+            <!-- ====================== インデックス操作エリアとエディタ部を包括するDIV ==================== -->
+            <div ID="ID_MainOpeDiv">
+
+                <!-- ==================================================================================================== -->
+                <!--* div インデックス操作エリア -->
+                <!-- ================================= インデックス操作エリア =============================== -->
+                <div ID="IndexOpeArea">
+
+                    <!-- ==================================================================================================== -->
+                	<!--* div インデックス操作ツールバー マスターレイヤ -->
+                	<!-- =================================== インデックス操作用ツールバー =================================== -->
+                	<!-- ==                                      IT_ : Index Toolbar                                       == -->
+                	<!-- ==================================================================================================== -->
+                	<!-- マスターレイヤ用divタグ -->
+                	<div id="IT_MasterLayer" class="cl_MIC_MasterLayer cl_TBC_PrevDrag">
+
+                		<!--* div アイコン背景レイヤ -->
+                		<div id="IT_BackLayer" class="cl_MIC_BackLayer"></div>
+
+                		<!--* div アイコン本体レイヤ -->
+                		<div id="IT_FrontLayer" class="cl_MIC_FrontLayer">
+
+                			<!-- ================ インデックス自体の追加 / 削除アイコン ================ -->
+                			<!--* div インデックスを追加 -->
+                			<div id="IT_Index_Add" title="インデックスを追加"
+                				class="cl_TBC_Main_Highlight cl_MIC_Icon cl_TBC_DarkHighlight" onclick="IndexEventHandler.onClickAdd()">
+               					<img src="icons/156.png" class="cl_TBC_Centering">
+                			</div>
+                			<!--* div インデックスを削除 -->
+                			<div id="IT_Index_Del" title="インデックスを削除"
+                				class="cl_TBC_Main_Highlight cl_MIC_Icon cl_TBC_DarkHighlight" onclick="IndexEventHandler.onClickDel()">
+               					<img src="icons/158.png" class="cl_TBC_Centering">
+                			</div>
+
+                			<!--* div - - - - セパレータ -->
+                			<div id="IT_Sep01" class="cl_MIC_Separator"></div>
+
+                			<!-- ================ インデックスポジション編集アイコン ================ -->
+                			<!--* div レベルを上げる -->
+                			<div id="IT_Index_Up" title="レベルを上げる"
+                				class="cl_TBC_Main_Highlight cl_MIC_Icon cl_TBC_DarkHighlight" onclick="IndexEventHandler.onClickShift(-1)">
+               					<img src="icons/162.png" class="cl_TBC_Centering">
+                			</div>
+                			<!--* div レベルを下げる -->
+                			<div id="IT_Index_Down" title="レベルを下げる"
+                				class="cl_TBC_Main_Highlight cl_MIC_Icon cl_TBC_DarkHighlight" onclick="IndexEventHandler.onClickShift(1)">
+               					<img src="icons/160.png" class="cl_TBC_Centering">
+                			</div>
+                			<!--* div 前に移動 -->
+                			<div id="IT_Index_Before" title="前に移動"
+                				class="cl_TBC_Main_Highlight cl_MIC_Icon cl_TBC_DarkHighlight" onclick="IndexEventHandler.onClickMove(-1)">
+               					<img src="icons/164.png" class="cl_TBC_Centering">
+                			</div>
+                			<!--* div 後ろに移動 -->
+                			<div id="IT_Index_After" title="後ろに移動"
+                				class="cl_TBC_Main_Highlight cl_MIC_Icon cl_TBC_DarkHighlight" onclick="IndexEventHandler.onClickMove(1)">
+               					<img src="icons/166.png" class="cl_TBC_Centering">
+                			</div>
+
+                			<!--* div - - - - セパレータ -->
+                			<div id="IT_Sep02" class="cl_MIC_Separator"></div>
+
+                			<!-- ================ セクション編集アイコン ================ -->
+                			<!-- メニューバーとエディタツールバーに同義機能有り -->
+                			<!-- 検索キーワード [synonym-Index_Divide] -->
+                			<!--* div セクションを分割 -->
+                			<div id="IT_Index_Divide" title="セクションを分割"
+                				class="cl_TBC_Main_Highlight cl_MIC_Icon cl_TBC_DarkHighlight"
+                				onclick="IndexEventHandler.onClickDivide()">
+                			<img src="icons/168.png" class="cl_TBC_Centering">
+                			</div>
+                			<!--* div セクションを連結 -->
+                			<div id="IT_Index_Connect" title="セクションを連結"
+                				class="cl_TBC_Main_Highlight cl_MIC_Icon cl_TBC_DarkHighlight"
+                				onclick="IndexEventHandler.onClickConnect()">
+
+               					<img src="icons/170.png" class="cl_TBC_Centering">
+                			</div>
+                		</div>
+                	</div>
+
+                	<div class="cl_FloatClear"></div><!-- フロートをいったん解除するためのdiv-->
+
+
+                	<!--* div インデックスツリー表示部 マスターレイヤ -->
+                	<!-- =================================== インデックスツリー表示部 =================================== -->
+                	<!-- ==                                     IDT_ : InDex Tree                                      == -->
+                	<!-- ================================================================================================ -->
+                	<!-- マスターレイヤ用divタグ -->
+                	<div id="IDT_MasterLayer" class="idt_master_layer" tabindex="1">
+
+                		<!--* div インデックス項目ひな形-->
+                		<!-- インデックス項目は、1行あたり 20px: アイコン 16px + 上下空白1pxずつ + 枠線1pxずつ -->
+                		<div id="IDT_DefaultSection" tabindex=10 class="cl_IDT_Section">
+                			<!--* ここにアイコンやツリー罫線がスクリプトで挿入される -->
+                			<!--* div タイトル -->
+                			<div class="cl_IDT_IndexStyle">
+                				<span>タイトルを入力してください</span>
+                			</div>
+                		</div>
+
+                		<!--* div インデックス深度用ひな形 -->
+                		<div id="IDT_IndexDepth" class="cl_IDT_IndexStyle">
+                		</div>
+
+                		<!--* img セクションメインアイコン9個 -->
+                		<img id="IDT_IndexBubble_0" src="icons/40.png"  class="cl_IDT_IndexIcon">
+                		<img id="IDT_IndexBubble_1" src="icons/140.png" class="cl_IDT_IndexIcon">
+                		<img id="IDT_IndexBubble_2" src="icons/142.png" class="cl_IDT_IndexIcon">
+                		<img id="IDT_IndexBubble_3" src="icons/144.png" class="cl_IDT_IndexIcon">
+                		<img id="IDT_IndexBubble_4" src="icons/146.png" class="cl_IDT_IndexIcon">
+                		<img id="IDT_IndexBubble_5" src="icons/148.png" class="cl_IDT_IndexIcon">
+                		<img id="IDT_IndexBubble_6" src="icons/150.png" class="cl_IDT_IndexIcon">
+                		<img id="IDT_IndexBubble_7" src="icons/152.png" class="cl_IDT_IndexIcon">
+                		<img id="IDT_IndexBubble_8" src="icons/154.png" class="cl_IDT_IndexIcon">
+
+                		<!--* span セクション補助アイコン3個 「├」「└」「│」 -->
+                		<span id="IDT_IndexRuling_VerticalConnect" class="cl_IDT_IndexRuling">├</span>
+                		<span id="IDT_IndexRuling_Hook"            class="cl_IDT_IndexRuling">└</span>
+                		<span id="IDT_IndexRuling_VerticalLine"    class="cl_IDT_IndexRuling">│</span>
+
+                	</div>	<!-- インデックスツリー表示部 マスターレイヤ ここまで -->
+
+
+
+                	<!--* ul インデックスツリー上での右クリック -->
+                	<!-- MB_Index_ConMenu (メニューバー用コンテキスト)をそのまま流用します -->
+
+
+                <!-- =========== ここまで =========== インデックス操作エリア =========== ここまで =========== -->
+                </div>
+                <!-- ============ ここまで ============ ここまで ============ ここまで ============ ここまで ============ -->
+
+
+                <!--* div エディタ部エリア -->
+                <!-- ================================= エディタ部エリア =============================== -->
+                <!-- ここの float left は、なくすと隣のバーと重なるからだめ -->
+                <div ID="ID_EditorArea" class="id_editor_area" tabindex="20"><!-- エリア表示枠用 -->
+
+                    <!-- ==================================================================================================== -->
+                    <!--* div エディタ部用ツールバー マスターレイヤ-->
+                    <!-- ====================================== エディタ部用ツールバー ====================================== -->
+                    <!-- ==                                      ET_ : Editor Toolbar                                      == -->
+                    <!-- ==================================================================================================== -->
+                    <!-- マスターレイヤ用divタグ -->
+                    <div id="ET_MasterLayer" class="cl_MIC_MasterLayer cl_TBC_PrevDrag">
+
+                    	<!--* div アイコン背景レイヤ -->
+                    	<div id="ET_BackLayer" class="cl_MIC_BackLayer"></div>
+
+                    	<!--* div アイコン本体レイヤ -->
+                    	<div id="ET_FrontLayer" class="cl_MIC_FrontLayer">
+
+                    		<!-- ================ 編集系アイコン ================ -->
+                    		<!--* div 切り取り -->
+                    		<div id="ET_Edit_Cut" title="切り取り"
+                    			class="cl_TBC_Main_Highlight cl_MIC_Icon cl_TBC_DarkHighlight"
+                    			onClick='EditMenuEventHandler.onClickCut();'>
+                   				<img src="icons/44.png" class="cl_TBC_Centering">
+                    		</div>
+                    		<!--* div コピー -->
+                    		<div id="ET_Edit_Copy" title="コピー"
+                    			class="cl_TBC_Main_Highlight cl_MIC_Icon cl_TBC_DarkHighlight"
+                    			onClick='EditMenuEventHandler.onClickCopy();'>
+                   				<img src="icons/42.png" class="cl_TBC_Centering">
+                    		</div>
+                    		<!--* div 貼り付け -->
+                    		<div id="ET_Edit_Paste" title="貼り付け"
+                    			class="cl_TBC_Main_Highlight cl_MIC_Icon cl_TBC_DarkHighlight"
+                    			onClick='EditMenuEventHandler.onClickPaste();'>
+	               				<img src="icons/50.png" class="cl_TBC_Centering">
+                    		</div>
+                    		<!--* div 削除 -->
+                    		<div id="ET_Edit_Delete" title="削除"
+                    			class="cl_TBC_Main_Highlight cl_MIC_Icon cl_TBC_DarkHighlight"
+                    			onClick='KeyEventHandler.doDelete();'>
+                   				<img src="icons/46.png" class="cl_TBC_Centering">
+                    		</div>
+
+                    		<!--* div - - - - セパレータ -->
+                    		<div id="ET_Sep02" class="cl_MIC_Separator"></div>
+
+                    		<!-- ================ 書式系アイコン ================ -->
+                    		<!-- 同義設定!! [CM-050] テキストモード -->
+                    		<!--* div テキストモード -->
+                    		<div id="ET_Format_Text" title="テキストモード"
+                    			class="cl_TBC_Main_Highlight cl_MIC_Icon cl_TBC_DarkHighlight"
+                    			onClick='EditorToolBarEventHandler.onClickInputMode(CIO_XML_TYPE.text);'>
+                   				<div id="ET_Format_Text_CheckMark" class="cl_MIC_Icon cl_TBC_CheckArea cl_TBC_Highlight_Style">
+                   					<img src="icons/220.png" class="cl_TBC_Centering">
+                   				</div>
+                    		</div>
+                    		<!-- 同義設定!! [CM-050] 数式モード -->
+                    		<!--* div 数式モード -->
+                    		<div id="ET_Format_Formula" title="数式モード"
+                    			class="cl_TBC_Main_Highlight cl_MIC_Icon cl_TBC_DarkHighlight"
+                    			onClick='EditorToolBarEventHandler.onClickInputMode(CIO_XML_TYPE.math);'>
+                   				<div id="ET_Format_Formula_CheckMark" class="cl_MIC_Icon cl_TBC_CheckArea cl_TBC_Highlight_Style">
+                   					<img src="icons/222.png" class="cl_TBC_Centering">
+                   				</div>
+                    		</div>
+                    		<!-- 同義設定!! [CM-050] 化学式モード -->
+                    		<!--* div 化学式モード -->
+                    		<div id="ET_Format_Chemical" title="化学式モード"
+                    			class="cl_TBC_Main_Highlight cl_MIC_Icon cl_TBC_DarkHighlight"
+                    			onClick='EditorToolBarEventHandler.onClickInputMode(CIO_XML_TYPE.chemical);'>
+                   				<div id="ET_Format_Chemical_CheckMark" class="cl_MIC_Icon cl_TBC_CheckArea cl_TBC_Highlight_Style">
+                   					<img src="icons/224.png" class="cl_TBC_Centering">
+                    			</div>
+                    		</div>
+
+                    		<!--* div - - - - セパレータ -->
+                    		<div id="ET_Sep03" class="cl_MIC_Separator"></div>
+
+                    		<!-- 同義設定!! [CM-050] 斜体(イタリック) -->
+                    		<!--* div 斜体(イタリック) -->
+                    		<div id="ET_Format_Italic" title="斜体(イタリック)"
+                    			class="cl_TBC_Main_Highlight cl_MIC_Icon cl_TBC_DarkHighlight"
+                    			onClick='EditorToolBarEventHandler.onClickItaric();'>
+                   				<div id="ET_Format_Italic_CheckMark" class="cl_MIC_Icon cl_TBC_CheckArea cl_TBC_Highlight_Style">
+                   					<img src="icons/228.png" class="cl_TBC_Centering">
+                    			</div>
+                    		</div>
+                    		<!-- 同義設定!! [CM-050] 太字(ボールド) -->
+                    		<!--* div 太字(ボールド) -->
+                    		<div id="ET_Format_Bold" title="太字(ボールド)"
+                    			class="cl_TBC_Main_Highlight cl_MIC_Icon cl_TBC_DarkHighlight"
+                    			onClick='EditorToolBarEventHandler.onClickBold();'>
+                   				<div id="ET_Format_Bold_CheckMark" class="cl_MIC_Icon cl_TBC_CheckArea cl_TBC_Highlight_Style">
+                   					<img src="icons/230.png" class="cl_TBC_Centering">
+                    			</div>
+                    		</div>
+                    		<!-- 同義設定!! [CM-050] 下線 -->
+                    		<!--* div 下線 -->
+                    		<div id="ET_Format_Underline" title="下線"
+                    			class="cl_TBC_Main_Highlight cl_MIC_Icon cl_TBC_DarkHighlight"
+                    			onClick='EditorToolBarEventHandler.onClickUnderline();'>
+                   				<div id="ET_Format_Underline_CheckMark" class="cl_MIC_Icon cl_TBC_CheckArea cl_TBC_Highlight_Style">
+                   					<img src="icons/232.png" class="cl_TBC_Centering">
+                    			</div>
+                    		</div>
+                    		<!-- 同義設定!! [CM-050] 打ち消し線 -->
+                    		<!--* div 打ち消し線 -->
+                    		<div id="ET_Format_Strikethrough" title="打ち消し線"
+                    			class="cl_TBC_Main_Highlight cl_MIC_Icon cl_TBC_DarkHighlight"
+                    			onClick='EditorToolBarEventHandler.onClickStrike();'>
+                   				<div id="ET_Format_Strikethrough_CheckMark" class="cl_MIC_Icon cl_TBC_CheckArea cl_TBC_Highlight_Style">
+                   					<img src="icons/234.png" class="cl_TBC_Centering">
+                    			</div>
+                    		</div>
+                    		<!-- 同義設定!! [CM-050] 脚注書式(上付き) -->
+                    		<!--* div 脚注書式(上付き) -->
+                    		<div id="ET_Format_FootnoteTop" title="脚注書式(上付き)"
+                    			class="cl_TBC_Main_Highlight cl_MIC_Icon cl_TBC_DarkHighlight"
+                    			onClick='EditorToolBarEventHandler.onClickFootnote(SM_FOOTNOTE_FORMAT.sup);'>
+                   				<div id="ET_Format_FootnoteTop_CheckMark"
+                   					class="cl_MIC_Icon cl_TBC_CheckArea cl_TBC_Highlight_Style">
+                   					<img src="icons/238.png" class="cl_TBC_Centering">
+                    			</div>
+                    		</div>
+                    		<!-- 同義設定!! [CM-050] 脚注書式(下付き) -->
+                    		<!--* div 脚注書式(下付き) -->
+                    		<div id="ET_Format_FootnoteBottom" title="脚注書式(下付き)"
+                    			class="cl_TBC_Main_Highlight cl_MIC_Icon cl_TBC_DarkHighlight"
+                    			onClick='EditorToolBarEventHandler.onClickFootnote(SM_FOOTNOTE_FORMAT.sub);'>
+                   				<div id="ET_Format_FootnoteBottom_CheckMark"
+                   					class="cl_MIC_Icon cl_TBC_CheckArea cl_TBC_Highlight_Style">
+                  					<img src="icons/240.png" class="cl_TBC_Centering">
+                    			</div>
+                    		</div>
+
+                    		<!--* div - - - - セパレータ -->
+                    		<div id="ET_Sep04" class="cl_MIC_Separator"></div>
+
+                    		<!-- 同義設定!! [CM-050] 左寄せ(L) -->
+                    		<!--* div 左寄せ -->
+                    		<div id="ET_Format_Left" title="左寄せ"
+                    			class="cl_TBC_Main_Highlight cl_MIC_Icon cl_TBC_DarkHighlight"
+                    			onClick='EditorToolBarEventHandler.onClickAlign(PARAGRAPH_ALIGN.left);'>
+                   				<div id="ET_Format_Left_CheckMark"
+                   					class="cl_MIC_Icon cl_TBC_CheckArea cl_TBC_Highlight_Style">
+                   					<img src="icons/242.png" class="cl_TBC_Centering">
+                    			</div>
+                    		</div>
+                    		<!-- 同義設定!! [CM-050] 中央寄せ(C) -->
+                    		<!--* div 中央寄せ -->
+                    		<div id="ET_Format_Center" title="中央寄せ"
+                    			class="cl_TBC_Main_Highlight cl_MIC_Icon cl_TBC_DarkHighlight"
+                    			onClick='EditorToolBarEventHandler.onClickAlign(PARAGRAPH_ALIGN.center);'>
+                   				<div id="ET_Format_Center_CheckMark"
+                   					class="cl_MIC_Icon cl_TBC_CheckArea cl_TBC_Highlight_Style">
+                   					<img src="icons/244.png" class="cl_TBC_Centering">
+                    			</div>
+                    		</div>
+                    		<!-- 同義設定!! [CM-050] 右寄せ(R) -->
+                    		<!--* div 右寄せ -->
+                    		<div id="ET_Format_Right" title="右寄せ"
+                    			class="cl_TBC_Main_Highlight cl_MIC_Icon cl_TBC_DarkHighlight"
+                    			onClick='EditorToolBarEventHandler.onClickAlign(PARAGRAPH_ALIGN.right);'>
+                   				<div id="ET_Format_Right_CheckMark"
+                   					class="cl_MIC_Icon cl_TBC_CheckArea cl_TBC_Highlight_Style">
+                   					<img src="icons/246.png" class="cl_TBC_Centering">
+                    			</div>
+                    		</div>
+
+                    		<!--* div - - - - セパレータ -->
+                    		<div id="ET_Sep05" class="cl_MIC_Separator"></div>
+
+                    		<!-- 同義設定!! [CM-050] 標準の囲み枠 -->
+                    		<!--* div 標準の囲み枠 -->
+                    		<div id="ET_Format_FrameBorder_Standard" title="標準の囲み枠"
+                    			class="cl_TBC_Main_Highlight cl_MIC_DropMark">
+                    			<div class=" cl_MIC_IconDrop_IconArea cl_TBC_DarkHighlight"
+                    				onclick="EditorToolBarEventHandler.onFrameBorder(BORDER_TYPE.normal)">
+                    				<img src="icons/172.png" class="cl_MIC_IconDrop_IconStyle">
+                    			</div>
+                    			<!--* div 囲み枠用ドロップマーク -->
+                    			<div id="ET_Format_FrameBorder_Drop" class=" cl_MIC_IconDrop_DropArea cl_TBC_DarkHighlight"
+                    				onclick="EditorToolClass.ET_Format_FrameBorder_Context()">
+                    				<!-- [CM-152] のコンテキストメニューが使用される -->
+                    				<img src="icons/TB_dropDownMark7x4.png" class="cl_MIC_IconDrop_DropStyle">
+                    			</div>
+                    		</div>
+
+                    		<!-- 同義設定!! [CM-050] フォントサイズ -->
+                    		<!-- アイコンクリックもドロップマーククリックも同じ動作になる、特殊な例です -->
+                    		<!--* div フォントサイズ -->
+                    		<div id="ET_Format_FontSize" title="フォントサイズ"
+                    			class="cl_TBC_Main_Highlight cl_MIC_DropMark">
+                    			<div class=" cl_MIC_IconDrop_IconArea cl_TBC_DarkHighlight"
+                    				onclick="EditorToolClass.ET_Format_FontSize_Context()">
+                    				<!-- ドロップマーククリック時と同じ動作をします -->
+                    				<img id="ET_Format_FontSizeImage" src="icons/198.png" class="cl_MIC_IconDrop_IconStyle">
+                    			</div>
+                    			<!--* div フォントサイズドロップマーク -->
+                    			<div id="ET_Format_FontSize_Drop" class=" cl_MIC_IconDrop_DropArea cl_TBC_DarkHighlight"
+                    				onclick="EditorToolClass.ET_Format_FontSize_Context()">
+                    				<!-- アイコンクリック時と同じ動作をします -->
+                    				<!-- [CM-151] のコンテキストメニューが使用される -->
+                    				<img src="icons/TB_dropDownMark7x4.png" class="cl_MIC_IconDrop_DropStyle">
+                    			</div>
+                    		</div>
+
+                    		<!-- 音声切り替え -->
+                    		<!-- アイコンクリックもドロップマーククリックも同じ動作になる、特殊な例です -->
+                    		<!--* div 音声切り替え -->
+                    		<div id="ET_Edit_Speaker" title="話者切り替え"
+                    			class="cl_TBC_Main_Highlight cl_MIC_DropMark">
+                    			<div class=" cl_MIC_IconDrop_IconArea cl_TBC_DarkHighlight"
+                    				onclick="EditorToolClass.ET_Edit_Speaker_Context()">
+                    				<!-- ドロップマーククリック時と同じ動作をします -->
+                    				<img id="ET_Format_SpaekerImage" src="icons/416.png" class="cl_MIC_IconDrop_IconStyle">
+                    			</div>
+                    			<!--* div フォントサイズドロップマーク -->
+                    			<div id="ET_Edit_Speaker_Drop" class=" cl_MIC_IconDrop_DropArea cl_TBC_DarkHighlight"
+                    				onclick="EditorToolClass.ET_Edit_Speaker_Context()">
+                    				<!-- アイコンクリック時と同じ動作をします -->
+                    				<!-- メニューバーと同じコンテキストメニューが使用される -->
+                    				<img src="icons/TB_dropDownMark7x4.png" class="cl_MIC_IconDrop_DropStyle">
+                    			</div>
+                    		</div>
+
+                    		<!--* div - - - - セパレータ -->
+                    		<div id="ET_Sep06" class="cl_MIC_Separator"></div>
+
+                    		<!-- ================ 編集系アイコン ================ -->
+                    		<!-- 同義設定!! [CM-030] 画像の挿入 -->
+                    		<!--* div 画像の挿入 -->
+                    		<div id="ET_Edit_InsertImage" title="画像の挿入"
+                    			class="cl_TBC_Main_Highlight cl_MIC_DropMark">
+                    			<!-- <div class="cl_MIC_IconDrop_IconArea cl_TBC_DarkHighlight"
+                    				onclick="EditorToolClass.ET_Edit_InsertImage()">
+                    				<img src="icons/208.png" class="cl_MIC_IconDrop_IconStyle">
+                    			</div> -->
+                    			<div class="_image_file_selector">
+                    				<img src="icons/208.png" style="width:18px; height: 20px;">
+                    				<input type="file" id="_img_selector" onchange="EditorToolClass.ET_Edit_InsertImage(_img_selector);">
+                    			</div>
+                    			<!--* div 画像の挿入ドロップマーク -->
+                    			<div id="ET_Edit_InsertImage_Drop" class=" cl_MIC_IconDrop_DropArea cl_TBC_DarkHighlight"
+                    				onclick="EditorToolClass.ET_Edit_InsertImage_Context()">
+                    				<img src="icons/TB_dropDownMark7x4.png" class="cl_MIC_IconDrop_DropStyle">
+                    			</div>
+                    		</div>
+
+                    		<!--* div 画像のペースト (IE) -->
+                            <!-- 2017/06/22 非表示にしているため、事実上未使用の機能です -->
+                    		<div id="ET_Edit_PasteImageAtIE" title="画像の貼付"
+                    			class="cl_TBC_Main_Highlight cl_MIC_Icon cl_TBC_DarkHighlight"
+                    			onClick="EditorToolBarEventHandler.onClickPasteImage();">
+                  				<img src="icons/img_paste_ie.png" class="cl_TBC_Centering">
+                    		</div>
+
+                    		<!--* div - - - - セパレータ -->
+                    		<div id="ET_Sep08" class="cl_MIC_Separator"></div>
+
+                    		<!-- 同義設定!! [CM-070] 単語の追加 -->
+                    		<!--* div 単語の追加 -->
+                    		<div id="ET_Setting_AddWord" title="単語の追加"
+                    			class="cl_TBC_Main_Highlight cl_MIC_Icon cl_TBC_DarkHighlight"
+                    			onClick="MessageManager.registNewWord()">
+                   				<img src="icons/88.png" class="cl_TBC_Centering">
+                    		</div>
+                    		<!-- 同義設定!! [CM-070] ドキュメントの単語辞書の情報 -->
+                    		<!--* div ドキュメントの単語辞書の情報 -->
+                    		<div id="ET_Setting_DictInfo" title="ドキュメントの単語辞書の情報"
+                    			class="cl_TBC_Main_Highlight cl_MIC_Icon cl_TBC_DarkHighlight"
+                    			onClick="WindowManager.instance.openDicInfoWindow()">
+                   				<img src="icons/381.png" class="cl_TBC_Centering">
+                    		</div>
+                    	</div><!-- アイコン本体レイヤ用divタグ -->
+                    </div><!-- マスターレイヤ用divタグ -->
+
+                    <div class="cl_FloatClear"></div><!-- フロートをいったん解除するためのdiv-->
+
+                    <!--* div セクションタイトルバー マスターレイヤ -->
+                    <!-- ====================================== エディタ部セクションタイトルバー ====================================== -->
+                    <!-- ==                                      ST_  : Section Title bar                                      == -->
+                    <!-- ==================================================================================================== -->
+                    <!-- マスターレイヤ用divタグ -->
+                    <!--div id="ST_MasterLayer" class="cl_MIC_MasterLayer cl_TBC_PrevDrag"-->
+                    <div id="ST_MasterLayer" class="cl_MIC_MasterLayer">
+
+                    	<!--* div アイコン背景レイヤ -->
+                    	<div id="ST_BackLayer" class="cl_MIC_BackLayer"></div>
+
+                    	<!--* div アイコン本体レイヤ -->
+                    	<div id="ST_FrontLayer" class="cl_MIC_FrontLayer">
+
+                    		<!-- ================ 固定文字 [セクションタイトル] ================ -->
+                    		<!--* div 固定文字 [セクションタイトル] -->
+                    		<div id="ST_InputArea">
+                    			<label for="ST_SectionTitleBar">セクションタイトル</label>
+                    			<input type="text" id="ST_SectionTitleBar">
+                    		</div>
+                    		<!-- ================ アイコン : タイトル編集をリセット: 黒と赤で切り替わる================ -->
+                    		<!--* div タイトル編集をリセット -->
+                    		<div id="ST_TitleEdit_Reset" title="タイトル編集をリセット"
+                    			class="cl_TBC_Main_Highlight cl_MIC_Icon cl_TBC_DarkHighlight"
+                    			onclick="EditorToolBarEventHandler.onClickTitleReset()">
+                   				<img src="icons/471.png" class="cl_TBC_Centering">
+                    		</div>
+                    		<!--* div タイトル編集を自動設定 -->
+                    		<div id="ST_TitleEdit_Auto" title="タイトル編集を自動設定"
+                    			class="cl_TBC_Main_Highlight cl_MIC_Icon cl_TBC_DarkHighlight"
+                    			onclick="EditorToolBarEventHandler.onClickTitleAuto()">
+                   				<img src="icons/473.png" class="cl_TBC_Centering">
+                    		</div>
+                    	</div>	<!-- アイコン本体レイヤ用divタグ -->
+
+                    	<!--* div ルビ設定ダイアログ -->
+                    	<div id="Dialog_Ruby" title="ルビ設定" style="display: none;">
+                    		<div style="position:absolute;">
+                    			ルビ <input id="Dialog_Ruby_RubyText" type="text"><br/>
+                    			文字 <input id="Dialog_Ruby_MainText" type="text" readonly><br/>
+                    		</div>
+                    		<div style="float: left;">
+                    			<input id="Dialog_Ruby_Apply" type="button" value="適用"><br/>
+                    			<input id="Dialog_Ruby_ApplyAndNext" type="button" value="適用して次に(N)"><br/>
+                    			<input id="Dialog_Ruby_SearchNext"   type="button" value="次を検索(F)"><br/>
+                    			<input id="Dialog_Ruby_ApplyAll"     type="button" value="すべて適用(L)"><br/>
+                    			<input id="Dialog_Ruby_Cencel"       type="button" value="キャンセル"><br/>
+                    		</div>
+                    	</div>
+
+                    </div><!-- マスターレイヤ用divタグ -->
+
+                    <div class="cl_FloatClear"></div><!-- フロートをいったん解除するためのdiv-->
+
+                    <!-- ====================================== エディタ部エディット画面 ====================================== -->
+                    <!-- ==                                      EDT_  : EDiTor                                              == -->
+                    <!-- ====================================================================================================== -->
+                    <!--* エディタ部エディット画面 -->
+                    <!-- マスターレイヤ用divタグ -->
+                    <div id="EDT_MasterLayer" class="edt_master_layer editpaneStyle"></div>
+
+                    <!-- 入力用テキストボックス と、そのマスク用 span -->
+                    <span contenteditable="true" id="EDT_FrontTextBox" class="EDT_FrontTextBox"></span>
+                    <!-- 入力支援 -->
+                    <div id="codeAssist" class="CA_style"></div>
+
+                <!-- ============ ここまで ============ エディタ部エリア ============= ここまで ============= -->
+                </div><!-- エディタ部エリア　ここまで -->
+                <!-- ============ ここまで ============ ここまで ============ ここまで ============ ここまで ============ -->
+
+            <!-- ===== ここまで ===== インデックス操作エリアとエディタを包括するDIV  ===== ここまで ===== -->
+            </div>
+            <!-- ==================================================================================================== -->
+
+            <!--* div ステータスバー マスターレイヤ -->
+            <!-- ====================================== ステータスバー ====================================== -->
+            <!-- ==                                      SB_  : Status Bar                                 == -->
+            <!-- マウスカーソルを乗せたアイコン、及びのメニューの説明が出る                                   -->
+            <!-- ==================================================================================================== -->
+            <!-- マスターレイヤ用divタグ -->
+            <!--div id="SB_MasterLayer" class="cl_MIC_MasterLayer cl_TBC_PrevDrag"-->
+            <div id="SB_MasterLayer" class="cl_MIC_MasterLayer cl_TBC_PrevDrag sb_master_layer">
+
+            	<!--* div ステータスバー 背景レイヤ -->
+            	<!-- アイコン背景レイヤ用divタグ-->
+            	<div id="SB_BackLayer" class="cl_MIC_BackLayer"></div>
+
+            	<!--* div ステータスバー 本体レイヤ -->
+            	<!-- アイコン本体レイヤ用divタグ -->
+            	<div id="SB_FrontLayer" class="cl_MIC_FrontLayer">
+
+<!--             		* div 左端: 機能説明 -->
+<!--             		<div class="cl_FloatLeft"> -->
+<!--             			<span id="SB_Description">レディ</span> -->
+<!--             		</div> -->
+
+<!--             		* div 右端: 編集行 / 列 -->
+<!--             		<div id="SB_CaretPosInfo"> -->
+<!--             			R:<span id="SB_RowNumber">1</span>&nbsp;C:<span id="SB_ColNumber">1</span> -->
+<!--             		</div> -->
+            		<!--* div 右から２番目: 入力モード表示 -->
+            		<div id="SB_InputMode_Base">
+            			<!--* div 画像用div2枚重ね -->
+            			<div class="cl_FloatLeft">
+            				<!--* div テキストモード用画像 -->
+            				<div id="SB_InputMode_Image_TextMode" class="cl_SB_InputMode_Image">
+            					<img src="icons/418.png">
+            					<!-- テキストモード用緑鉛筆は418.png, 数式モード用青鉛筆は420.png -->
+            				</div>
+            				<!--* div 数式モード用画像 -->
+            				<div id="SB_InputMode_Image_FormulaMode" class="cl_SB_InputMode_Image">
+            					<img src="icons/420.png">
+            					<!-- テキストモード用緑鉛筆は418.png, 数式モード用青鉛筆は420.png -->
+            				</div>
+            				<!-- z-index(緑鉛筆, 青鉛筆) を (0, -1) / (-1, 0)の組み合わせで変更すればOK -->
+            			</div>
+            			<!--* div 入力モードの文字列表記 -->
+            			<div id="SB_InputMode_Text" style="width:10em">テキストモード</div>
+            		</div>
+            		<!--* div 右から３番目: ファンクションキー表示 -->
+            		<div id="SB_ShortCutInfo">
+            				<span id="SB_FunctionKeys"></span>
+            		</div>
+            	</div><!-- アイコン本体レイヤ用divタグ -->
+            </div><!-- マスターレイヤ用divタグ -->
+
+            <!--* ul 入力モード (ステータスバー用) -->
+            <ul id="SB_InputMode_ConMenu" class="cl_TBC_MenuFont cl_TBC_DropDownMenu cl_TBC_DropDownMenuWidthNarrow"></ul>
+
+        </div><!-- エディタページ大枠 ここまで -->
+
+		<!-- エディタペイン用ポップアップメニュー -->
+		<div>
+            <!--* ul 画像処理 -->
+            <!-- - - - - - - - 画像処理コンテキストメニュー -->
+            <ul  id="ET_Edit_InsertImage_ConMenu" class="cl_TBC_MenuFont cl_TBC_DropDownMenu cl_TBC_DropDownMenuWidthNarrow"></ul>
+
+            <!--* ul 話者選択 [重複] (ツールバー用) -->
+            <!-- - - - - - - - 話者選択コンテキストメニュー -->
+            <ul  id="ET_Edit_Speaker_ConMenu" class="cl_TBC_MenuFont cl_TBC_DropDownMenu cl_TBC_DropDownMenuWidthNarrow"></ul>
+
+            <!--* ul エディタ右クリック -->
+            <!-- - - - - - - - エディタ上の右クリックによるポップアップ -->
+            <ul  id="ET_Edit_EditorPopup_ConMenu" class="cl_TBC_MenuFont cl_TBC_DropDownMenu"></ul>
+
+            <!--* ul 画像上の右クリック -->
+            <!-- - - - - - - - 画像上の右クリックによるポップアップ -->
+            <ul id="ET_Edit_ImagePopup_ConMenu" class="cl_TBC_MenuFont cl_TBC_DropDownMenu"></ul>
+
+            <!--* ul テーブル・行列用の右クリック -->
+            <!-- - - - - - - - テーブル・行列上の右クリックによるポップアップ -->
+            <ul id="ET_Edit_TablePopup_ConMenu" class="cl_TBC_MenuFont cl_TBC_DropDownMenu"></ul>
+		</div>
+    </div>
+
+    <div style="position: absolute; top: 105px; left: 50%; width: 48%; z-index: 100;">
+    	<div style="float: right;">
+	    	文書辞書名：<span id="_docDicTitleLabel"></span>,
+	    	音声設定名：<span id="_docAudioSettingTitleLabel"></span>
+    	</div>
+    	<div style="clear: both;"></div>
+    </div>
+
+	<!-- メッセージ系ダイアログ各種 -->
+	<!--* div 上書き保存ダイアログ -->
+	<div id="Dialog_SaveStatus" title="文書保存" style="display: none;">
+		<p>文書データの保存中です</p>
+	</div>
+	<!--* div 画像の挿入ダイアログ -->
+	<div id="#Dialog_InsertImage" title="画像の挿入" style="display: none;">
+		<p>画像の挿入は、ドラッグアンドドロップ操作により行うことができます。</p>
+	</div>
+	<div id="Dialog_LoadAdditionalDocument" title="追加文書読込" style="display: none;">
+		<p>追加文書データの読み込み中です。</p>
+	</div>
+
+	<!-- 別名保存で使用される各種ダイアログ -->
+	<div id="_inputFileNameDialog" title="名前を付けて保存" style="display: none;">
+		新しいファイル名：
+		<input type="text" id="_inputFileNameTextbox" style="width: 20em;">
+	</div>
+	<div id="_overwriteFileDialog" title="上書き保存の確認" style="display: none;">
+		指定された名前のファイルは既に存在します。<br>上書きしますか？
+	</div>
+
+	<!-- メッセージダイアログ -->
+	<div id="DLG_Message" title="メッセージ"></div>
+	<!-- 確認ダイアログ -->
+
+	<!-- IE用 画像貼り付けダイアログ -->
+	<!-- 2017/06/22 呼び出し部品を非表示にしているため、事実上未使用の機能です -->
+	<div id="_imagePasteDialog" title="画像貼り付け" style="display: none;">
+		現在のカーソル位置に Ctrl+V で別のアプリでコピーした画像を貼り付けます。<br>
+		画像以外のデータは貼り付けることはできません。<br>
+		キャンセルする場合は、Esc キーを押してください。
+		<span id="_pasteForIe" contenteditable="true"
+		 	oninput="PasteDialogEventHandler.onInput(_pasteForIe);"></span>
+	</div>
+</body>
+</html>

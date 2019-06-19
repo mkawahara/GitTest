@@ -1,0 +1,92 @@
+@CHARSET "UTF-8";
+
+/**********************/
+/* ページのデザイン   */
+/**********************/
+
+div.content_main_div {
+  margin:0 auto;
+  width:50%;
+  position:relative;
+  top:100px;
+  background-image:url('../../res/tile.png');
+  background-color:#ffffff;
+  border:1px solid #f79646;
+  border-radius: 5px / 5px;
+  padding:9px;
+}
+
+
+/* ログインテーブル */
+
+table.content_main_table {
+  margin:0 auto;
+}
+
+table.content_main_table td {
+  padding:6px 15px;
+  text-align:center;
+  vertical-align:middle;
+}
+
+/* input のデザイン */
+input[type="button"] {
+  width:120px;
+}
+
+input[type="text"] {
+  width:300px;
+  height:1.5em;
+  border:solid 1px #f79646;
+  border-radius: 5px / 5px;
+  font-size:1.3em;
+  font-weight:bold;
+  padding:0 3px;
+}
+input[type="password"] {
+  width:300px;
+  height:1.3em;
+  border:solid 1px #f79646;
+  font-size:1.3em;
+  font-weight:bold;
+  border-radius: 5px / 5px;
+  padding:0 3px;
+}
+
+#content_pane {}
+#content_table {}
+#content_table td {}
+#title_bar {}
+#title {}
+#user_name {}
+#breadcrumb_bar {}
+#content_table {}
+#content_table td {}
+.col1 {}
+.col2 {}
+.col2_input {}
+
+
+/* お知らせテーブル */
+
+div.info_div {
+  margin:1em auto;
+  width:50%;
+  position:relative;
+  top:100px;
+  background-image:url('../../res/tile.png');
+  background-color:#ffffff;
+  border:1px solid #f79646;
+  border-radius: 5px / 5px;
+  padding:9px;
+}
+
+talbe.info_table {
+  margin:0 auto;
+}
+
+table.info_table td {
+  padding:6px 15px;
+  text-align:center;
+  vertical-align:middle;
+}

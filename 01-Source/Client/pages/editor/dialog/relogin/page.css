@@ -1,0 +1,50 @@
+@CHARSET "UTF-8";
+
+/**********************/
+/* ページのデザイン   */
+/**********************/
+/* ページのレイアウト */
+div.content_main_div {
+  margin:0 auto;
+  width:500px;
+  position:relative;
+  top:100px;
+  background-image:url('../../res/tile.png');
+  background-color:#ffffff;
+  border:1px solid #f79646;
+  border-radius: 5px / 5px;
+  padding:9px;
+}
+
+table.content_main_table {
+  margin:0 auto;
+}
+table.content_main_table td {
+  padding:6px 15px;
+  text-align:center;
+  vertical-align:middle;
+}
+
+/* input のデザイン */
+input[type="button"] {
+  width:120px;
+}
+
+input[type="text"] {
+  width:300px;
+  height:1.5em;
+  border:solid 1px #f79646;
+  border-radius: 5px / 5px;
+  font-size:1.3em;
+  font-weight:bold;
+  padding:0 3px;
+}
+input[type="password"] {
+  width:300px;
+  height:1.3em;
+  border:solid 1px #f79646;
+  font-size:1.3em;
+  font-weight:bold;
+  border-radius: 5px / 5px;
+  padding:0 3px;
+}

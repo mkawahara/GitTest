@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ファイル選択</title>
+  <script src="../../../../lib/jquery-1.11.2.min.js"></script>
+  <script src="../../../../lib/jquery-migrate-1.2.1.min.js"></script>
+  <script src="../../../../lib/jquery-ui.custom.min.js"></script>
+  <script src="../../../../lib/jquery.dynatree.min.js"></script>
+  <script src="../../../../lib/jquery.cookie.js"></script>
+  <link rel="stylesheet" type="text/css" href="../../../../lib/skin/ui.dynatree.css">
+  <link rel="stylesheet" type="text/css" href="../../../../lib/jquery-ui.min.css">
+  <link rel="stylesheet" type="text/css" href="../dialog.css">
+  <link rel="stylesheet" href="page.css">
+
+  <script src="../../../../js/communicator.js"></script>
+  <script src="../../../../js/common.js"></script>
+  <script src="../../../../js/fileSelect/fileList.js"></script>
+  <script src="../../../../js/fileSelect/folderTree.js"></script>
+  <script src="../../../../js/fileSelect/fileLoader.js"></script>
+  <script src="../../../../js/fileSelect/fileManager.js"></script>
+  <script src="main.js"></script>
+	<script src="../dialogCommon.js"></script>
+</head>
+<body>
+
+    <!-- ファイラペイン -->
+    <table id="list_container" class="list_container">
+      <tr>
+        <!-- フォルダツリー -->
+        <td id="left_cell" class="left_cell"><div id="tree" class="tree"></div></td>
+
+        <!-- セレクタ -->
+        <td class="center_cell"><div id="separator" class="separator"></div></td>
+
+        <td class="right_cell">
+          <div class="file_area">
+            <!--  ファイルリスト -->
+            <div id="file_list" class=file_list></div>
+
+            <!-- ボタン -->
+            <div style="text-align: right; margin-top: 0.5em;">
+              <input type="button" class="button" value="開く" onclick="onOK()">
+              <input type="button" class="button" value="キャンセル" onclick="onCancel()">
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+
+</body>
+</html>

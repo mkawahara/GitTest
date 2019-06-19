@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="IE=Edge">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <title>ユーザー単語辞書編集</title>
+    <link type="text/css" rel="stylesheet" href="./dictionaryeditor.css" />
+	<script type="text/javascript" src="../../../../lib/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="../../../../lib/jquery-ui.min.js"    ></script>
+	<script type="text/javascript" src="../../managers/messageManager.js"></script>
+	<script type="text/javascript" src="../../../../js/communicator.js"></script>
+    <script type="text/javascript" src="../dnslibrary/dns.js"></script>
+    <script type="text/javascript" src="./dictionaryeditor.js"></script>
+</head>
+<body>
+    <table id="dns_userdic_editor" style="display:none">
+        <colgroup>
+            <col style="width:56px;"/>
+            <col style="width:200px;"/>
+        </colgroup>
+        <tbody>
+            <tr class="dns_userdic_editor_row">
+                <td colspan="3" id="dns_dic_menu_area">
+                </td>
+            </tr>
+            <tr class="dns_userdic_editor_row">
+                <td colspan="1" id="dns_dic_name_area">
+                        単語辞書名&nbsp;
+                </td>
+                <td colspan="2" id="dns_dic_name_area">
+                    <input type="text" id="dic_name" disabled="disabled" readonly="readonly"/>
+                </td>
+            </tr>
+            <tr class="dns_userdic_editor_row">
+                <td colspan="3" id="dns_narrow_area">
+                    <input type="radio" class="dns_narrow_selection" name="dns_narrow_selection" id="dns_ud_all" checked="checked" /><label class="dns_narrow_label color" for="dns_ud_all" tabindex="1">全て</label>
+                    <input type="radio" class="dns_narrow_selection" name="dns_narrow_selection" id="dns_ud_a"  /><label class="dns_narrow_label color" for="dns_ud_a"  tabindex="2" >ア</label>
+                    <input type="radio" class="dns_narrow_selection" name="dns_narrow_selection" id="dns_ud_ka" /><label class="dns_narrow_label color" for="dns_ud_ka" tabindex="3" >カ</label>
+                    <input type="radio" class="dns_narrow_selection" name="dns_narrow_selection" id="dns_ud_sa" /><label class="dns_narrow_label color" for="dns_ud_sa" tabindex="4" >サ</label>
+                    <input type="radio" class="dns_narrow_selection" name="dns_narrow_selection" id="dns_ud_ta" /><label class="dns_narrow_label color" for="dns_ud_ta" tabindex="5" >タ</label>
+                    <input type="radio" class="dns_narrow_selection" name="dns_narrow_selection" id="dns_ud_na" /><label class="dns_narrow_label color" for="dns_ud_na" tabindex="6" >ナ</label>
+                    <input type="radio" class="dns_narrow_selection" name="dns_narrow_selection" id="dns_ud_ha" /><label class="dns_narrow_label color" for="dns_ud_ha" tabindex="7" >ハ</label>
+                    <input type="radio" class="dns_narrow_selection" name="dns_narrow_selection" id="dns_ud_ma" /><label class="dns_narrow_label color" for="dns_ud_ma" tabindex="8" >マ</label>
+                    <input type="radio" class="dns_narrow_selection" name="dns_narrow_selection" id="dns_ud_ya" /><label class="dns_narrow_label color" for="dns_ud_ya" tabindex="9" >ヤ</label>
+                    <input type="radio" class="dns_narrow_selection" name="dns_narrow_selection" id="dns_ud_ra" /><label class="dns_narrow_label color" for="dns_ud_ra" tabindex="10">ラ</label>
+                    <input type="radio" class="dns_narrow_selection" name="dns_narrow_selection" id="dns_ud_wa" /><label class="dns_narrow_label color" for="dns_ud_wa" tabindex="11">ワ</label>
+                </td>
+            </tr>
+            <tr class="dns_userdic_editor_row" id="dic_list_area">
+                <td colspan="3" id="dns_dic_list" tabindex="12"></td>
+            </tr>
+            <tr class="dns_userdic_editor_row" id="dic_edit_area" style="display:none">
+                <td colspan="2">
+                    <table>
+                        <tbody>
+                            <tr><th>表 記</th><td><input type="text" id="dic_data_1" size="20" tabindex="13" style="ime-mode:active;" disabled="disabled"/></td></tr>
+                            <tr><th>読 み</th><td><input type="text" id="dic_data_2" size="20" tabindex="14" style="ime-mode:active;" disabled="disabled"/></td></tr>
+                            <tr>
+                                <th>品 詞</th>
+                                <td>
+                                    <select id="dic_data_3" tabindex="15" disabled="disabled">
+                                        <option>名詞 一般</option>
+                                        <option>名詞 固有名詞 一般</option>
+                                        <option>名詞 固有名詞 人名</option>
+                                        <option>名詞 固有名詞 人名 姓</option>
+                                        <option>名詞 固有名詞 人名 名</option>
+                                        <option>名詞 固有名詞 組織</option>
+                                        <option>名詞 固有名詞 地域 一般</option>
+                                        <option>名詞 サ変接続</option>
+                                        <option>記号 一般</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>優先度</th>
+                                <td id="dic_data_4">
+                                    <input type="radio" name="dic_data_4" class="dic_data_4" id="dic_data_4_1" level_value="4000" /><label for="dic_data_4_1" id="dic_data_4_1_label" class="dic_data_4_label color" tabindex="16" disabled="disabled">最低</label>
+                                    <input type="radio" name="dic_data_4" class="dic_data_4" id="dic_data_4_2" level_value="3000" /><label for="dic_data_4_2" id="dic_data_4_2_label" class="dic_data_4_label color" tabindex="17" disabled="disabled">低</label>
+                                    <input type="radio" name="dic_data_4" class="dic_data_4" id="dic_data_4_3" level_value="2000" /><label for="dic_data_4_3" id="dic_data_4_3_label" class="dic_data_4_label color" tabindex="18" disabled="disabled">標準</label>
+                                    <input type="radio" name="dic_data_4" class="dic_data_4" id="dic_data_4_4" level_value="1000" /><label for="dic_data_4_4" id="dic_data_4_4_label" class="dic_data_4_label color" tabindex="19" disabled="disabled">高</label>
+                                    <input type="radio" name="dic_data_4" class="dic_data_4" id="dic_data_4_5" level_value="0"    /><label for="dic_data_4_5" id="dic_data_4_5_label" class="dic_data_4_label color" tabindex="20" disabled="disabled">最高</label>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td colspan="1">
+                    <div id="dic_data_accent" class="dic_data_accent" disabled="disabled"></div>
+                </td>
+            </tr>
+            <tr class="dns_userdic_editor_row" id="dic_command_area" style="display:none">
+                <td colspan="3" id="dns_userdic_commands">
+                    <input type="button" class="dns_userdic_command button color" id="dns_ud_test"   tabindex="21" value="音声テスト(T)"  accesskey="T" disabled="disabled"/>
+                    <input type="button" class="dns_userdic_command button color" id="dns_ud_append" tabindex="22" value="追加(A)"        accesskey="A"/>
+                    <input type="button" class="dns_userdic_command button color" id="dns_ud_update" tabindex="23" value="更新(U)"        accesskey="U" disabled="disabled"/>
+                    <input type="button" class="dns_userdic_command button color" id="dns_ud_remove" tabindex="24" value="削除(R)"        accesskey="R" disabled="disabled"/>
+                    <input type="button" class="dns_userdic_command button color" id="dns_ud_save"   tabindex="25" value="保存(S)"        accesskey="S" disabled="disabled"/>
+                    <input type="button" class="dns_userdic_command button color" id="dns_ud_close"  tabindex="26" value="閉じる(C)"      accesskey="C"/>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- ========================================================= -->
+	<!-- 単語追加ダイアログ -->
+	<div class="dns_overlap_area" id="dic_append_area_back" style="background-color:rgba(0,0,0,0.75);display:none;">
+	    <div class="dns_message_box" id="dic_append_area_dialog">
+            <div class="dns_message_caption color"><span id="dic_append_area_caption" style="display:inline-block;">単語の追加</span><div id="dic_append_area_close" class="dns_message_button_close" tabindex="100">M</div></div>
+            <div class="dic_append_group_area">
+                    <table>
+                        <tbody>
+                            <tr><th>表 記</th><td><input type="text" id="add_dic_data_1" size="20" tabindex="101" style="ime-mode:active;"/></td><td rowspan="4" style="vertical-align:top;"><div id="add_dic_data_accent" class="dic_data_accent" style="min-width:200px;"></div></td></tr>
+                            <tr><th>読 み</th><td><input type="text" id="add_dic_data_2" size="20" tabindex="102" style="ime-mode:active;"/></td></tr>
+                            <tr>
+                                <th>品 詞</th>
+                                <td>
+                                    <select id="add_dic_data_3" tabindex="103">
+                                        <option>名詞 一般</option>
+                                        <option>名詞 固有名詞 一般</option>
+                                        <option>名詞 固有名詞 人名</option>
+                                        <option>名詞 固有名詞 人名 姓</option>
+                                        <option>名詞 固有名詞 人名 名</option>
+                                        <option>名詞 固有名詞 組織</option>
+                                        <option>名詞 固有名詞 地域 一般</option>
+                                        <option>名詞 サ変接続</option>
+                                        <option>記号 一般</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>優先度</th>
+                                <td id="add_dic_data_4">
+                                    <input type="radio" name="add_dic_data_4" class="dic_data_4" id="add_dic_data_4_1" level_value="4000" /><label for="add_dic_data_4_1" id="add_dic_data_4_1_label" class="dic_data_4_label color" tabindex="104">最低</label>
+                                    <input type="radio" name="add_dic_data_4" class="dic_data_4" id="add_dic_data_4_2" level_value="3000" /><label for="add_dic_data_4_2" id="add_dic_data_4_2_label" class="dic_data_4_label color" tabindex="105">低</label>
+                                    <input type="radio" name="add_dic_data_4" class="dic_data_4" id="add_dic_data_4_3" level_value="2000" /><label for="add_dic_data_4_3" id="add_dic_data_4_3_label" class="dic_data_4_label color" tabindex="106">標準</label>
+                                    <input type="radio" name="add_dic_data_4" class="dic_data_4" id="add_dic_data_4_4" level_value="1000" /><label for="add_dic_data_4_4" id="add_dic_data_4_4_label" class="dic_data_4_label color" tabindex="107">高</label>
+                                    <input type="radio" name="add_dic_data_4" class="dic_data_4" id="add_dic_data_4_5" level_value="0"    /><label for="add_dic_data_4_5" id="add_dic_data_4_5_label" class="dic_data_4_label color" tabindex="108">最高</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" id="add_dic_command_area">
+                                    <input type="button" class="dns_userdic_command button color" id="add_dic_test"   tabindex="109" value="音声テスト"  style="width:80px;" disabled="disabled"/>
+                                    <input type="button" class="dns_userdic_command button color" id="add_dic_enter"  tabindex="110" value="決定"        style="width:80px;" disabled="disabled"/>
+                                    <input type="button" class="dns_userdic_command button color" id="add_dic_cancel" tabindex="111" value="キャンセル"  style="width:80px;"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </div>
+        </div>
+	</div>
+    <!-- ========================================================= -->
+	<!-- 単語追加ダイアログ -->
+	<div class="dns_overlap_area" id="dic_save_area_back" style="background-color:rgba(255,255,255,0.75);display:none;">
+	    <div class="dns_message_box" id="dic_save_area_dialog">
+            <div class="dns_message_caption color"><span id="dic_save_area_caption" style="display:inline-block;">保存処理</span></div>
+            <div class="dic_save_group_area" style="padding:0 2em;text-align:center;">
+                保存処理実行中<br />しばらくお待ちください。
+            </div>
+        </div>
+    </div>
+    <!-- ========================================================= -->
+    <audio id="dns_audio_test" controls="controls" style="display:none;position:absolute;top:0;left:0;z-index:9999;"></audio>
+</body>
+</html>

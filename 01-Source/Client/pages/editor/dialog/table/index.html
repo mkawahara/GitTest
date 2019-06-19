@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8">
+	<title>新しい表の作成</title>
+
+	<script src="main.js"></script>
+	<script src="../dialogCommon.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="../dialog.css">
+	<style>
+		input.number {
+			width: 60px;
+			text-align: right;
+		}
+
+		input.text {
+			width: 170px;
+		}
+
+		#_fixAspect {
+			margin-top: 1em;
+		}
+	</style>
+</head>
+
+<body style="width: 100px;">
+	<table>
+		<tr>
+		<td>行数
+		<td><input id="_rowCount" type="number" max="100" min="1" class="number" required value="2">
+		<tr>
+		<td>列数
+		<td><input id="_colCount" type="number" max="100" min="1" class="number" required value="2">
+	</table>
+
+	<div class="frame">
+		<input type="button" value="挿入" class="button" onclick="onOK()"><br/>
+		<input type="button" value="キャンセル" class="button" onclick="onCancel()"><br/>
+	</div>
+
+</body>
+</html>
+

@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <title>マスキングツール</title>
+    <script type="text/javascript" src="../dnslibrary/dns.js"></script>
+    <script type="text/javascript" src="./maskingtool.js"></script>
+    <style type="text/css">
+    </style>
+</head>
+<body>
+    <table id="mst_mainframe">
+        <tbody>
+            <tr>
+                <td id="mst_toolbar1" class="mst_toolbar">
+                    &nbsp;
+                    <span id="mst_color_label">FILL COLOR</span>
+                    <span id="mst_color_area" style="background-color:#FFF;">&nbsp;</span><input type="button" class="mst_button color" id="mst_color_select" value="SELECT" />
+                    &thinsp;
+                    <span id="mst_type_label">TYPE</span>
+                    <span class="mst_radio_group" id="mst_type_group">
+                     <input type="radio" name="mst_type" class="mst_type" id="mst_type1" value="1" tabindex="2" checked=""><label for="mst_type1" id="mst_type_label1" class="mst_type_label color AnEdFont">B</label
+                    ><input type="radio" name="mst_type" class="mst_type" id="mst_type2" value="2" tabindex="3"           ><label for="mst_type2" id="mst_type_label2" class="mst_type_label color AnEdFont">C</label
+                    ><input type="radio" name="mst_type" class="mst_type" id="mst_type3" value="3" tabindex="4"           ><label for="mst_type3" id="mst_type_label3" class="mst_type_label color AnEdFont">D</label
+                    ><input type="radio" name="mst_type" class="mst_type" id="mst_type4" value="4" tabindex="5"           ><label for="mst_type4" id="mst_type_label4" class="mst_type_label color AnEdFont">E</label
+                    ><input type="radio" name="mst_type" class="mst_type" id="mst_type5" value="5" tabindex="6"           ><label for="mst_type5" id="mst_type_label5" class="mst_type_label color AnEdFont">F</label
+                    ><input type="radio" name="mst_type" class="mst_type" id="mst_type6" value="6" tabindex="7"           ><label for="mst_type6" id="mst_type_label6" class="mst_type_label color AnEdFont">G</label
+                    ></span>
+                    <span id="mst_size_label">SIZE</span>
+                    <select id="mst_size">
+                        <option value="1">&ensp;1</option>
+                        <option value="2">&ensp;2</option>
+                        <option value="3">&ensp;3</option>
+                        <option value="4">&ensp;4</option>
+                        <option value="5">&ensp;5</option>
+                        <option value="6">&ensp;6</option>
+                        <option value="7">&ensp;7</option>
+                        <option value="8">&ensp;8</option>
+                        <option value="9">&ensp;9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                        <option value="25">25</option>
+                        <option value="26">26</option>
+                        <option value="27">27</option>
+                        <option value="28">28</option>
+                        <option value="29">29</option>
+                        <option value="30">30</option>
+                    </select>
+                        <!-- <input type="number" id="mst_size" min="1" max="30" step="1" value="10" style="width:3em;" />
+        -->
+                    &ensp;
+                    <span id="mst_mode_label">FILL MODE</span>
+                    <span class="mst_radio_group" id="mst_mode_group">
+                     <input type="radio" name="mst_mode" class="mst_mode" id="mst_radio_mode1" value="1" checked=""><label for="mst_radio_mode1" id="mst_mode1" class="mst_mode_label color">B</label
+                    ><input type="radio" name="mst_mode" class="mst_mode" id="mst_radio_mode2" value="2"           ><label for="mst_radio_mode2" id="mst_mode2" class="mst_mode_label color">C</label
+                    ><input type="radio" name="mst_mode" class="mst_mode" id="mst_radio_mode3" value="3"           ><label for="mst_radio_mode3" id="mst_mode3" class="mst_mode_label color">D</label
+                    ></span>
+                     <input type="button" id="mst_zoom_down" value="H" class="mst_button color AnEdFont"
+                   /><input type="button" id="mst_zoom_up"   value="I" class="mst_button color AnEdFont"/>
+                    <input type="button" id="mst_undo" value="UNDO" class="mst_button color" disabled="disabled"/>
+                </td>
+                <td id="mst_toolbar2" class="mst_toolbar" style="text-align:right;">
+                    &ensp;
+                    <input type="button" class="mst_button color" id="mst_enter"  value="OK"     disabled="disabled"/>
+                    <input type="button" class="mst_button color" id="mst_cancel" value="CANCEL" />
+                    &ensp;
+                </td>
+            </tr>
+            <tr>
+                <td id="mst_work" colspan="2">
+                    <div id="mst_workarea">
+                        <div id="mst_imagearea">
+                            <img id="mst_image"/>
+                        </div>
+                        <div id="svg_draw_frame" class="svg_draw_frame" style="display:none;">
+                            <div id="svg_draw_type1" class="svg_draw_type" style="display:none;border:solid 1px black;"></div>
+                            <div id="svg_draw_type2" class="svg_draw_type" style="width:50%;height:50%;display:none;border:dotted 1px black;">
+                                <svg width="100%" height="100%" style="width:100%;height:100%;background-color:transparent;">
+                                    <ellipse id="svg_draw_type2_subitem1" cx="50%" cy="50%" rx="50%" ry="50%" stroke="#000" fill="transparent"></ellipse>
+                                </svg>
+                            </div>
+                            <div id="svg_draw_type3" class="svg_draw_type" style="width:50%;height:50%;display:none;border:solid 1px black;border-radius:10px;"></div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr><td id="mst_statusbar" colspan="2">Status Bar</td></tr>
+        </tbody>
+    </table>
+    <canvas id="mst_canvas1" style="display:none;"></canvas>
+    <canvas id="mst_canvas2" style="display:none;"></canvas>    
+</body>
+</html>

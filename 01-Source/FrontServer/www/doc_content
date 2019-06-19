@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<InftyDocument version="3.2">
+  <head>
+    <title>文書タイトル</title>
+    <author>著者</author>
+    <sourcePublisher>出版社</sourcePublisher>
+    <publisher>DAISY発行者</publisher>
+    <producer>DAISY製作者</producer>
+    <date>DAISY</date>
+    <uid>不明</uid>
+    <daisy>不明</daisy>
+    <epub3>不明</epub3>
+    <SpeechHTML5>不明</SpeechHTML5>
+    <voices count="2" api="AITalk" version="3.3 for Tenji">
+        <voice id="1" code="nagisa" name="なぎさ" type="female"/>
+        <voice id="2" code="seiji" name="せいじ" type="male"/>
+    </voices>
+    <paper>用紙設定</paper>
+    <printer>プリンタ設定</printer>
+    <port>ポート名</port>
+    <texsetting>TeX設定情報</texsetting>
+  </head>
+  <body fontface="標準フォント名" fontsize="標準フォントサイズ">
+      <section x-index-value="index">
+      <contents>
+        <p>地の文字列<br/>
+          <i>斜体書式文字列</i>
+          <b>太字書式文字列</b>
+          <i><b>複合書式文字列</b></i>
+          <u>下線が引かれた文字列</u>
+          <s>取り消し線が引かれた文字列</s>
+          <box>表示される枠の中に囲まれた文字列</box>
+          <sup>上付きスタイルが設定された文字列</sup>
+          <sub>下付きスタイルが設定された文字列</sub>
+          <ruby>
+            <rt>かんじ</rt>
+            <rb>漢字</rb>
+          </ruby>
+          <span type="silent">無音範囲ブロック</span>
+          <span yomi="読みのテキスト">意味的に囲まれた文字列</span>
+          <span voice="読み上げ音声の種別を示す文字列">意味的に囲まれた文字列</span>
+          <tex>TeXコマンド文字列</tex>
+          <img>画像データ</img>
+        </p>
+        <p>
+          <mblock><munit italic="1">A</munit></mblock>
+        </p>
+        <p>
+          <mblock type="chemical"><munit italic="1">A</munit></mblock>
+        </p>
+        <p>
+          <table row_num="1" column_num="2" use_marray_data="1">
+            <cell row="1" col="1" row_num="1" column_num="1" border_left="1" border_top="1" border_right="1" border_bottom="1" cell_color="ffffff" text_color="0" math_color="ff0000" horz_align="left" vert_align="center">
+              <p>セルのデータ</p>
+            </cell>
+            <cell row="1" col="2" row_num="1" column_num="1" border_left="1" border_top="1" border_right="1" border_bottom="1" cell_color="ffffff" text_color="0" math_color="ff0000" horz_align="left" vert_align="center">
+              <p>セルのデータ</p>
+            </cell>
+          </table>
+        </p>
+        <page/>
+      </contents>
+    </section>
+  </body>
+  <userdic>ユーザー単語辞書情報</userdic>
+  <sheetes>認識画像情報</sheetes>
+  <BrailleSetting>点字変換設定</BrailleSetting>
+</InftyDocument>

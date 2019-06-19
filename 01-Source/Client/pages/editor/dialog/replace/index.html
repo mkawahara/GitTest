@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>検索・置換</title>
+
+	<!-- 外部ライブラリ -->
+	<script src="../../../../lib/MathJax-master/MathJax.js?config=TeX-AMS-MML_HTMLorMML&delayStartupUntil=configured"></script>
+	<script src="../../../../lib/jquery-1.11.2.min.js"></script>
+	<script src="../../../../lib/jquery-ui.min.js"    ></script>
+
+	<!-- スタイルシート -->
+	<link rel="stylesheet" type="text/css" href="../../../../lib/jquery-ui.min.css">
+	<link rel="stylesheet" type="text/css" href="../dialog.css">
+	<link rel="stylesheet" type="text/css" href="./replace.css">
+
+	<script src="../../mainbar/editMenuEvent.js"></script>
+	<script src="editorPane/editorToolBarEvent.js"></script>
+	<script src="editorPane/editorToolBar.js"></script>
+	<script src="editorPane/editorPane.js"></script>
+	<script src="popupMenu/popupMenu.js"></script>
+	<script src="borderMenuData.js"></script>
+	<script src="indexPane/indexTool.js"></script>
+	<script src="replaceDialog.js"></script>
+	<script src="../../popupMenu/editorRightMenuData.js"></script>
+	<script src="uiUpdater/selectionUpdater.js"></script>
+
+	<script src="managers/viewManager.js"></script>
+	<script src="managers/statusManager.js"></script>
+	<script src="editorPane/scrollmanager.js"></script>
+
+	<script src="../../managers/editManager.js"></script>
+	<script src="managers/clipboardManager.js"></script>
+	<script src="../../managers/storageManager.js"></script>
+	<script src="../../managers/configManager.js"></script>
+	<script src="managers/searchManager.js"></script>
+
+
+
+	<script src="../../selectedRange/selectedRangeManager.js"></script>
+	<script src="../../selectedRange/selectedRange.js"></script>
+
+	<!-- コマンドラッパー -->
+	<script src="../../uiCommandWrapper.js"></script>
+
+	<!-- 入力支援 -->
+	<link rel="stylesheet" href="../../codeAssist/codeAssist.css">
+	<script src="../../codeAssist/codeAssist.js"></script>
+	<script src="../../codeAssist/assistHandler.js"></script>
+	<script src="../../codeAssist/inputData.js"></script>
+
+	<!-- データ -->
+	<script src="managers/documentManager.js"></script>
+
+	<!-- データクラス用共通部分ソース -->
+	<link rel="stylesheet" type="text/css" href="./../../dataClass/common/styleSheet.css" title="rewritableStyleClass">
+
+	<script src="../../dataClass/common/enum.js"></script>
+	<script src="../../dataClass/common/utility.js"></script>
+
+	<script src="../../dataClass/layout/layoutBase.js"></script>
+	<script src="../../dataClass/group/groupBase.js" ></script>
+
+	<!--*  - - - - - - - - UniElement 系 -->
+	<script src="../../dataClass/uni/characterElement.js"></script>
+	<script src="../../dataClass/uni/chemCharElement.js"></script>
+	<script src="../../dataClass/uni/lineBreak.js"></script>
+	<script src="../../dataClass/uni/image.js"></script>
+	<script src="../../dataClass/uni/pageDelimitor.js"></script>
+	<script src="../../dataClass/uni/pauseElement.js"></script>
+
+	<!--*  - - - - - - - - LayoutElement 系 -->
+	<script src="../../dataClass/layout/cornerElement.js"></script>
+	<script src="../../dataClass/layout/cornerTagTable.js"></script>
+	<script src="../../dataClass/layout/fractionElement.js"></script>
+	<script src="../../dataClass/layout/integralElement.js"></script>
+	<script src="../../dataClass/layout/rootElement.js"></script>
+	<script src="../../dataClass/layout/topBottomElement.js"></script>
+	<script src="../../dataClass/layout/topElement.js"></script>
+	<script src="../../dataClass/layout/bottomElement.js"></script>
+	<script src="../../dataClass/layout/underlineElement.js"></script>
+	<script src="../../dataClass/layout/decoBoxElement.js"></script>
+	<script src="../../dataClass/layout/rubyElement.js"></script>
+	<script src="../../dataClass/layout/bracketBase.js"></script>
+	<script src="../../dataClass/layout/openBracketElement.js"></script>
+	<script src="../../dataClass/layout/closeBracketElement.js"></script>
+	<script src="../../dataClass/layout/tableBase.js"></script>
+	<script src="../../dataClass/layout/matrixElement.js"></script>
+	<script src="../../dataClass/layout/tableElement.js"></script>
+	<script src="../../dataClass/layout/eqNumber.js"></script>
+	<script src="../../dataClass/layout/readElement.js"></script>
+
+	<!--* - - - - - - - - GroupElement 系 -->
+	<script src="../../dataClass/group/groupElement.js"></script>
+	<script src="../../dataClass/group/paragraph.js"></script>
+	<script src="../../dataClass/group/matrixCellElement.js"></script>
+	<script src="../../dataClass/group/tableCellElement.js"></script>
+
+	<script src="../../dataClass/edit/caret.js"></script>
+	<script src="../../dataClass/doc/section.js"></script>
+	<script src="../../dataClass/doc/sectionList.js"></script>
+
+	<script src="../../dataClass/idManager.js"></script>
+	<script src="../../dataClass/paragraphParser.js"></script>
+
+	<script src="toolbarUtility.js"></script>
+
+	<!-- 複合処理層 -->
+	<script src="../../editorClass/textEditor.js"></script>
+	<script src="../../editorClass/nodeCreator.js"></script>
+	<script src="../../editorClass/indexEditor.js"></script>
+	<script src="../../editorClass/rangedEditor.js"></script>
+	<script src="../../editorClass/tableEditor.js"></script>
+	<script src="../../editorClass/formatter.js"></script>
+	<script src="../../editorClass/statusEditor.js"></script>
+
+	<script src="../../uiUpdater/rendererUtil.js"></script>
+	<script src="../../uiUpdater/renderer.js"></script>
+
+	<!-- イベントハンドラ機能群 -->
+	<script src="../../eventHandler/keyEventHandler.js"></script>	<!-- 基本機能群 -->
+	<script src="eventHandler/keyShortCuts.js"></script>	<!-- キーボードショートカット -->
+	<script src="../../eventHandler/shortCutCommand.js"></script>	<!-- ショートカットの実行インターフェース -->
+	<script src="../../eventHandler/clipBoardEventHandler.js"></script>	<!-- クリップボードイベント -->
+	<script src="../../eventHandler/ignoreKeyList.js"></script>	<!-- ショートカットの実行インターフェース -->
+
+	<!-- コマンドクラス層 -->
+	<script src="../../commandClass/baseCommand.js"></script>		<!-- ベース    コマンドクラス -->
+	<script src="../../commandClass/alignCommand.js"></script>		<!-- アラインコマンドクラス -->
+	<script src="../../commandClass/insertCharCommand.js"></script>	<!-- 一文字挿入コマンドクラス -->
+	<script src="../../commandClass/insertImageCommand.js"></script>	<!-- 画像挿入コマンドクラス -->
+	<script src="../../commandClass/removeNodeCommand.js"></script>	<!-- 一文字削除コマンドクラス -->
+	<script src="../../commandClass/removeMultiNodeCommand.js"></script>	<!-- 範囲削除コマンドクラス -->
+	<script src="../../commandClass/insertMultiNodeCommand.js"></script>	<!-- 複数挿入コマンド -->
+	<script src="../../commandClass/boldCommand.js"></script>	<!-- -->
+	<script src="../../commandClass/italicCommand.js"></script>	<!-- -->
+	<script src="../../commandClass/underLineCommand.js"></script>	<!-- -->
+	<script src="../../commandClass/strikeCommand.js"></script>	<!-- -->
+	<script src="../../commandClass/footNoteCommand.js"></script>	<!-- -->
+	<script src="../../commandClass/frameBorderCommand.js"></script>	<!-- -->
+	<script src="../../commandClass/insertTableCommand.js"></script>	<!-- -->
+	<script src="../../commandClass/removeRowCommand.js"></script>	<!-- テーブルから 1 行削除-->
+	<script src="../../commandClass/insertRowCommand.js"></script>	<!-- テーブルへ 1 行挿入-->
+	<script src="../../commandClass/removeColCommand.js"></script>	<!-- テーブルから 1 行削除-->
+	<script src="../../commandClass/insertColCommand.js"></script>	<!-- テーブルから 1 行削除-->
+	<script src="../../commandClass/imagePropertyCommand.js"></script>	<!-- -->
+	<script src="../../commandClass/pasteCommand.js"></script>	<!-- -->
+	<script src="../../commandClass/replaceCommand.js"></script>	<!-- -->
+	<script src="../../commandClass/fontSizeCommand.js"></script>	<!-- -->
+	<script src="../../commandClass/convertModeCommand.js"></script>		<!-- -->
+
+	<script src="../../commandClass/commandExecutor.js"></script>	<!-- -->
+	<script src="../../commandClass/stack.js"></script>				<!-- -->
+
+	<script src="main.js"></script>
+	<script src="buttonEvent.js"></script>
+	<script src="../dialogCommon.js"></script>
+
+	<style>
+
+	.only_replace {
+		//display: none;
+	}
+
+	</style>
+</head>
+
+<body style="width: 430px;">
+	<div id="ET_MasterLayer" class="cl_MIC_MasterLayer cl_TBC_PrevDrag">
+
+		<!--* div アイコン背景レイヤ -->
+		<!--div id="ET_BackLayer" class="cl_MIC_BackLayer"></div-->
+		<div id="ET_BackLayer" class="cl_MIC_BackLayer"></div>
+
+		<!--* div アイコン本体レイヤ -->
+		<div id="ET_FrontLayer" class="cl_MIC_FrontLayer">
+
+			<!-- ================ 書式系アイコン ================ -->
+			<!-- 同義設定!! [CM-050] テキストモード -->
+			<!--* div テキストモード -->
+			<div id="ET_Format_Text" title="テキストモード"
+				class="cl_TBC_Main_Highlight cl_MIC_Icon cl_TBC_DarkHighlight"
+				onClick='EditorToolBarEventHandler.onClickInputMode(CIO_XML_TYPE.text);'>
+				<div id="ET_Format_Text_CheckMark" class="cl_MIC_Icon cl_TBC_CheckArea cl_TBC_Highlight_Style">
+					<img src="../../icons/220.png" class="cl_TBC_Centering">
+				</div>
+			</div>
+			<!-- 同義設定!! [CM-050] 数式モード -->
+			<!--* div 数式モード -->
+			<div id="ET_Format_Formula" title="数式モード"
+				class="cl_TBC_Main_Highlight cl_MIC_Icon cl_TBC_DarkHighlight"
+				onClick='EditorToolBarEventHandler.onClickInputMode(CIO_XML_TYPE.math);'>
+				<div id="ET_Format_Formula_CheckMark" class="cl_MIC_Icon cl_TBC_CheckArea cl_TBC_Highlight_Style">
+					<img src="../../icons/222.png" class="cl_TBC_Centering">
+				</div>
+			</div>
+			<!-- 同義設定!! [CM-050] 化学式モード -->
+			<!--* div 化学式モード -->
+			<div id="ET_Format_Chemical" title="化学式モード"
+				class="cl_TBC_Main_Highlight cl_MIC_Icon cl_TBC_DarkHighlight"
+				onClick='EditorToolBarEventHandler.onClickInputMode(CIO_XML_TYPE.chemical);'>
+				<div id="ET_Format_Chemical_CheckMark" class="cl_MIC_Icon cl_TBC_CheckArea cl_TBC_Highlight_Style">
+					<img src="../../icons/224.png" class="cl_TBC_Centering">
+				</div>
+			</div>
+
+			<!--* div - - - - セパレータ -->
+			<div id="ET_Sep01" class="cl_MIC_Separator"></div>
+
+			<!-- 同義設定!! [CM-050] 斜体(イタリック) -->
+			<!--* div 斜体(イタリック) -->
+			<div id="ET_Format_Italic" title="斜体(イタリック)"
+				class="cl_TBC_Main_Highlight cl_MIC_Icon cl_TBC_DarkHighlight"
+				onClick='EditorToolBarEventHandler.onClickItaric();'>
+				<div id="ET_Format_Italic_CheckMark" class="cl_MIC_Icon cl_TBC_CheckArea cl_TBC_Highlight_Style">
+					<img src="../../icons/228.png" class="cl_TBC_Centering">
+				</div>
+			</div>
+			<!-- 同義設定!! [CM-050] 太字(ボールド) -->
+			<!--* div 太字(ボールド) -->
+			<div id="ET_Format_Bold" title="太字(ボールド)"
+				class="cl_TBC_Main_Highlight cl_MIC_Icon cl_TBC_DarkHighlight"
+				onClick='EditorToolBarEventHandler.onClickBold();'>
+				<div id="ET_Format_Bold_CheckMark" class="cl_MIC_Icon cl_TBC_CheckArea cl_TBC_Highlight_Style">
+					<img src="../../icons/230.png" class="cl_TBC_Centering">
+				</div>
+			</div>
+			<!-- 同義設定!! [CM-050] 下線 -->
+			<!--* div 下線 -->
+			<div id="ET_Format_Underline" title="下線"
+				class="cl_TBC_Main_Highlight cl_MIC_Icon cl_TBC_DarkHighlight"
+				onClick='EditorToolBarEventHandler.onClickUnderline();'>
+				<div id="ET_Format_Underline_CheckMark" class="cl_MIC_Icon cl_TBC_CheckArea cl_TBC_Highlight_Style">
+					<img src="../../icons/232.png" class="cl_TBC_Centering">
+				</div>
+			</div>
+			<!-- 同義設定!! [CM-050] 打ち消し線 -->
+			<!--* div 打ち消し線 -->
+			<div id="ET_Format_Strikethrough" title="打ち消し線"
+				class="cl_TBC_Main_Highlight cl_MIC_Icon cl_TBC_DarkHighlight"
+				onClick='EditorToolBarEventHandler.onClickStrike();'>
+				<div id="ET_Format_Strikethrough_CheckMark" class="cl_MIC_Icon cl_TBC_CheckArea cl_TBC_Highlight_Style">
+					<img src="../../icons/234.png" class="cl_TBC_Centering">
+				</div>
+			</div>
+			<!-- 同義設定!! [CM-050] 脚注書式(上付き) -->
+			<!--* div 脚注書式(上付き) -->
+			<div id="ET_Format_FootnoteTop" title="脚注書式(上付き)"
+				class="cl_TBC_Main_Highlight cl_MIC_Icon cl_TBC_DarkHighlight"
+				onClick='EditorToolBarEventHandler.onClickFootnote(SM_FOOTNOTE_FORMAT.sup);'>
+				<div id="ET_Format_FootnoteTop_CheckMark"
+					class="cl_MIC_Icon cl_TBC_CheckArea cl_TBC_Highlight_Style">
+					<img src="../../icons/238.png" class="cl_TBC_Centering">
+				</div>
+			</div>
+			<!-- 同義設定!! [CM-050] 脚注書式(下付き) -->
+			<!--* div 脚注書式(下付き) -->
+			<div id="ET_Format_FootnoteBottom" title="脚注書式(下付き)"
+				class="cl_TBC_Main_Highlight cl_MIC_Icon cl_TBC_DarkHighlight"
+				onClick='EditorToolBarEventHandler.onClickFootnote(SM_FOOTNOTE_FORMAT.sub);'>
+				<div id="ET_Format_FootnoteBottom_CheckMark"
+					class="cl_MIC_Icon cl_TBC_CheckArea cl_TBC_Highlight_Style">
+					<img src="../../icons/240.png" class="cl_TBC_Centering">
+				</div>
+			</div>
+
+			<!--* div - - - - セパレータ -->
+			<div id="ET_Sep02" class="cl_MIC_Separator"></div>
+
+			<!-- 同義設定!! [CM-050] 標準の囲み枠 -->
+			<!--* div 標準の囲み枠 -->
+			<div id="ET_Format_FrameBorder_Standard" title="標準の囲み枠"
+				class="cl_TBC_Main_Highlight cl_MIC_DropMark">
+				<div class=" cl_MIC_IconDrop_IconArea cl_TBC_DarkHighlight"
+					onclick="EditorToolClass.ET_Format_FrameBorder_Standard()">
+					<img src="../../icons/172.png" class="cl_MIC_IconDrop_IconStyle">
+				</div>
+				<!--* div 囲み枠用ドロップマーク -->
+				<div id="ET_Format_FrameBorder_Drop" class=" cl_MIC_IconDrop_DropArea cl_TBC_DarkHighlight"
+					onclick="EditorToolClass.ET_Format_FrameBorder_Context()">
+					<!-- [CM-152] のコンテキストメニューが使用される -->
+					<img src="../../icons/TB_dropDownMark7x4.png" class="cl_MIC_IconDrop_DropStyle">
+				</div>
+			</div>
+
+		</div> <!-- アイコン本体レイヤ用divタグ　終わり -->
+	</div> <!-- マスターレイヤ用divタグ　終わり -->
+
+	<!--* ul 囲み枠 [重複] (ツールバー用) -->
+	<!-- - - - - - - - 囲み枠系コンテキストメニュー -->
+	<ul  id="ET_Format_FrameBorder_ConMenu" class="cl_TBC_MenuFont cl_TBC_DropDownMenu"></ul>
+
+	<!--* ul エディタ右クリック -->
+	<!-- - - - - - - - エディタ上の右クリックによるポップアップ -->
+	<ul  id="ET_Edit_EditorPopup_ConMenu" class="cl_TBC_MenuFont cl_TBC_DropDownMenu"></ul>
+
+	<!--div style="background : red;"-->
+	<div>
+		<div id="ID_EditorPage" class="frame multiColumn">
+			<table>
+				<tr>
+					<td>検索文字列</td>
+					<td>
+						<!--div class="textPane" id="searchTarget" contenteditable="true"></div-->
+						<div style="overflow: auto; width: 236px;">
+						<div class="textPane" id="searchTarget"></div>
+						</div>
+					</td>
+				</tr>
+				<tr id="replaceRow" class="only_replace">
+					<td>置換文字列</td>
+					<td>
+						<!--div class="textPane" id="replaceObject" contenteditable="true"></div-->
+						<div style="overflow: auto; width: 236px;">
+						<div class="textPane" id="replaceObject"></div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><label><input type="checkbox" id="_macthCase" checked>大文字小文字を区別</label></td>
+				</tr>
+			</table>
+			<!-- 入力用テキストボックス -->
+			<span contenteditable="true" id="EDT_FrontTextBox" class="EDT_FrontTextBox"></span>
+			<!-- 入力支援 -->
+			<div id="codeAssist" class="CA_style"></div>
+
+		</div>
+
+		<div class="frame multiColumn" style="width: 90px;">
+			<input type="button" id="_nextButton" class="button" value="次を検索">
+			<input type="button" id="_replaceButton" class="button only_replace" value="置換">
+			<input type="button" id="_replaceNextButton" class="button only_replace" value="置換して次に">
+			<input type="button" id="_allReplaceButton" class="button only_replace" value="全て置換">
+			<input type="button" id="_cancelButton" class="button" value="キャンセル">
+
+				<fieldset class="frame box">
+					<legend>検索方向</legend>
+					<label><input type="radio" id="to_prev" name="_searchOrder">前へ</label><br>
+					<label><input type="radio" id="to_next" name="_searchOrder" checked>後へ</label>
+				</fieldset>
+		</div>
+	</div>
+
+
+
+</body>
+</html>
+
+
+

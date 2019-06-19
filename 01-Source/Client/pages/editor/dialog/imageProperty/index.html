@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>画像設定</title>
+
+	<script src="../../../../lib/jquery-1.11.2.min.js"></script>
+	<script src="main.js"></script>
+	<script src="../dialogCommon.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="../dialog.css">
+	<style>
+
+		input.text {
+			width: 170px;
+		}
+
+		#_fixAspect {
+			margin-top: 1em;
+		}
+	</style>
+</head>
+
+<body style="width: 265px;">
+	<fieldset class="frame box">
+		<legend>サイズ</legend>
+		幅 <input type="number" step="0.1" min="0" class="number" id="_imageWidth" onchange="onChangeWidth()">mm
+		&nbsp;&nbsp;
+		高さ <input type="number" step="0.1" min="0" class="number" id="_imageHeight" onchange="onChangeHeight()">mm
+		<br>
+		<label><input type="checkbox" id="_fixAspect" checked> 縦横比を固定する</label>
+	</fieldset>
+
+	<div class="frame">
+		<table>
+			<tr>
+			<td><label for="_imageTitle">画像タイトル</label>
+			<td><input type="text" class="text" id="_imageTitle">
+			<tr>
+			<td><label for="_spareText">代替テキスト</label>
+			<td><input type="text" class="text" id="_spareText">
+			<tr>
+			<td><label for="_readText">読上テキスト</label>
+			<td><input type="text" class="text" id="_readText">
+		</table>
+	</div>
+
+	<div style="text-align: right;">
+		<input type="button" class="button" value="OK" onclick="onClickSubmit()">
+		<input type="button" class="button" value="キャンセル" onclick="onCancel()">
+	</div>
+
+</body>
+</html>

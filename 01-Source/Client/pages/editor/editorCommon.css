@@ -1,0 +1,254 @@
+﻿@CHARSET "UTF-8";
+/* Project: [PJ-0136] ChattyInfty
+/* Module : DVM_C_Display
+/* ========================================================================= */
+/* ==                         ChattyInfty-Online                          == */
+/* ==                                                                     == */
+/* ==                      株式会社知能情報システム                       == */
+/* ========================================================================= */
+/* -    ファイル名     ： TB_common.css                                      */
+/* -                                                                         */
+/* -    概      要     ： ツール類共通スタイルシート                         */
+/* -                                                                         */
+/* -  開  発  環  境   ： Wiondows 8.1 Pro 64bit, Firefox 35.0.1             */
+/* -                                                                         */
+/* -  担当 / 最終更新  ： 湯本 直杉 / 2015年02月25日                         */
+
+/* =================== ツールバークラス 命名規則 (暫定) ==================== */
+/* TBC_ : Tool Bar Common    : 全クラス共通                                  */
+/* MB_  : MenuBar            : メニューバー                                  */
+/* MT_  : Main   Toolbar     : メインツールバー（大アイコン表示）            */
+/* IT_  : Index  Toolbar     : インデックス操作用ツールバー（小アイコン表示）*/
+/* ET_  : Editor Toolbar     : エディタ部用ツールバー（小アイコン表示）      */
+/* ST_  : Section Title bar  : セクションタイトルバー（小アイコン表示）      */
+/* ※ HTMLタグIDは、上記接頭文字から始めます。                               */
+/* ※ CSS classは、cl_ の後、上記接頭文字を続ける形とします。                */
+/*========================================================================== */
+
+/* ===================== ツールバークラス 基本方針 ========================= */
+/* ・アイコンの disable/enable 状態及び、チェックマークの状態は、            */
+/*   当モジュール内では管理しません。                                        */
+/* ========================================================================= */
+
+/* ------------- ChattyInfty Online タイトルバー*/
+#title {}
+#title_bar {
+	position: relative;
+	z-index: 2;
+}
+
+/* ------------- マウスドラッグ防止用クラス: (空) */
+.cl_TBC_PrevDrag {}
+
+/* ------------- マウス押下時の濃いハイライトエリア識別用クラス: (空) */
+.cl_TBC_DarkHighlight {}
+
+/* ========================= コンテキストメニュー========================= */
+li table {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+}
+
+ul {
+	display: none;
+	/* エディタページでは html による箇条書きは使用しないため問題ありません。 */
+}
+
+/* ------------- コンテキストメニューであることの識別用クラス: */
+.cl_TBC_DropDownMenu {
+	position: absolute;
+	top:      -100px;
+	z-index:  900;   /* 最前面表示のための苦肉の策です */
+	background-color:black;
+	width: 260px;
+}
+
+/* メニューの幅を狭くするクラス */
+.cl_TBC_DropDownMenuWidthNarrow {
+	width: 160px;
+}
+
+/* ------------- コンテキストメニュー 1列目 (TDタグ用) */
+.cl_TBC_Menu_Col1_TD {
+	position: relative;
+}
+
+/* ------------- コンテキストメニュー 1列目 (アイコンIMGタグ用) */
+.cl_TBC_Menu_Col1_Icon {
+	min-width:  25px;
+	height: 18px;	/* ここでの高さ指定は、ブラウザで動作が変わる。良くない*/
+	border: 1px solid transparent;
+}
+
+/* ------------- コンテキストメニュー 2列目 (項目名文字列) */
+.cl_TBC_Menu_Col2_Title {
+	white-space: nowrap;
+}
+
+/* ------------- コンテキストメニュー 3列目 (ショートカットキー) */
+.cl_TBC_Menu_Col3_ShortCut {
+	width:      100%;
+	text-align: right;
+	padding-right:6px;
+}
+
+/* ------------- コンテキストメニュー用セパレータ設定 */
+.cl_TBC_Menu_Separator {
+	/* ★デザインの都合上、コメントアウト中 */
+	/*border-bottom: 1px solid silver;*/
+}
+
+/* ------------- アイコンチェックマークエリア識別用 */
+.cl_TBC_CheckArea {
+	position: relative;
+	left:     -1px;
+	top:      -1px;
+}
+
+/* ------------- アイコン類ハイライト及び隣との間隙 */
+.cl_TBC_Main_Highlight {
+	float:            left;
+	margin-left:      0px;
+	margin-right:     0px;
+	position:         relative;
+	border:           1px transparent solid;	/* ★一見意味がないが、枠線の領域確保になる */
+	border-radius:    3px;
+}
+
+/* ------------- ハイライト時のカラーと枠線指定:
+   アイコンハイライト時に、1px幅のボーダーラインを使用します。
+   非ハイライト時は、ボーダーラインを透明色にしています。
+   バックグランドカラーも、同上。
+---------------- */
+.cl_TBC_Highlight_Style {
+	border:           1px transparent solid;	/* ★一見意味がないが、枠線の領域確保になる */
+	border-radius:    3px;
+}
+
+/* ------------- アイコンのセンター表示設定 */
+.cl_TBC_Centering {
+	position: absolute;
+	top:      0;
+	left:     0;
+	right:    0;
+	bottom:   0;
+	margin:   auto;
+}
+
+/* ------------- メニューバー系共通フォント設定 */
+.cl_TBC_MenuFont {
+	font-style:	normal;
+	font-size: 12px;
+	/* ★0.8em とすると親に対する相対サイズとなり、サブメニューでフォントが更に小さくなります */
+	/* ex もサブメニューのフォントサイズに問題が発生します。 */
+}
+
+/* =============================================================== */
+
+/* エディタページ大枠 */
+div#ID_EditorPage {
+	width: 5%%;
+	height: 99.5%;
+	position: relative;
+	min-width: 900px;
+}
+
+/* メニューバー、メインツールバー */
+div#ID_ToolHeader {
+	width: 100%;
+	height: 52px;
+}
+
+/* セクションタイトル入力部 */
+div#ST_InputArea {
+	float: left;
+	width: 500px;
+	height: 24px;
+	margin-bottom: -24px;
+	z-index: 12;
+	position: relative;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+/* セクションタイトル入力部品 */
+input#ST_SectionTitleBar {
+	width: 400px;
+}
+
+/* 入力用テキストボックス */
+/*span.EDT_FrontTextBox {
+	border: none;
+//	top : -999px;
+	position: absolute;
+	background: rgba(255,255,255,255);
+	border-right: solid 0px black;
+	height: 10pt;
+	z-index: 13;
+	padding: 0px;
+}*/
+
+/* ステータスバー：入力モード表示 */
+div#SB_InputMode_Base {
+	float: right;
+/*	border: 2px ridge gray;8?
+	height: 22px;*/
+}
+
+/* ステータスバー：入力モードアイコン画像 */
+div.cl_SB_InputMode_Image {
+	width: 16px;
+	height: 16px;
+	position: relative;
+}
+
+/* ステータスバー：テキスト入力モードアイコン画像 */
+div#SB_InputMode_Image_TextMode {
+	z-index: 12;
+}
+
+/* ステータスバー：数式入力モードアイコン画像 */
+div#SB_InputMode_Image_FormulaMode {
+	top: -16px;
+	z-index: 10;
+}
+
+/* フロート解除 */
+div.cl_FloatClear {
+	clear: both;
+	margin: 0px;
+	position: relative;
+}
+
+/* 左フロート設定 */
+div.cl_FloatLeft {
+	float: left;
+}
+
+/* ステータスバー：カーソル位置表示 */
+div#SB_CaretPosInfo {
+	float: right;
+	width: 8em;
+}
+
+/* ステータスバー：ショートカット表示 */
+div#SB_ShortCutInfo {
+	float: right;
+}
+
+/* ステータスバー：入力モード */
+div#SB_InputMode_Text {
+	width: 10em;
+}
+
+/* 縦スクロールバーを強制的に非表示にします */
+/* 上下方向にはみ出さないように部品サイズを調整するのは、スクリプトで行います。 */
+html, body {
+	overflow: hidden;
+}
+
+div.cs_content_main {
+  min-height:200px;
+}

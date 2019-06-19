@@ -1,0 +1,306 @@
+﻿@CHARSET "UTF-8";
+/* Project: [PJ-0136] ChattyInfty
+/* Module : DVM_C_Display
+/* ========================================================================= */
+/* ==                         ChattyInfty-Online                          == */
+/* ==                                                                     == */
+/* ==                      株式会社知能情報システム                       == */
+/* ========================================================================= */
+/* -    ファイル名     ： TB_MiniToolbar.css                                 */
+/* -                                                                         */
+/* -    概      要     ： 小アイコンツールバー用スタイルシート               */
+/* -                                                                         */
+/* -        ※インデックス操作用ツールバー、エディタ部用ツールバー、         */
+/* -          セクションタイトルバーでの共通仕様                             */
+/* -                                                                         */
+/* -  開  発  環  境   ： Wiondows 8.1 Pro 64bit, Firefox 36.0.4             */
+/* -                                                                         */
+/* -  担当 / 最終更新  ： 湯本 直杉 / 2015年04月24日                         */
+
+/* =================== ツールバークラス 命名規則 (暫定) ==================== */
+/* TBC_ : Tool Bar Common    : 全クラス共通                                  */
+/* MB_  : MenuBar            : メニューバー                                  */
+/* MT_  : Main   Toolbar     : メインツールバー（大アイコン表示）            */
+/* MIC_ : Mini Icon Common   : 小アイコン用共通仕様                          */
+/* IT_  : Index  Toolbar     : インデックス操作用ツールバー（小アイコン表示）*/
+/* ET_  : Editor Toolbar     : エディタ部用ツールバー（小アイコン表示）      */
+/* ST_  : Section Title bar  : セクションタイトルバー（小アイコン表示）      */
+/* ※ HTMLタグIDは、上記接頭文字から始めます。                               */
+/* ※ CSS classは、cl_ の後、上記接頭文字を続ける形とします。                */
+/*========================================================================== */
+
+/* ===================== ツールバークラス 基本方針 ========================= */
+/* ・アイコンの disable/enable 状態及び、チェックマークの状態は、            */
+/*   当モジュール内では管理しません。                                        */
+/* ========================================================================= */
+
+/* ------------- マスターレイヤ */
+.cl_MIC_MasterLayer {
+	width   : 100%;	/* ステータスバーのために必要 */
+	height  : 24px;	/* 高さを指定しないと、不要な余白が出来る */
+}
+
+/* ------------- 背景レイヤ */
+.cl_MIC_BackLayer {
+	position: relative;
+	z-index: 11;
+	height          : 24px;
+	margin-top:1px;
+	border-bottom   : solid 1px #d9d5b8;
+	background-image:url('../../../res/tile.png');
+	background-color:#f2f2f2;
+	opacity         : 0.8;
+}
+
+/* ------------- 前面レイヤ */
+.cl_MIC_FrontLayer {
+	position: relative;
+	height  : 24px;
+	top     : -25px;
+}
+
+/* ------------- インデックスツールバーの位置 */
+/* アイコンのX位置                     結果X座標 = 前のX座標  +  前の横幅     ,このアイコン横幅 */
+div#IT_Index_Add        { left:   0px; } /*  0px                                      w24px */
+div#IT_Index_Del        { left:  24px; } /*  24px = pre left:   0px + pre width:24px, w24px */
+div#IT_Sep01            { left:  48px; } /*  72px = pre left:  24px + pre width:24px, w 5px */
+div#IT_Index_Up         { left:  53px; } /*  53px = pre left:  48px + pre width: 5px, w24px */
+div#IT_Index_Down       { left:  77px; } /*  77px = pre left:  53px + pre width:24px, w24px */
+div#IT_Index_Before     { left: 101px; } /* 101px = pre left:  77px + pre width:24px, w24px */
+div#IT_Index_After      { left: 125px; } /* 125px = pre left: 101px + pre width:24px, w24px */
+div#IT_Sep02            { left: 149px; } /* 149px = pre left: 125px + pre width:24px, w 5px */
+div#IT_Index_Divide     { left: 154px; } /* 154px = pre left: 149px + pre width: 5px, w24px */
+div#IT_Index_Connect    { left: 178px; } /* 178px = pre left: 154px + pre width: 24px, w24px */
+
+/* ------------- エディタツールバーの位置 */
+/* アイコンのX位置                                 結果X座標 =       前のX座標 + 前の横幅      ,このアイコン横幅 */
+div#ET_Edit_Cut                    { left:   0px; } /*  0px                                      w24px */
+div#ET_Edit_Copy                   { left:  24px; } /*  24px = pre left:   0px + pre width:24px, w24px */
+div#ET_Edit_Paste                  { left:  48px; } /*  48px = pre left:  24px + pre width:24px, w24px */
+div#ET_Edit_Delete                 { left:  72px; } /*  72px = pre left:  48px + pre width:24px, w24px */
+
+div#ET_Sep02                       { left:  96px; } /*  96px = pre left:  72px + pre width:24px, w 5px */
+div#ET_Format_Text                 { left: 101px; } /* 101px = pre left:  96px + pre width: 5px, w24px */
+div#ET_Format_Formula              { left: 125px; } /* 125px = pre left: 101px + pre width:24px, w24px */
+div#ET_Format_Chemical             { left: 149px; } /* 202px = pre left: 178px + pre width:24px, w24px */
+
+div#ET_Sep03                       { left: 173px; } /* 226px = pre left: 202px + pre width:24px, w 5px */
+div#ET_Format_Italic               { left: 178px; } /* 231px = pre left: 226px + pre width: 5px, w24px */
+div#ET_Format_Bold                 { left: 202px; } /* 255px = pre left: 231px + pre width:24px, w24px */
+div#ET_Format_Underline            { left: 226px; } /* 279px = pre left: 255px + pre width:24px, w24px */
+div#ET_Format_Strikethrough        { left: 250px; } /* 303px = pre left: 279px + pre width:24px, w24px */
+div#ET_Format_FootnoteTop          { left: 274px; } /* 327px = pre left: 303px + pre width:24px, w24px */
+div#ET_Format_FootnoteBottom       { left: 298px; } /* 351px = pre left: 327px + pre width:24px, w24px */
+
+div#ET_Sep04                       { left: 323px; } /* 376px = pre left: 351px + pre width:24px, w 5px */
+div#ET_Format_Left                 { left: 328px; } /* 381px = pre left: 376px + pre width: 5px, w24px */
+div#ET_Format_Center               { left: 352px; } /* 405px = pre left: 381px + pre width:24px, w24px */
+div#ET_Format_Right                { left: 376px; } /* 429px = pre left: 405px + pre width:24px, w24px */
+
+div#ET_Sep05                       { left: 400px; } /* 453px = pre left: 429px + pre width:24px, w 5px */
+div#ET_Format_FrameBorder_Standard { left: 405px; } /* 458px = pre left: 453px + pre width: 5px, w33px */
+div#ET_Format_FontSize             { left: 438px; } /* 491px = pre left: 458px + pre width:33px, w33px */
+div#ET_Edit_Speaker                { left: 471px; } /* 471px = pre left: 438px + pre width:33px, w33px */
+
+div#ET_Sep06                       { left: 504px; } /* 504px = pre left: 471px + pre width:33px, w 5px */
+div#ET_Edit_InsertImage            { left: 509px; } /* 509px = pre left: 504px + pre width: 5px, w33px */
+div#ET_Edit_PasteImageAtIE         { left: 542px; visibility: hidden; } /* IEでのみ必要ですが、とりあえず隠しておきます */
+
+div#ET_Sep08                       { left: 564px; } /* 542px = pre left: 509px + pre width:33px, w 5px */
+div#ET_Setting_AddWord             { left: 569px; } /* 547px = pre left: 542px + pre width: 5px, w24px */
+div#ET_Setting_DictInfo            { left: 591px; } /* 569px = pre left: 547px + pre width:24px, w24px */
+
+/* ------------- セクションタイトル用アイコン */
+/* アイコンのX位置                       結果X座標 =     前のX座標  +  前の横幅     ,このアイコン横幅 */
+div#ST_TitleEdit_Reset { left:  500px; } /*  500px                                     w24px */
+div#ST_TitleEdit_Auto  { left:  524px; } /*  524px = pre left: 500px + pre width:24px, w24px */
+div#ST_Section         { left:  548px; } /*  548px = pre left: 524px + pre width:24px, w24px */
+
+
+/* ------------- アイコンのみ時:
+   アイコンのハイライトエリアサイズ (枠線1px分は除外)
+   アイコン画像サイズの上下左右へ、マージンを加えたものです。
+   横: 3px + アイコンw16px + 3px = 22px
+   縦: 3px + アイコンh16px + 3px = 22px
+   ここへ、1px幅のボーダーラインが加わるので、
+   最終的に w24px x h24px を占有します。
+---------------- */
+.cl_MIC_Icon {
+	position: relative;
+	z-index: 11;
+	width : 22px;
+	height: 22px;
+	margin-bottom: -24px;
+}
+
+/* ------------- アイコン＋ドロップマーク時:
+   アイコン＋ドロップマークのハイライトエリアサイズ (枠線1px分は除外)
+   横: 3px + アイコンw16px + 2px + ドロップマークw7px + 3px = 31px
+   縦: 3px + 16px + 3px = 22px
+   ここへ、1px幅のボーダーラインが加わるので、
+   最終的に w33px x h24px を占有します。
+---------------- */
+.cl_MIC_DropMark {
+	position: relative;
+	z-index: 11;
+	width : 31px;
+	height: 22px;
+	margin-bottom: -24px;
+}
+
+/* ------------- アイコン＋ドロップマーク時:
+   アイコン部分の反応エリアサイズ
+   横: 3px + アイコンw16px = 19px
+   縦: 3px + 16px + 3px = 22px
+---------------- */
+.cl_MIC_IconDrop_IconArea {
+	float : left;
+	width : 19px;
+	height: 22px;
+}
+
+/* 画像ファイル選択ボタンのスタイル定義 */
+._image_file_selector {
+	float: left;
+	display: inline-block;
+	overflow: hidden;
+	position: relative;
+}
+
+._image_file_selector input[type="file"] {
+	opacity: 0;
+	filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0);
+	position: absolute;
+	right: 0;
+	top: 0;
+	margin: 0;
+	font-size: 100px;
+	cursor: pointer;
+}
+
+/* ------------- アイコン＋ドロップマーク時
+   ドロップマーク部分の反応エリアサイズ
+   横: 2px + ドロップマークw7px + 3px= 12px
+   縦: 3px + 16px + 3px = 22px
+---------------- */
+.cl_MIC_IconDrop_DropArea {
+	float : left;
+	width : 12px;
+	height: 22px;
+}
+
+/* ------------- アイコン＋ドロップマーク時:
+   アイコン画像の表示位置
+   左: 3px目
+   上: 3px目
+---------------- */
+.cl_MIC_IconDrop_IconStyle {
+	padding-left: 3px;
+	padding-top : 3px;
+}
+
+/* ------------- アイコン＋ドロップマーク時:
+   ドロップマーク画像の表示位置
+   左:  2px目
+   上: 13px目・・・(22px - ドロップマークh4px) / 2 = 9px
+---------------- */
+.cl_MIC_IconDrop_DropStyle {
+	padding-left: 2px;
+	padding-top : 9px;
+}
+
+/* ------------- メインツールバー用のアイコンセパレータ */
+.cl_MIC_Separator {
+	position:     relative;
+	float:        left;
+	width:        1px;
+	height:       24px;
+	margin-left:  2px;
+	margin-right: 1px;
+	margin-bottom: -24px;
+	background-color:#f0f0f0;
+	border-left:  solid 1px #c5c5c5;
+	border-right: solid 1px #ffffff;
+}
+
+
+/* ------------- ツールバー位置調整 */
+/* ope_area ----------------------- */
+div#IndexOpeArea {
+  position: relative;
+  float: left;
+  width: 25%;
+  height: 100%;
+}
+
+div#IndexOpeArea div.cl_MIC_MasterLayer {
+  border-left:solid 1px #d9d5b8;
+  left:1px;
+}
+
+/* インデックス操作エリアとエディタ部を包括するDIV */
+div#ID_MainOpeDiv {
+	width: 100%;
+	padding-bottom: 24px;
+}
+
+/* ope_area ----------------------- */
+div.id_editor_area {
+  float: left;
+  width: 75%;
+  height: 323px;
+}
+div.id_editor_area div.cl_MIC_MasterLayer {
+  border-right:solid 1px #d9d5b8;
+  position:relative;
+  left:-1px;
+}
+div.id_editor_area div.cl_MIC_FrontLayer {
+  position:relative;
+  left:8px;
+}
+
+/* 各MasterLayer ----------------------- */
+div.idt_master_layer {
+  width: 100%;
+  height: 275px;
+  overflow-y: scroll;
+  overflow-x: auto;
+  border:solid 1px #d9d5b8;
+  margin-top:1px;
+  position:relative;
+  z-index:12;
+  white-space: nowrap;
+}
+
+/* エディタペイン 編集領域 */
+div.edt_master_layer {
+  width: 100%;
+  padding-left: 10px;
+  padding-top: 0.5em;
+  font-size: 12pt;
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+div.sb_master_layer {
+  position: absolute;
+  bottom: 0;
+  z-index:13;
+
+}
+
+div#SB_FrontLayer {
+	position: relative;
+	z-index: 12;
+}
+
+ /* ============================================================ */
+
+ /* 入力モード (ステータスバー用) ポップアップメニュー */
+ /* ★.cl_TBC_DropDownMenu が優先するため、ここでの設定は無効です。 */
+ /*   jQuery で表示直前に幅を変更しています。 */
+ /*   TB_statusBar.js line.192 */
+ui#SB_InputMode_ConMenu {
+	width: 220px;
+}

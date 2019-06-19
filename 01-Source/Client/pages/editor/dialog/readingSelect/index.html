@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>音声設定選択</title>
+
+	<link rel="stylesheet" type="text/css" href="../../../../lib/jquery-ui.min.css">
+
+	<script src="../../../../lib/jquery-1.11.2.min.js"></script>
+	<script src="../../../../lib/jquery-ui.min.js"    ></script>
+
+	<script src="main.js"></script>
+</head>
+
+<body>
+
+	<div id="_settingTab">
+		<ul>
+			<li><a href="#_docList">文書一覧</a>
+			<li><a href="#_settingList">システム音声設定一覧</a>
+		</ul>
+		<div id="_docList">
+			ここに文書一覧用の部品を配置してください。
+		</div>
+
+		<div id="_settingList">
+			ここにシステム音声設定一覧の部品を配置してください。
+		</div>
+	</div>
+
+	<div style="text-align: right;">
+		<input type="button" value="OK" onclick="onClickSave()">
+		<input type="button" value="Cancel" onclick="onClickCancel()">
+	</div>
+</body>
+</html>

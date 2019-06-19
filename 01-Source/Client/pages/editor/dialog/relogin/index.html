@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>再ログイン</title>
+
+	<link rel="stylesheet" type="text/css" href="../../../../lib/jquery-ui.min.css">
+	<link rel="stylesheet" type="text/css" href="../../../../css/init.css">
+	<link rel="stylesheet" type="text/css" href="../../../../css/base.css">
+	<link rel="stylesheet" href="page.css">
+
+	<script src="../../../../lib/jquery-1.11.2.min.js"></script>
+	<script src="../../../../lib/jquery-migrate-1.2.1.min.js"></script>
+	<script src="../../../../lib/jquery-ui.custom.min.js"></script>
+	<script src="../../../../lib/jquery.cookie.js"></script>
+	<script src="../../../../lib/sha256.js"></script>
+
+	<script src="../../../../js/Communicator.js"></script>
+	<script src="../../../../js/common.js"></script>
+
+	<script src="main.js"></script>
+	<script src="../dialogCommon.js"></script>
+</head>
+
+<body>
+	<!-- コンテンツペイン -->
+	<div class="content_main_div">
+		<table id="content_table" class="content_main_table">
+			<tr><td class="col1">アカウント</td><td class="col2"><input type="text" id="TXT_Acoount" class="col2_input"></td></tr>
+			<tr><td class="col1">パスワード</td><td class="col2"><input type="password" id="TXT_Pass" class="col2_input"></td></tr>
+			<tr><td colspan="2"><input type="button" id="BTN_Login" value="ログイン"></td></tr>
+		</table>
+	</div>
+
+	<!-- ダイアログ -->
+	<div id="DLG_Message" title="メッセージ"></div>
+</body>
+</html>

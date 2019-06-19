@@ -1,0 +1,47 @@
+@CHARSET "UTF-8";
+
+/**********************/
+/* ページのデザイン   */
+/**********************/
+/* ページのレイアウト */
+div.content_main_div {
+  margin:5px auto;
+  width:50%;
+  position:relative;
+  top:100px;
+  background-image:url('../../res/tile.png');
+  background-color:#fcfcfc;
+  border:1px solid #f79646;
+  border-radius: 5px / 5px;
+  padding:9px;
+}
+
+table.content_main_table {
+  margin:0 auto;
+}
+table.content_main_table td {
+  padding:2px 0;
+  text-align:center;
+}
+
+table.content_main_table th {
+  font-weight: bold;
+  font-size: 120%;
+  padding:2px 0;
+  text-align:center;
+}
+
+/* ボタンのデザイン   */
+input[type="button"].menu { width:350px; }
+input[type="button"] { width:130px; magin: 1em;}
+
+
+#content_pane {}
+#content_table {}
+#content_table td {}
+#title_bar {}
+#title {}
+#user_name {}
+#breadcrumb_bar {}
+#content_table {}
+#content_table td {}

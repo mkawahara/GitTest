@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>エディタ設定</title>
+
+	<link rel="stylesheet" type="text/css" href="jquery-ui.min.css">
+
+	<script src="../../../../lib/jquery-1.11.2.min.js"></script>
+	<script src="../../../../lib/jquery-ui.min.js"    ></script>
+	<script src="../fontData.js"></script>
+
+	<script src="../../managers/configManager.js"></script>
+	<script src="palette.js"></script>
+	<script src="paletteEvent.js"></script>
+	<script src="main.js"></script>
+	<script src="../dialogCommon.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="../dialog.css">
+	<style>
+	table.color {
+		background-color: white;
+		border-spacing: 0px;
+	}
+
+	.bgcolor {
+	}
+	</style>
+</head>
+
+<body style="width: 350px;">
+	<div style='clear:both;' id="settingTab">
+
+	<ul>
+		<li><a href="#_generalTab">全般</a></li>
+		<li><a href="#_colorTab">配色</a></li>
+	</ul>
+
+	<!-- 第一タブ ***************************************************************** -->
+
+	<div id="_generalTab">
+		<fieldset class="frame box">
+			<legend>テキスト・数式切替方法</legend>
+			<input type="checkbox" id="_involveChemMode">
+			<label for="_involveChemMode">化学式モードも切替に含める</label>
+		</fieldset>
+
+		<fieldset class="frame box">
+			<legend>スペース文字の表示</legend>
+			<label><input type="checkbox" id="_textSpace"> テキストのスペース</label>
+			<label><input type="checkbox" id="_mathSpace"> 数式のスペース</label>
+		</fieldset>
+
+		<fieldset class="frame box">
+			<legend>分数内のカーソル移動</legend>
+			<label><input type="radio" id="frac1" name="_cursorOrder">分子→分母の順に移動</label><br>
+			<label><input type="radio" id="frac2" name="_cursorOrder">分母→分子の順に移動</label>
+		</fieldset>
+	</div>
+
+	<!-- 第二タブ ***************************************************************** -->
+
+	<div id="_colorTab">
+		<table border="1" class="color" style="width:100%;">
+			<tr>
+			<td style="width: 50%;">背景色
+			<td style="width: 50%;" id="bgcolor" class="bgcolor">背景色
+			<tr>
+			<td>テキスト
+			<td id="textcolor" class="bgcolor">あいうえお
+			<tr>
+			<td>数式
+			<td id="mathcolor" class="bgcolor">x + y = 1
+			<tr>
+			<td>化学式
+			<td id="chemcolor" class="bgcolor">H<sub>2</sub>O
+			<tr>
+			<td>テキストの制御文字
+			<td id="ctrlcolor" class="bgcolor">&#x2423;&#x2423;&#x2423;&#x2423;&#x2423;&#x2423;
+			<tr>
+			<td>数式の制御文字
+			<td id="mathctrlcolor" class="bgcolor">&#x2423;&#x2423;&#x2423;&#x2423;&#x2423;&#x2423;
+			<tr>
+			<td>ルビ
+			<td id="rubycolor" class="bgcolor">ふりがな
+			<tr>
+			<td>範囲選択
+			<td id="selectioncolor">選択範囲
+			<tr>
+			<td>ハイライトの前景
+			<td id="hlforecolor">ハイライトの前景
+			<tr>
+			<td>ハイライトの背景
+			<td id="hlbgcolor">ハイライトの背景
+		</table>
+
+		<div style="text-align: right;">
+			<input type="button" value="初期状態に戻す" class="button" onclick="onRevert()" style="width: 8em;">
+		</div>
+	</div>
+
+	</div>
+
+	<div style="text-align: right; margin-top: 0.5em;">
+		<input type="button" class="button" value="OK" onclick="onSave()">
+		<input type="button" class="button" value="キャンセル" onclick="onCancel()">
+	</div>
+
+	<!-- カラーパレット作成先 -->
+	<div id="colorPalette" style="background-color: white;"></div>
+</body>
+</html>

@@ -1,0 +1,165 @@
+/* Project: [PJ-0136] ChattyInfty
+/* Module : DVM_C_Display
+/* ========================================================================= */
+/* ==                         ChattyInfty-Online                          == */
+/* ==                                                                     == */
+/* ==                      株式会社知能情報システム                       == */
+/* ========================================================================= */
+/* -    ファイル名     ： TB_MainToolbar.css                                 */
+/* -                                                                         */
+/* -    概      要     ： ツールバー用スタイルシート                         */
+/* -                                                                         */
+/* -  開  発  環  境   ： Wiondows 8.1 Pro 64bit, Firefox 35.0.1             */
+/* -                                                                         */
+/* -  担当 / 最終更新  ： 湯本 直杉 / 2015年02月27日                         */
+
+/* =================== ツールバークラス 命名規則 (暫定) ==================== */
+/* TBC_ : Tool Bar Common    : 全クラス共通                                  */
+/* MB_  : MenuBar            : メニューバー                                  */
+/* MT_  : Main   Toolbar     : メインツールバー（大アイコン表示）            */
+/* IT_  : Index  Toolbar     : インデックス操作用ツールバー（小アイコン表示）*/
+/* ET_  : Editor Toolbar     : エディタ部用ツールバー（小アイコン表示）      */
+/* ST_  : Section Title bar  : セクションタイトルバー（小アイコン表示）      */
+/* ※ HTMLタグIDは、上記接頭文字から始めます。                               */
+/* ※ CSS classは、cl_ の後、上記接頭文字を続ける形とします。                */
+/*========================================================================== */
+
+/* ===================== ツールバークラス 基本方針 ========================= */
+/* ・アイコンの disable/enable 状態及び、チェックマークの状態は、            */
+/*   当モジュール内では管理しません。                                        */
+/* ========================================================================= */
+
+/* ------------- マスターレイヤ */
+.cl_MT_MasterLayer {
+	/*width:    100%;
+	height:   32px;*/
+	/* エディタページは横幅の大小ピクセル値を指定しないとレイアウト崩れる */
+	/* ★メインツールバーは指定しなくても問題はないように思われる。 */
+}
+
+/* ------------- 背景レイヤ */
+.cl_MT_BackLayer {
+	position: relative;
+	z-index: 11;
+	background-image:url('../../../res/tile.png');
+	background-color:#f0f0f0;
+	border:solid 1px #d9d5b8;
+	height          : 31px;
+	opacity         : 0.8;
+}
+
+/* ------------- 前面レイヤ */
+.cl_MT_FrontLayer {
+	position: relative;
+	height  : 32px;
+	top     : -32px;
+}
+
+/* アイコンのX位置                     結果X座標 = 前のX座標  +  前の横幅     ,このアイコン横幅 */
+div#MT_Save        { left:   0px; } /*   0px = pre left:  0px + pre width: 0px, w32px */
+div#MT_Sep01       { left:  32px; } /*  32px = pre left:  0px + pre width:32px, w 5px */
+div#MT_Undo        { left:  37px; } /*  37px = pre left: 32px + pre width: 5px, w32px */
+div#MT_Redo        { left:  69px; } /*  69px = pre left: 37px + pre width:32px, w32px */
+div#MT_Sep02       { left: 101px; } /* 101px = pre left: 69px + pre width:32px, w 5px */
+/*div#MT_ChangeColor { left: 106px; } /* 106px = pre left:101px + pre width: 5px, w32px */
+/*div#MT_Sep03       { left: 138px; } /* 138px = pre left:106px + pre width:32px, w 5px */
+/*div#MT_ShowOCR     { left: 143px; } /* 143px = pre left:138px + pre width: 5px, w32px */
+div#MT_Voice       { left: 106px; } /* 106px = pre left: 101px + pre width: 5px, w32px */
+div#MT_Hilight     { left: 138px; } /* 138px = pre left: 106px + pre width:32px, w32px */
+
+
+
+/* ------------- アイコンのみ時:
+   アイコンのハイライトエリアサイズ (枠線1px分は除外)
+   アイコン画像サイズの上下左右へ、マージンを加えたものです。
+   横: 3px + アイコンw24px + 3px = 30px
+   縦: 3px + アイコンh24px + 3px = 30px
+   ここへ、1px幅のボーダーラインが加わるので、
+   最終的に w32px x h32px を占有します。
+---------------- */
+.cl_MT_Icon {
+	position: relative;
+	z-index: 12;
+	width:  30px;
+	height: 30px;
+	margin-bottom: -32px;
+}
+
+/* ------------- アイコン＋ドロップマーク時:
+   アイコン＋ドロップマークのハイライトエリアサイズ (枠線1px分は除外)
+   横: 3px + アイコンw24px + 2px + ドロップマークw7px + 3px = 39px
+   縦: 3px + 24px + 3px = 30px
+   ここへ、1px幅のボーダーラインが加わるので、
+   最終的に w41px x h32px を占有します。
+---------------- */
+.cl_MT_DropMark {
+	position: relative;
+	z-index: 11;
+	width:  39px;
+	height: 30px;
+	margin-bottom: -32px;
+}
+
+/* ------------- アイコン＋ドロップマーク時:
+   アイコン部分の反応エリアサイズ
+   横: 3px + アイコンw24px = 27px
+   縦: 3px + 24px + 3px = 30px
+---------------- */
+.cl_MT_IconDrop_IconArea {
+	float:  left;
+	width:  27px;
+	height: 30px;
+}
+
+/* ------------- アイコン＋ドロップマーク時
+   ドロップマーク部分の反応エリアサイズ
+   横: 2px + ドロップマークw7px + 3px= 12px
+   縦: 3px + 24px + 3px = 30px
+---------------- */
+.cl_MT_IconDrop_DropArea {
+	float:  left;
+	width:  12px;
+	height: 30px;
+}
+
+/* ------------- アイコン＋ドロップマーク時:
+   アイコン画像の表示位置
+   左: 3px目
+   上: 3px目
+---------------- */
+.cl_MT_IconDrop_IconStyle {
+	padding-left: 3px;
+	padding-top:  3px;
+}
+
+/* ------------- アイコン＋ドロップマーク時:
+   ドロップマーク画像の表示位置
+   左:  2px目
+   上: 13px目・・・(30px - ドロップマークh4px) / 2 = 13px
+---------------- */
+.cl_MT_IconDrop_DropStyle {
+	padding-left:  2px;
+	padding-top:  13px;
+	width:         7px;
+	height:        4px;
+}
+
+/* ------------- メインツールバー用のアイコンセパレータ */
+.cl_MT_Separator {
+	float:        left;
+	margin-left:  2px;
+	margin-right: 1px;
+	background-color:#f0f0f0;
+	border-left:  solid 1px #c5c5c5;
+	border-right: solid 1px #ffffff;
+	width:        1px;
+	height:       32px;
+	position:     relative;
+	margin-bottom: -32px;
+}
+
+/* =================================================== */
+/* OCR アイコン */
+div#MT_ShowOCR {
+	z-index: 10;
+}

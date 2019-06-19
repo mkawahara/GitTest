@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ChattyInfty Online - ドキュメント管理</title>
+  <meta charset="utf-8">
+  <script src="../../lib/jquery-1.11.2.min.js"></script>
+  <script src="../../lib/jquery-migrate-1.2.1.min.js"></script>
+  <script src="../../lib/jquery-ui.custom.min.js"></script>
+  <script src="../../lib/jquery.dynatree.min.js"></script>
+  <script src="../../lib/jquery.cookie.js"></script>
+  <link rel="stylesheet" type="text/css" href="../../lib/skin/ui.dynatree.css">
+  <link rel="stylesheet" type="text/css" href="../../lib/jquery-ui.min.css">
+  <link rel="stylesheet" type="text/css" href="../../css/init.css">
+  <link rel="stylesheet" type="text/css" href="../../css/base.css">
+  <link rel="stylesheet" href="page.css">
+
+  <script src="../../js/communicator.js"></script>
+  <script src="../../js/common.js"></script>
+  <script src="../../js/fileSelect/fileList.js"></script>
+  <script src="../../js/fileSelect/folderTree.js"></script>
+  <script src="../../js/fileSelect/fileLoader.js"></script>
+  <script src="../../js/fileSelect/fileManager.js"></script>
+  <script src="windowManager.js"></script>
+  <script src="exportManager.js"></script>
+  <script src="main.js"></script>
+</head>
+
+<body>
+
+  <!-- タイトルバー -->
+  <div id="title_bar" class="cs_content_header">
+    <div id="title" class="cs_content_header_title">
+      <div class="user_name"><span id="user_name"></span>&nbsp;<input type="button" id="logout_btn" class="logout_btn" value="ログアウト"></div>
+      <!-- パンくずリスト -->
+      <div id="breadcrumb_bar" class="breadcrumb_bar">[&nbsp;<a href="../menu/index.html">メニュー</a> &gt;文書管理&nbsp;]<!--     <a href="">メニュー</a> &gt; ファイラ --></div>
+    </div>
+  </div>
+
+  <!-- ファイラ -->
+
+  <div id="content_main" class="cs_content_main">
+  <!-- ボタン -->
+    <div id="button_bar">
+      <div class="icon_group">
+        <input type="image" id="create_folder_btn" src="./icons/create_folder.png" title="フォルダ作成">
+        <input type="image" id="create_btn" src="./icons/create_file.png" title="文書作成">
+        <input type="image" id="delete_btn" src="./icons/delete.png" title="削除" >
+        <input type="image" id="rename_btn" src="./icons/rename.png" title="名前変更" >
+      </div>
+      <div class="icon_group">
+        <input type="image" id="copy_btn" src="./icons/copy.png" title="コピー">
+        <input type="image" id="cut_btn" src="./icons/cut.png" title="切り取り">
+        <input type="image" id="paste_btn" src="./icons/paste.png" title="貼り付け">
+      </div>
+      <div class="icon_group">
+        <input type="image" id="open_btn" src="./icons/edit.png" title="文書編集">
+        <input type="image" id="readonly_open_btn" src="./icons/edit_readonly.png" title="文書閲覧">
+      </div>
+      <div class="icon_group" style="float: right;">
+        <input type="image" id="convert_btn" src="./icons/download.png" title="ダウンロード">
+        <input type="image" id="upload_btn" src="./icons/upload.png" title="アップロード" onClick="$('#upload_file').click();">
+        <input type="file" style="display:none" id="upload_file">
+      </div>
+    </div>
+
+    <!-- ファイラペイン -->
+    <div id="list_container" class="list_container">
+
+      <!-- フォルダツリー -->
+      <div id="tree" class="tree"></div>
+
+      <!-- セレクタ -->
+      <div id="separator" class="separator"></div>
+
+      <!--  ファイルリスト -->
+      <div id="file_area" class="file_area">
+        <div id="file_list" class=file_list></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- フッタ -->
+  <div id="footer" style="position: absolute; bottom: 0">フッタ</div>
+
+  <!-- ダイアログ -->
+  <div id="DLG_Message" title="メッセージ"></div>
+  <div id="DLG_Confirm" title="確認"></div>
+  <div id="DLG_Input" title="Dialog Title">
+    <div id="DLG_InputMessage"></div>
+    <input id="DLG_InputValue" type="text" style="width: 100%"><br>
+    <div id="DLG_Dictionary" style="margin-top: 10px;">単語辞書：<select id="DLG_InputSelect"></select></div>
+  </div>
+
+  <!-- コピー、移動の選択ファイル名 -->
+  <div id="overlay" class="overlay ui-widget-content ui-corner-all">
+    <table>
+      <tr>
+        <td><span id="overlay_close" class="ui-icon ui-icon-closethick" style="background-color:#fde9d9;"></span></td>
+        <td><span id="overlay_title"></span>フォルダを選択して貼り付けてください。現在選択中のファイルは</td>
+        <td><input type="text" id="overlay_file" readonly style=""></td>
+      </tr>
+    </table>
+  </div>
+
+</body>
+</html>

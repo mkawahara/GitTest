@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>音声のキャッシュテストでっす。</title>
+	<script>
+	
+	function play() {
+//		var url = 'audio.php?id=' + title.value + '&ext=mp3';
+		var url = 'audio.php?id=' + mptitle.value + '&ext=mp3';
+		console.log(url);
+		player.src = url;
+		player.play();
+	};
+	
+	</script>
+</head>
+<body>
+	<h1>音声のキャッシュテストでっす。</h1>
+	<input type="button" value="play" onclick="play()">
+	以下からタイトルを選んでplay!
+	<div>
+	<select id="mptitle">
+		<option value="ff5_bb">ff5_bb
+		<option value="ff6_bt2">ff6_bt2
+		<option value="ff6_bt3">ff6_bt3
+		<option value="ff7_jeno">ff7_jeno
+		<option value="ff7_sarani">ff7_sarani
+		<option value="ff8_Extreme">ff8_Extreme
+		<option value="ff8_fyw">ff8_fyw
+		<option value="ff9_LastBt">ff9_LastBt
+	</select>
+	</div>
+	<audio id="player">
+</body>
+</html>

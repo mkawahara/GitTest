@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>辞書選択</title>
+
+<link rel="stylesheet" type="text/css"
+  href="../../../../lib/jquery-ui.min.css">
+
+<script src="../../../../lib/jquery-1.11.2.min.js"></script>
+<script src="../../../../lib/jquery-ui.min.js"></script>
+<script src="../../../../lib/jquery.dynatree.min.js"></script>
+<script src="../../../../lib/jquery.cookie.js"></script>
+<link rel="stylesheet" type="text/css"
+  href="../../../../lib/skin/ui.dynatree.css">
+<link rel="stylesheet" type="text/css" href="../dialog.css">
+<link rel="stylesheet" type="text/css" href="../../../filer/page.css">
+<link rel="stylesheet" href="page.css">
+
+
+<script src="../../../../js/communicator.js"></script>
+<script src="../../../../js/common.js"></script>
+<script src="../../../../js/fileSelect/fileList.js"></script>
+<script src="../../../../js/fileSelect/folderTree.js"></script>
+<script src="../../../../js/fileSelect/fileLoader.js"></script>
+<script src="../../../../js/fileSelect/fileManager.js"></script>
+<script src="serverManager.js"></script>
+<script src="main.js"></script>
+	<script src="../dialogCommon.js"></script>
+</head>
+
+<body>
+
+  <div id="_dicTab" class="tab">
+    <ul>
+      <li><a href="#_docList">ファイル一覧</a>
+      <li><a href="#_dicList">システム辞書一覧</a>
+    </ul>
+    <div id="_docList" class="list">
+      <!-- ファイル一覧用の部品 -->
+      <div id="list_container" class="list_container">
+
+        <!-- フォルダツリー -->
+        <div id="tree" class="tree"></div>
+
+        <!-- セレクタ -->
+        <div id="separator" class="separator"></div>
+
+        <!--  ファイルリスト -->
+        <div id="file_area" class="file_area">
+          <div id="file_list" class=file_list></div>
+        </div>
+
+      </div>
+    </div>
+
+    <div id="_dicList" class="list">
+      <!-- システム辞書一覧 -->
+      <div class="file_area" style="width: 100%;">
+        <div id="dic_list" class="file_list"></div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align: right; padding: 5px">
+    <input type="button" value="OK" onclick="onClickSave()"> <input
+      type="button" value="キャンセル" onclick="onClickCancel()">
+  </div>
+</body>
+</html>

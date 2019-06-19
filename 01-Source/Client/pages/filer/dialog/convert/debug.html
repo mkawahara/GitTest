@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Always force latest IE rendering engine or request Chrome Frame -->
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>変換設定</title>
+
+    <link href="stylesheets/normalize.css" rel="stylesheet" /><link href="stylesheets/all.css" rel="stylesheet" />
+    <script type="text/javascript" src="../../../../js/communicator.js"></script>
+    <script src="javascripts/all.js"></script>
+  </head>
+
+  <body class="debug">
+    <div class="" style="padding: 20px;font-size:15pt;">
+
+
+
+    <form method='get' action="/" target="_blank">
+        <input type="text" id="doc_id" name="doc_id" value="381" placeholder='document_id'>
+        <input type="text" id="user_id" name="user_id" value="user23" placeholder="user_id">
+        <button type="submit" name="button">設定画面を開く</button>
+    </form>
+
+    <script type="text/javascript">
+        var check = function(){
+            $.ajax({
+                url: 'http://52.68.12.127:8880/api/v1/export/status',
+                method: 'get',
+                cache: false,
+                data:{
+                    document_id: $("#doc_id").val(),
+                    user_id: $("#user_id").val(),
+                },
+                success: function(res){
+                    res = JSON.parse(res);
+                    $("#status").text(res.status);
+                    $("#task_id").text(res.task_id);
+                    if(res.status == 'completed'){
+                        $("#download_link").text("http://52.68.12.127:8880/api/v1/export/file/" + res.task_id);
+                        $("#download_link").attr("href","http://52.68.12.127:8880/api/v1/export/file/" + res.task_id);
+                    }
+                }
+            })
+        }
+    </script>
+    <br>
+
+    <button type="button" name="button" onClick="check()">情報更新</button>
+
+    <div>
+        <span style="font-weight: bold">ステータス</span> <span id="status"></span>
+    </div>
+    <div>
+        <span style="font-weight: bold">タスクID</span> <span id="task_id"></span>
+    </div>
+    <div class="">
+        <span style="font-weight: bold">ダウンロードリンク</span> <a id="download_link"></a>
+    </div>
+
+
+</div>
+
+  </body>
+</html>

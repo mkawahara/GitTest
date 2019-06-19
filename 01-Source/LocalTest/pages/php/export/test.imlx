@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="shift_jis"?>
+<InftyDocument version="3.1">
+  <!--
+		Infty Editor document Version 3.1
+		Science Accessibility Net
+		-->
+  <head>
+    <paper oriantation="vert" margin="20,20,20,25" />
+    <voices count="2" api="AITalk" version="3.3 for Tenji">
+      <voice id="1" code="nagisa" name="なぎさ" type="female" />
+      <voice id="2" code="seiji" name="せいじ" type="male" />
+    </voices>
+    <title>DAYSYタイトル</title>
+    <author>著者</author>
+    <sourcePublisher>出版社</sourcePublisher>
+    <publisher>DAISY発行者</publisher>
+    <producer>DAISY製作者</producer>
+    <date>2015-02-09</date>
+    <daisy path="./test_MultimediaDAISY/ncc.html" />
+  </head>
+  <body fontsize="12pt" fontface="ＭＳ Ｐ明朝">
+    <section>
+      <contents>
+        <p>タイトルを、入力してください</p>
+        <p />&gt;
+				<p>本文を，入力してください</p>
+      </contents>
+    </section>
+  </body>
+</InftyDocument>

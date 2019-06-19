@@ -1,0 +1,1980 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Always force latest IE rendering engine or request Chrome Frame -->
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>変換設定</title>
+
+    <link href="stylesheets/normalize.css" rel="stylesheet" /><link href="stylesheets/all.css" rel="stylesheet" />
+    <script type="text/javascript" src="../../../../js/communicator.js"></script>
+    <script src="javascripts/all.js"></script>
+  </head>
+
+  <body class="index">
+    <div class="header">
+    <h1>変換設定</h1>
+</div>
+
+<div class="container">
+    <div class="left-col">
+        <ul>
+            <li data-bind="css: {active: targetS() == 'daisy202_multimedia'}, click: function(){menuClicked('daisy202_multimedia')} "><a href="#" class="">DAISY 2.02 (マルチメディア)</a></li>
+            <li data-bind="css: {active: targetS() == 'daisy202_vocie_only'}, click: function(){menuClicked('daisy202_vocie_only')} "><a href="#" class="">DAISY 2.02 (音声のみ)</a></li>
+            <li data-bind="css: {active: targetS() == 'daisy3_text_only'}, click: function(){menuClicked('daisy3_text_only')} "><a href="#" class="">DAISY 3.0 (テキストのみ)</a></li>
+            <li data-bind="css: {active: targetS() == 'epub3_with_voice_horizontal_writing'}, click: function(){menuClicked('epub3_with_voice_horizontal_writing')} "><a href="#" class="">EPUB3 (音声付き横書き)</a></li>
+            <li data-bind="css: {active: targetS() == 'epub3_with_voice_vertical_writing'}, click: function(){menuClicked('epub3_with_voice_vertical_writing')} "><a href="#" class="">EPUB3 (音声付き縦書き)</a></li>
+            <li data-bind="css: {active: targetS() == 'epub3_without_voice_horizontal_writing'}, click: function(){menuClicked('epub3_without_voice_horizontal_writing')} "><a href="#" class="">EPUB3 (音声なし横書き)</a></li>
+            <li data-bind="css: {active: targetS() == 'epub3_without_voice_vertical_writing'}, click: function(){menuClicked('epub3_without_voice_vertical_writing')} "><a href="#" class="">EPUB3 (音声なし縦書き)</a></li>
+            <li data-bind="css: {active: targetS() == 'epub3_with_voice_horizontal_writing_ibooks'}, click: function(){menuClicked('epub3_with_voice_horizontal_writing_ibooks')} "><a href="#" class="">EPUB3 (iBook対応)</a></li>
+            <li data-bind="css: {active: targetS() == 'imlx'}, click: function(){menuClicked('imlx')} "><a href="#" class="">Imlx</a></li>
+            <li data-bind="css: {active: targetS() == 'cio'}, click: function(){menuClicked('cio')} "><a href="#" class="">Cio</a></li>
+        </ul>
+    </div>
+
+        <div class="right-detail daisy_setting" id="daisy202_multimedia" data-bind="css: {active: target() == 'daisy202_multimedia'}">
+            
+    <div class="section">
+        <h3>メタデータ</h3>
+        <div class="section2">
+
+            <div class="form-group">
+                <label>タイトル</label>
+                <input type="text" class="form-control" data-bind="value: daisy202_multimedia.setting.metadata.title">
+            </div>
+
+            <div class="form-group">
+                <label>原本著者</label>
+                <input type="text" class="form-control" data-bind="value: daisy202_multimedia.setting.metadata.original_author">
+            </div>
+
+            <div class="form-group">
+                <label>原本出版社</label>
+                <input type="text" class="form-control" data-bind="value: daisy202_multimedia.setting.metadata.original_publisher">
+            </div>
+
+            <div class="form-group">
+                <label>DAISY発行者</label>
+                <input type="text" class="form-control" data-bind="value: daisy202_multimedia.setting.metadata.daisy_publisher">
+            </div>
+
+            <div class="form-group">
+                <label>DAISY製作者</label>
+                <input type="text" class="form-control" data-bind="value: daisy202_multimedia.setting.metadata.daisy_creator">
+            </div>
+
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>全体設定</h3>
+
+        <div class="section2">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy202_multimedia.setting.general.embed_chattybooks_express">
+                    Chattybook Express を同梱する
+                </label>
+            </div>
+        </div>
+
+        <div class="section2">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy202_multimedia.setting.general.read_page_number">
+                    ページ番号を読み上げる
+                </label>
+            </div>
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy202_multimedia.setting.general.read_table_detail">
+                    表の詳細を読み上げる
+                </label>
+            </div>
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="not: {checked: daisy202_multimedia.setting.general.ie_lasted_compatible}">
+                    EasyReaderに対応した形式に変換する
+                </label>
+                <div class="warning alert alert-danger" data-bind="style: {display: daisy202_multimedia.setting.general.ie_lasted_compatible() ? 'none' : 'block'}">
+                    <p>このチェックボックスをオンにして出力したDAISYコンテンツには次のような制限があります。</p>
+                    <ol>
+                        <li>数式が画像で出力されるため、白黒反転した場合に数式が見えなくなります。また、AMIS で再生した場合に、文字を拡大表示しても数式は小さいままになります。EasyReader では文字サイズを拡大した場合に、呆けて不鮮明な画像になります。</li>
+                        <li>行列や場合分けを含む数式の表示が乱れることがあります。</li>
+                    </ol>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>音声出力設定</h3>
+
+        <div class="section2">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy202_multimedia.setting.audio_output.concat_audio_file">
+                    音声ファイルを結合する
+                </label>
+            </div>
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy202_multimedia.setting.audio_output.convert_to_mp3">
+                    mp3に変換する
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label>mp3 のビットレート</label>
+                <select class="form-control" data-bind="value: daisy202_multimedia.setting.audio_output.bitrate">
+                    <option value="32">32</option>
+                    <option value="64">64</option>
+                    <option value="96">96</option>
+                    <option value="128">128</option>
+                    <option value="192">192</option>
+                </select>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>数式出力設定</h3>
+
+        <div class="section2">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy202_multimedia.setting.equation_output.convert_fullwith_sybol_to_harfwidth">
+                    全角記号を半角にする
+                </label>
+            </div>
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy202_multimedia.setting.equation_output.hi_dpi">
+                    数式を高解像度で出力する
+                </label>
+            </div>
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy202_multimedia.setting.equation_output.use_simple_text">
+                    シンプルな数式をテキストで表現
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>画像出力設定</h3>
+
+        <div class="section2">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy202_multimedia.setting.image_output.insert_spaces_before_and_after">
+                    画像の前後に空白を挿入する
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label>画像の出力サイズ</label>
+                <select class="form-control" data-bind="value: daisy202_multimedia.setting.image_output.size">
+                    <option value="original_size">元画像の解像度で出力する</option>
+                    <option value="adjust_content_size">コンテンツサイズに合わせる</option>
+                    <option value="hidpi_adjust_size">高画質(2倍)で出力する</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>アニメーション出力方法</label>
+                <select class="form-control" data-bind="value: daisy202_multimedia.setting.image_output.animation">
+                    <option value="animation_row">アニメーションの行のみを別ページに出力する</option>
+                    <option value="anmation_and_after">アニメーションとそれ以降の行を出力する</option>
+                    <option value="whole_page">ページ全体を出力する</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="section">
+        <h3>フォント設定</h3>
+
+        <div class="section2">
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy202_multimedia.setting.font.set_font_size">
+                    フォントサイズを設定する
+                </label>
+            </div>
+
+            <div class="checkbox" data-bind="style: {display: daisy202_multimedia.setting.general.ie_lasted_compatible() ? 'none' : 'block'}">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy202_multimedia.setting.font.set_equation_font_size_as_text">
+                    テキストと数式を同じサイズにする
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label>テキストのサイズ</label>
+                <input type="text" class="form-control" data-bind="value: daisy202_multimedia.setting.font.text_font_size">
+            </div>
+
+            <div class="form-group" data-bind="style: {display: daisy202_multimedia.setting.general.ie_lasted_compatible() ? 'none' : 'block'}">
+                <label>数式文字のサイズ</label>
+                <input type="text" class="form-control" data-bind="value: daisy202_multimedia.setting.font.equation_font_size">
+            </div>
+
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>出力先設定</h3>
+
+        <div class="section2">
+
+            <div class="form-group">
+                <label>音声フォルダ</label>
+                <input type="text" class="form-control" data-bind="value: daisy202_multimedia.setting.output_path.audio_dir">
+            </div>
+
+            <div class="form-group">
+                <label>数式画像フォルダ</label>
+                <input type="text" class="form-control" data-bind="value: daisy202_multimedia.setting.output_path.equation_image_dir">
+            </div>
+
+            <div class="form-group">
+                <label>画像フォルダ</label>
+                <input type="text" class="form-control" data-bind="value: daisy202_multimedia.setting.output_path.image_dir">
+            </div>
+
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>スタイルシート</h3>
+
+        <div class="section2">
+
+            <div class="form-group">
+                <select class="form-control" data-bind="value: daisy202_multimedia.setting.stylesheet.preset">
+                    <option value="ノーマルスタイル">ノーマルスタイル</option>
+                    <option value="ノーマルスタイル(ゴシック)">ノーマルスタイル(ゴシック)</option>
+                    <option value="縦書きスタイル">縦書きスタイル</option>
+                    <option value="縦書きスタイル(VOD用)">縦書きスタイル(VOD用)</option>
+                    <option value="縦書きスタイル(数式左寄せ)">縦書きスタイル(数式左寄せ)</option>
+                    <option value="白黒反転スタイル">白黒反転スタイル</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>セクション分割/統合設定</h3>
+
+        <div class="section2">
+
+            <div class="checkbox" style="margin-left:30px;">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy202_multimedia.setting.section_split.split['1']">
+                    レベル1同士は分割
+                </label>
+            </div>
+
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy202_multimedia.setting.section_split.join['12']">
+                    レベル1と2を結合
+                </label>
+            </div>
+
+            <div class="checkbox" style="margin-left:30px;">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy202_multimedia.setting.section_split.split['2']">
+                    レベル2同士は分割
+                </label>
+            </div>
+
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy202_multimedia.setting.section_split.join['23']">
+                    レベル2と3を結合
+                </label>
+            </div>
+
+            <div class="checkbox" style="margin-left:30px;">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy202_multimedia.setting.section_split.split['3']">
+                    レベル3同士は分割
+                </label>
+            </div>
+
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy202_multimedia.setting.section_split.join['34']">
+                    レベル3と4を結合
+                </label>
+            </div>
+
+            <div class="checkbox" style="margin-left:30px;">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy202_multimedia.setting.section_split.split['4']">
+                    レベル4同士は分割
+                </label>
+            </div>
+
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy202_multimedia.setting.section_split.join['45']">
+                    レベル4と5を結合
+                </label>
+            </div>
+
+            <div class="checkbox" style="margin-left:30px;">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy202_multimedia.setting.section_split.split['5']">
+                    レベル5同士は分割
+                </label>
+            </div>
+
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy202_multimedia.setting.section_split.join['56']">
+                    レベル5と6を結合
+                </label>
+            </div>
+
+            <div class="checkbox" style="margin-left:30px;">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy202_multimedia.setting.section_split.split['6']">
+                    レベル6同士は分割
+                </label>
+            </div>
+
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy202_multimedia.setting.section_split.page_break">
+                    改ページで分割
+                </label>
+            </div>
+
+        </div>
+
+    </div>
+
+
+            <div class="section buttons">
+                <button class="btn btn-primary btn-lg" data-bind="enable: requestStatus() == '', text: buttonMessage, click: convertButtonPushed"></button>
+                <button class="btn btn-default btn-lg" data-bind="enable: requestStatus() == '', text: buttonAsDefaultMessage, click: convertAsDefaultButtonPushed"></button>
+                <a class="btn btn-default" data-bind="click: resetButtonPushed">設定をリセットする</a>
+                <a class="btn btn-default" data-bind="click: cancelButtonPushed">キャンセル</a>
+            </div>
+        </div>
+
+        <div class="right-detail daisy_setting" id="daisy202_vocie_only" data-bind="css: {active: target() == 'daisy202_vocie_only'}">
+            
+    <div class="section">
+        <h3>メタデータ</h3>
+        <div class="section2">
+
+            <div class="form-group">
+                <label>タイトル</label>
+                <input type="text" class="form-control" data-bind="value: daisy202_vocie_only.setting.metadata.title">
+            </div>
+
+            <div class="form-group">
+                <label>原本著者</label>
+                <input type="text" class="form-control" data-bind="value: daisy202_vocie_only.setting.metadata.original_author">
+            </div>
+
+            <div class="form-group">
+                <label>原本出版社</label>
+                <input type="text" class="form-control" data-bind="value: daisy202_vocie_only.setting.metadata.original_publisher">
+            </div>
+
+            <div class="form-group">
+                <label>DAISY発行者</label>
+                <input type="text" class="form-control" data-bind="value: daisy202_vocie_only.setting.metadata.daisy_publisher">
+            </div>
+
+            <div class="form-group">
+                <label>DAISY製作者</label>
+                <input type="text" class="form-control" data-bind="value: daisy202_vocie_only.setting.metadata.daisy_creator">
+            </div>
+
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>全体設定</h3>
+
+        <div class="section2">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy202_vocie_only.setting.general.embed_chattybooks_express">
+                    Chattybook Express を同梱する
+                </label>
+            </div>
+        </div>
+
+        <div class="section2">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy202_vocie_only.setting.general.read_page_number">
+                    ページ番号を読み上げる
+                </label>
+            </div>
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy202_vocie_only.setting.general.read_table_detail">
+                    表の詳細を読み上げる
+                </label>
+            </div>
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="not: {checked: daisy202_vocie_only.setting.general.ie_lasted_compatible}">
+                    EasyReaderに対応した形式に変換する
+                </label>
+                <div class="warning alert alert-danger" data-bind="style: {display: daisy202_vocie_only.setting.general.ie_lasted_compatible() ? 'none' : 'block'}">
+                    <p>このチェックボックスをオンにして出力したDAISYコンテンツには次のような制限があります。</p>
+                    <ol>
+                        <li>数式が画像で出力されるため、白黒反転した場合に数式が見えなくなります。また、AMIS で再生した場合に、文字を拡大表示しても数式は小さいままになります。EasyReader では文字サイズを拡大した場合に、呆けて不鮮明な画像になります。</li>
+                        <li>行列や場合分けを含む数式の表示が乱れることがあります。</li>
+                    </ol>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>音声出力設定</h3>
+
+        <div class="section2">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy202_vocie_only.setting.audio_output.concat_audio_file">
+                    音声ファイルを結合する
+                </label>
+            </div>
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy202_vocie_only.setting.audio_output.convert_to_mp3">
+                    mp3に変換する
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label>mp3 のビットレート</label>
+                <select class="form-control" data-bind="value: daisy202_vocie_only.setting.audio_output.bitrate">
+                    <option value="32">32</option>
+                    <option value="64">64</option>
+                    <option value="96">96</option>
+                    <option value="128">128</option>
+                    <option value="192">192</option>
+                </select>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>数式出力設定</h3>
+
+        <div class="section2">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy202_vocie_only.setting.equation_output.convert_fullwith_sybol_to_harfwidth">
+                    全角記号を半角にする
+                </label>
+            </div>
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy202_vocie_only.setting.equation_output.hi_dpi">
+                    数式を高解像度で出力する
+                </label>
+            </div>
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy202_vocie_only.setting.equation_output.use_simple_text">
+                    シンプルな数式をテキストで表現
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>画像出力設定</h3>
+
+        <div class="section2">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy202_vocie_only.setting.image_output.insert_spaces_before_and_after">
+                    画像の前後に空白を挿入する
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label>画像の出力サイズ</label>
+                <select class="form-control" data-bind="value: daisy202_vocie_only.setting.image_output.size">
+                    <option value="original_size">元画像の解像度で出力する</option>
+                    <option value="adjust_content_size">コンテンツサイズに合わせる</option>
+                    <option value="hidpi_adjust_size">高画質(2倍)で出力する</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>アニメーション出力方法</label>
+                <select class="form-control" data-bind="value: daisy202_vocie_only.setting.image_output.animation">
+                    <option value="animation_row">アニメーションの行のみを別ページに出力する</option>
+                    <option value="anmation_and_after">アニメーションとそれ以降の行を出力する</option>
+                    <option value="whole_page">ページ全体を出力する</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="section">
+        <h3>フォント設定</h3>
+
+        <div class="section2">
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy202_vocie_only.setting.font.set_font_size">
+                    フォントサイズを設定する
+                </label>
+            </div>
+
+            <div class="checkbox" data-bind="style: {display: daisy202_vocie_only.setting.general.ie_lasted_compatible() ? 'none' : 'block'}">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy202_vocie_only.setting.font.set_equation_font_size_as_text">
+                    テキストと数式を同じサイズにする
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label>テキストのサイズ</label>
+                <input type="text" class="form-control" data-bind="value: daisy202_vocie_only.setting.font.text_font_size">
+            </div>
+
+            <div class="form-group" data-bind="style: {display: daisy202_vocie_only.setting.general.ie_lasted_compatible() ? 'none' : 'block'}">
+                <label>数式文字のサイズ</label>
+                <input type="text" class="form-control" data-bind="value: daisy202_vocie_only.setting.font.equation_font_size">
+            </div>
+
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>出力先設定</h3>
+
+        <div class="section2">
+
+            <div class="form-group">
+                <label>音声フォルダ</label>
+                <input type="text" class="form-control" data-bind="value: daisy202_vocie_only.setting.output_path.audio_dir">
+            </div>
+
+            <div class="form-group">
+                <label>数式画像フォルダ</label>
+                <input type="text" class="form-control" data-bind="value: daisy202_vocie_only.setting.output_path.equation_image_dir">
+            </div>
+
+            <div class="form-group">
+                <label>画像フォルダ</label>
+                <input type="text" class="form-control" data-bind="value: daisy202_vocie_only.setting.output_path.image_dir">
+            </div>
+
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>スタイルシート</h3>
+
+        <div class="section2">
+
+            <div class="form-group">
+                <select class="form-control" data-bind="value: daisy202_vocie_only.setting.stylesheet.preset">
+                    <option value="ノーマルスタイル">ノーマルスタイル</option>
+                    <option value="ノーマルスタイル(ゴシック)">ノーマルスタイル(ゴシック)</option>
+                    <option value="縦書きスタイル">縦書きスタイル</option>
+                    <option value="縦書きスタイル(VOD用)">縦書きスタイル(VOD用)</option>
+                    <option value="縦書きスタイル(数式左寄せ)">縦書きスタイル(数式左寄せ)</option>
+                    <option value="白黒反転スタイル">白黒反転スタイル</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>セクション分割/統合設定</h3>
+
+        <div class="section2">
+
+            <div class="checkbox" style="margin-left:30px;">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy202_vocie_only.setting.section_split.split['1']">
+                    レベル1同士は分割
+                </label>
+            </div>
+
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy202_vocie_only.setting.section_split.join['12']">
+                    レベル1と2を結合
+                </label>
+            </div>
+
+            <div class="checkbox" style="margin-left:30px;">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy202_vocie_only.setting.section_split.split['2']">
+                    レベル2同士は分割
+                </label>
+            </div>
+
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy202_vocie_only.setting.section_split.join['23']">
+                    レベル2と3を結合
+                </label>
+            </div>
+
+            <div class="checkbox" style="margin-left:30px;">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy202_vocie_only.setting.section_split.split['3']">
+                    レベル3同士は分割
+                </label>
+            </div>
+
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy202_vocie_only.setting.section_split.join['34']">
+                    レベル3と4を結合
+                </label>
+            </div>
+
+            <div class="checkbox" style="margin-left:30px;">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy202_vocie_only.setting.section_split.split['4']">
+                    レベル4同士は分割
+                </label>
+            </div>
+
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy202_vocie_only.setting.section_split.join['45']">
+                    レベル4と5を結合
+                </label>
+            </div>
+
+            <div class="checkbox" style="margin-left:30px;">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy202_vocie_only.setting.section_split.split['5']">
+                    レベル5同士は分割
+                </label>
+            </div>
+
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy202_vocie_only.setting.section_split.join['56']">
+                    レベル5と6を結合
+                </label>
+            </div>
+
+            <div class="checkbox" style="margin-left:30px;">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy202_vocie_only.setting.section_split.split['6']">
+                    レベル6同士は分割
+                </label>
+            </div>
+
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy202_vocie_only.setting.section_split.page_break">
+                    改ページで分割
+                </label>
+            </div>
+
+        </div>
+
+    </div>
+
+
+            <div class="section buttons">
+                <button class="btn btn-primary btn-lg" data-bind="enable: requestStatus() == '', text: buttonMessage, click: convertButtonPushed"></button>
+                <button class="btn btn-default btn-lg" data-bind="enable: requestStatus() == '', text: buttonAsDefaultMessage, click: convertAsDefaultButtonPushed"></button>
+                <a class="btn btn-default" data-bind="click: resetButtonPushed">設定をリセットする</a>
+                <a class="btn btn-default" data-bind="click: cancelButtonPushed">キャンセル</a>
+            </div>
+        </div>
+
+        <div class="right-detail daisy_setting" id="daisy3_text_only" data-bind="css: {active: target() == 'daisy3_text_only'}">
+            
+    <div class="section">
+        <h3>メタデータ</h3>
+        <div class="section2">
+
+            <div class="form-group">
+                <label>タイトル</label>
+                <input type="text" class="form-control" data-bind="value: daisy3_text_only.setting.metadata.title">
+            </div>
+
+            <div class="form-group">
+                <label>原本著者</label>
+                <input type="text" class="form-control" data-bind="value: daisy3_text_only.setting.metadata.original_author">
+            </div>
+
+            <div class="form-group">
+                <label>原本出版社</label>
+                <input type="text" class="form-control" data-bind="value: daisy3_text_only.setting.metadata.original_publisher">
+            </div>
+
+            <div class="form-group">
+                <label>DAISY発行者</label>
+                <input type="text" class="form-control" data-bind="value: daisy3_text_only.setting.metadata.daisy_publisher">
+            </div>
+
+            <div class="form-group">
+                <label>DAISY製作者</label>
+                <input type="text" class="form-control" data-bind="value: daisy3_text_only.setting.metadata.daisy_creator">
+            </div>
+
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>全体設定</h3>
+
+        <div class="section2">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy3_text_only.setting.general.embed_chattybooks_express">
+                    Chattybook Express を同梱する
+                </label>
+            </div>
+        </div>
+
+        <div class="section2">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy3_text_only.setting.general.read_page_number">
+                    ページ番号を読み上げる
+                </label>
+            </div>
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy3_text_only.setting.general.read_table_detail">
+                    表の詳細を読み上げる
+                </label>
+            </div>
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="not: {checked: daisy3_text_only.setting.general.ie_lasted_compatible}">
+                    EasyReaderに対応した形式に変換する
+                </label>
+                <div class="warning alert alert-danger" data-bind="style: {display: daisy3_text_only.setting.general.ie_lasted_compatible() ? 'none' : 'block'}">
+                    <p>このチェックボックスをオンにして出力したDAISYコンテンツには次のような制限があります。</p>
+                    <ol>
+                        <li>数式が画像で出力されるため、白黒反転した場合に数式が見えなくなります。また、AMIS で再生した場合に、文字を拡大表示しても数式は小さいままになります。EasyReader では文字サイズを拡大した場合に、呆けて不鮮明な画像になります。</li>
+                        <li>行列や場合分けを含む数式の表示が乱れることがあります。</li>
+                    </ol>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+    <div class="section">
+        <h3>数式出力設定</h3>
+
+        <div class="section2">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy3_text_only.setting.equation_output.convert_fullwith_sybol_to_harfwidth">
+                    全角記号を半角にする
+                </label>
+            </div>
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy3_text_only.setting.equation_output.hi_dpi">
+                    数式を高解像度で出力する
+                </label>
+            </div>
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy3_text_only.setting.equation_output.use_simple_text">
+                    シンプルな数式をテキストで表現
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>画像出力設定</h3>
+
+        <div class="section2">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy3_text_only.setting.image_output.insert_spaces_before_and_after">
+                    画像の前後に空白を挿入する
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label>画像の出力サイズ</label>
+                <select class="form-control" data-bind="value: daisy3_text_only.setting.image_output.size">
+                    <option value="original_size">元画像の解像度で出力する</option>
+                    <option value="adjust_content_size">コンテンツサイズに合わせる</option>
+                    <option value="hidpi_adjust_size">高画質(2倍)で出力する</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>アニメーション出力方法</label>
+                <select class="form-control" data-bind="value: daisy3_text_only.setting.image_output.animation">
+                    <option value="animation_row">アニメーションの行のみを別ページに出力する</option>
+                    <option value="anmation_and_after">アニメーションとそれ以降の行を出力する</option>
+                    <option value="whole_page">ページ全体を出力する</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="section">
+        <h3>フォント設定</h3>
+
+        <div class="section2">
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy3_text_only.setting.font.set_font_size">
+                    フォントサイズを設定する
+                </label>
+            </div>
+
+            <div class="checkbox" data-bind="style: {display: daisy3_text_only.setting.general.ie_lasted_compatible() ? 'none' : 'block'}">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy3_text_only.setting.font.set_equation_font_size_as_text">
+                    テキストと数式を同じサイズにする
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label>テキストのサイズ</label>
+                <input type="text" class="form-control" data-bind="value: daisy3_text_only.setting.font.text_font_size">
+            </div>
+
+            <div class="form-group" data-bind="style: {display: daisy3_text_only.setting.general.ie_lasted_compatible() ? 'none' : 'block'}">
+                <label>数式文字のサイズ</label>
+                <input type="text" class="form-control" data-bind="value: daisy3_text_only.setting.font.equation_font_size">
+            </div>
+
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>出力先設定</h3>
+
+        <div class="section2">
+
+
+            <div class="form-group">
+                <label>数式画像フォルダ</label>
+                <input type="text" class="form-control" data-bind="value: daisy3_text_only.setting.output_path.equation_image_dir">
+            </div>
+
+            <div class="form-group">
+                <label>画像フォルダ</label>
+                <input type="text" class="form-control" data-bind="value: daisy3_text_only.setting.output_path.image_dir">
+            </div>
+
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>スタイルシート</h3>
+
+        <div class="section2">
+
+            <div class="form-group">
+                <select class="form-control" data-bind="value: daisy3_text_only.setting.stylesheet.preset">
+                    <option value="ノーマルスタイル">ノーマルスタイル</option>
+                    <option value="ノーマルスタイル(ゴシック)">ノーマルスタイル(ゴシック)</option>
+                    <option value="縦書きスタイル">縦書きスタイル</option>
+                    <option value="縦書きスタイル(VOD用)">縦書きスタイル(VOD用)</option>
+                    <option value="縦書きスタイル(数式左寄せ)">縦書きスタイル(数式左寄せ)</option>
+                    <option value="白黒反転スタイル">白黒反転スタイル</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>セクション分割/統合設定</h3>
+
+        <div class="section2">
+
+            <div class="checkbox" style="margin-left:30px;">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy3_text_only.setting.section_split.split['1']">
+                    レベル1同士は分割
+                </label>
+            </div>
+
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy3_text_only.setting.section_split.join['12']">
+                    レベル1と2を結合
+                </label>
+            </div>
+
+            <div class="checkbox" style="margin-left:30px;">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy3_text_only.setting.section_split.split['2']">
+                    レベル2同士は分割
+                </label>
+            </div>
+
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy3_text_only.setting.section_split.join['23']">
+                    レベル2と3を結合
+                </label>
+            </div>
+
+            <div class="checkbox" style="margin-left:30px;">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy3_text_only.setting.section_split.split['3']">
+                    レベル3同士は分割
+                </label>
+            </div>
+
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy3_text_only.setting.section_split.join['34']">
+                    レベル3と4を結合
+                </label>
+            </div>
+
+            <div class="checkbox" style="margin-left:30px;">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy3_text_only.setting.section_split.split['4']">
+                    レベル4同士は分割
+                </label>
+            </div>
+
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy3_text_only.setting.section_split.join['45']">
+                    レベル4と5を結合
+                </label>
+            </div>
+
+            <div class="checkbox" style="margin-left:30px;">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy3_text_only.setting.section_split.split['5']">
+                    レベル5同士は分割
+                </label>
+            </div>
+
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy3_text_only.setting.section_split.join['56']">
+                    レベル5と6を結合
+                </label>
+            </div>
+
+            <div class="checkbox" style="margin-left:30px;">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy3_text_only.setting.section_split.split['6']">
+                    レベル6同士は分割
+                </label>
+            </div>
+
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: daisy3_text_only.setting.section_split.page_break">
+                    改ページで分割
+                </label>
+            </div>
+
+        </div>
+
+    </div>
+
+
+            <div class="section buttons">
+                <button class="btn btn-primary btn-lg" data-bind="enable: requestStatus() == '', text: buttonMessage, click: convertButtonPushed"></button>
+                <button class="btn btn-default btn-lg" data-bind="enable: requestStatus() == '', text: buttonAsDefaultMessage, click: convertAsDefaultButtonPushed"></button>
+                <a class="btn btn-default" data-bind="click: resetButtonPushed">設定をリセットする</a>
+                <a class="btn btn-default" data-bind="click: cancelButtonPushed">キャンセル</a>
+            </div>
+        </div>
+
+        <div class="right-detail epub3_setting" id="epub3_with_voice_horizontal_writing" data-bind="css: {active: target() == 'epub3_with_voice_horizontal_writing'}">
+            
+    <div class="section">
+        <h3>メタデータ</h3>
+        <div class="section2">
+
+            <div class="form-group">
+                <label>タイトル</label>
+                <input type="text" class="form-control" data-bind="value: epub3_with_voice_horizontal_writing.setting.metadata.title">
+            </div>
+
+            <div class="form-group">
+                <label>原本著者</label>
+                <input type="text" class="form-control" data-bind="value: epub3_with_voice_horizontal_writing.setting.metadata.original_author">
+            </div>
+
+            <div class="form-group">
+                <label>EPUB発行者</label>
+                <input type="text" class="form-control" data-bind="value: epub3_with_voice_horizontal_writing.setting.metadata.epub_publisher">
+            </div>
+
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>全般設定</h3>
+        <div class="section2">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_with_voice_horizontal_writing.setting.general.no_page_number">
+                    ページ番号を出力しない
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>数式変換設定</h3>
+        <div class="section2">
+            <div class="form-group">
+                <label>出力型式</label>
+                <select class="form-control" data-bind="value: epub3_with_voice_horizontal_writing.setting.equation.format">
+                    <option value="mathml">MathML</option>
+                    <option value="image">画像</option>
+                </select>
+            </div>
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_with_voice_horizontal_writing.setting.equation.text">
+                    一部をテキストで表現
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>音声出力設定</h3>
+
+        <div class="section2">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_with_voice_horizontal_writing.setting.audio.concat">
+                    音声ファイルを結合する
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label>フォーマット</label>
+                <select class="form-control" data-bind="value: epub3_with_voice_horizontal_writing.setting.audio.file_type.format">
+                    <option value="mp3">mp3</option>
+                    <option value="wav">wav</option>
+                </select>
+            </div>
+
+            <div class="form-group" >
+                <label>mp3 のビットレート</label>
+                <select class="form-control" data-bind="value: epub3_with_voice_horizontal_writing.setting.audio.file_type.bitrate, enable: epub3_with_voice_horizontal_writing.setting.audio.file_type.format() == 'mp3';" >
+                    <option value="32">32</option>
+                    <option value="64">64</option>
+                    <option value="96">96</option>
+                    <option value="128">128</option>
+                    <option value="192">192</option>
+                </select>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>セクション分割/統合設定</h3>
+
+        <div class="section2">
+
+            <div class="checkbox" style="margin-left:30px;">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_with_voice_horizontal_writing.setting.section_split.split['1']">
+                    レベル1同士は分割
+                </label>
+            </div>
+
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_with_voice_horizontal_writing.setting.section_split.join['12']">
+                    レベル1と2を結合
+                </label>
+            </div>
+
+            <div class="checkbox" style="margin-left:30px;">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_with_voice_horizontal_writing.setting.section_split.split['2']">
+                    レベル2同士は分割
+                </label>
+            </div>
+
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_with_voice_horizontal_writing.setting.section_split.join['23']">
+                    レベル2と3を結合
+                </label>
+            </div>
+
+            <div class="checkbox" style="margin-left:30px;">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_with_voice_horizontal_writing.setting.section_split.split['3']">
+                    レベル3同士は分割
+                </label>
+            </div>
+
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_with_voice_horizontal_writing.setting.section_split.join['34']">
+                    レベル3と4を結合
+                </label>
+            </div>
+
+            <div class="checkbox" style="margin-left:30px;">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_with_voice_horizontal_writing.setting.section_split.split['4']">
+                    レベル4同士は分割
+                </label>
+            </div>
+
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_with_voice_horizontal_writing.setting.section_split.join['45']">
+                    レベル4と5を結合
+                </label>
+            </div>
+
+            <div class="checkbox" style="margin-left:30px;">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_with_voice_horizontal_writing.setting.section_split.split['5']">
+                    レベル5同士は分割
+                </label>
+            </div>
+
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_with_voice_horizontal_writing.setting.section_split.join['56']">
+                    レベル5と6を結合
+                </label>
+            </div>
+
+            <div class="checkbox" style="margin-left:30px;">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_with_voice_horizontal_writing.setting.section_split.split['6']">
+                    レベル6同士は分割
+                </label>
+            </div>
+
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_with_voice_horizontal_writing.setting.section_split.page_break">
+                    改ページで分割
+                </label>
+            </div>
+        </div>
+    </div>
+
+
+            <div class="section buttons">
+                <button class="btn btn-primary btn-lg" data-bind="enable: requestStatus() == '', text: buttonMessage, click: convertButtonPushed"></button>
+                <button class="btn btn-default btn-lg" data-bind="enable: requestStatus() == '', text: buttonAsDefaultMessage, click: convertAsDefaultButtonPushed"></button>
+                <a class="btn btn-default" data-bind="click: resetButtonPushed">設定をリセットする</a>
+                <a class="btn btn-default" data-bind="click: cancelButtonPushed">キャンセル</a>
+            </div>
+        </div>
+
+        <div class="right-detail epub3_setting" id="epub3_with_voice_vertical_writing" data-bind="css: {active: target() == 'epub3_with_voice_vertical_writing'}">
+            
+    <div class="section">
+        <h3>メタデータ</h3>
+        <div class="section2">
+
+            <div class="form-group">
+                <label>タイトル</label>
+                <input type="text" class="form-control" data-bind="value: epub3_with_voice_vertical_writing.setting.metadata.title">
+            </div>
+
+            <div class="form-group">
+                <label>原本著者</label>
+                <input type="text" class="form-control" data-bind="value: epub3_with_voice_vertical_writing.setting.metadata.original_author">
+            </div>
+
+            <div class="form-group">
+                <label>EPUB発行者</label>
+                <input type="text" class="form-control" data-bind="value: epub3_with_voice_vertical_writing.setting.metadata.epub_publisher">
+            </div>
+
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>全般設定</h3>
+        <div class="section2">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_with_voice_vertical_writing.setting.general.no_page_number">
+                    ページ番号を出力しない
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>数式変換設定</h3>
+        <div class="section2">
+            <div class="form-group">
+                <label>出力型式</label>
+                <select class="form-control" data-bind="value: epub3_with_voice_vertical_writing.setting.equation.format">
+                    <option value="mathml">MathML</option>
+                    <option value="image">画像</option>
+                </select>
+            </div>
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_with_voice_vertical_writing.setting.equation.text">
+                    一部をテキストで表現
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>音声出力設定</h3>
+
+        <div class="section2">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_with_voice_vertical_writing.setting.audio.concat">
+                    音声ファイルを結合する
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label>フォーマット</label>
+                <select class="form-control" data-bind="value: epub3_with_voice_vertical_writing.setting.audio.file_type.format">
+                    <option value="mp3">mp3</option>
+                    <option value="wav">wav</option>
+                </select>
+            </div>
+
+            <div class="form-group" >
+                <label>mp3 のビットレート</label>
+                <select class="form-control" data-bind="value: epub3_with_voice_vertical_writing.setting.audio.file_type.bitrate, enable: epub3_with_voice_vertical_writing.setting.audio.file_type.format() == 'mp3';" >
+                    <option value="32">32</option>
+                    <option value="64">64</option>
+                    <option value="96">96</option>
+                    <option value="128">128</option>
+                    <option value="192">192</option>
+                </select>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>セクション分割/統合設定</h3>
+
+        <div class="section2">
+
+            <div class="checkbox" style="margin-left:30px;">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_with_voice_vertical_writing.setting.section_split.split['1']">
+                    レベル1同士は分割
+                </label>
+            </div>
+
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_with_voice_vertical_writing.setting.section_split.join['12']">
+                    レベル1と2を結合
+                </label>
+            </div>
+
+            <div class="checkbox" style="margin-left:30px;">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_with_voice_vertical_writing.setting.section_split.split['2']">
+                    レベル2同士は分割
+                </label>
+            </div>
+
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_with_voice_vertical_writing.setting.section_split.join['23']">
+                    レベル2と3を結合
+                </label>
+            </div>
+
+            <div class="checkbox" style="margin-left:30px;">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_with_voice_vertical_writing.setting.section_split.split['3']">
+                    レベル3同士は分割
+                </label>
+            </div>
+
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_with_voice_vertical_writing.setting.section_split.join['34']">
+                    レベル3と4を結合
+                </label>
+            </div>
+
+            <div class="checkbox" style="margin-left:30px;">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_with_voice_vertical_writing.setting.section_split.split['4']">
+                    レベル4同士は分割
+                </label>
+            </div>
+
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_with_voice_vertical_writing.setting.section_split.join['45']">
+                    レベル4と5を結合
+                </label>
+            </div>
+
+            <div class="checkbox" style="margin-left:30px;">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_with_voice_vertical_writing.setting.section_split.split['5']">
+                    レベル5同士は分割
+                </label>
+            </div>
+
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_with_voice_vertical_writing.setting.section_split.join['56']">
+                    レベル5と6を結合
+                </label>
+            </div>
+
+            <div class="checkbox" style="margin-left:30px;">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_with_voice_vertical_writing.setting.section_split.split['6']">
+                    レベル6同士は分割
+                </label>
+            </div>
+
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_with_voice_vertical_writing.setting.section_split.page_break">
+                    改ページで分割
+                </label>
+            </div>
+        </div>
+    </div>
+
+
+            <div class="section buttons">
+                <button class="btn btn-primary btn-lg" data-bind="enable: requestStatus() == '', text: buttonMessage, click: convertButtonPushed"></button>
+                <button class="btn btn-default btn-lg" data-bind="enable: requestStatus() == '', text: buttonAsDefaultMessage, click: convertAsDefaultButtonPushed"></button>
+                <a class="btn btn-default" data-bind="click: resetButtonPushed">設定をリセットする</a>
+                <a class="btn btn-default" data-bind="click: cancelButtonPushed">キャンセル</a>
+            </div>
+        </div>
+
+        <div class="right-detail epub3_setting" id="epub3_without_voice_horizontal_writing" data-bind="css: {active: target() == 'epub3_without_voice_horizontal_writing'}">
+            
+    <div class="section">
+        <h3>メタデータ</h3>
+        <div class="section2">
+
+            <div class="form-group">
+                <label>タイトル</label>
+                <input type="text" class="form-control" data-bind="value: epub3_without_voice_horizontal_writing.setting.metadata.title">
+            </div>
+
+            <div class="form-group">
+                <label>原本著者</label>
+                <input type="text" class="form-control" data-bind="value: epub3_without_voice_horizontal_writing.setting.metadata.original_author">
+            </div>
+
+            <div class="form-group">
+                <label>EPUB発行者</label>
+                <input type="text" class="form-control" data-bind="value: epub3_without_voice_horizontal_writing.setting.metadata.epub_publisher">
+            </div>
+
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>全般設定</h3>
+        <div class="section2">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_without_voice_horizontal_writing.setting.general.no_page_number">
+                    ページ番号を出力しない
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>数式変換設定</h3>
+        <div class="section2">
+            <div class="form-group">
+                <label>出力型式</label>
+                <select class="form-control" data-bind="value: epub3_without_voice_horizontal_writing.setting.equation.format">
+                    <option value="mathml">MathML</option>
+                    <option value="image">画像</option>
+                </select>
+            </div>
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_without_voice_horizontal_writing.setting.equation.text">
+                    一部をテキストで表現
+                </label>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="section">
+        <h3>セクション分割/統合設定</h3>
+
+        <div class="section2">
+
+            <div class="checkbox" style="margin-left:30px;">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_without_voice_horizontal_writing.setting.section_split.split['1']">
+                    レベル1同士は分割
+                </label>
+            </div>
+
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_without_voice_horizontal_writing.setting.section_split.join['12']">
+                    レベル1と2を結合
+                </label>
+            </div>
+
+            <div class="checkbox" style="margin-left:30px;">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_without_voice_horizontal_writing.setting.section_split.split['2']">
+                    レベル2同士は分割
+                </label>
+            </div>
+
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_without_voice_horizontal_writing.setting.section_split.join['23']">
+                    レベル2と3を結合
+                </label>
+            </div>
+
+            <div class="checkbox" style="margin-left:30px;">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_without_voice_horizontal_writing.setting.section_split.split['3']">
+                    レベル3同士は分割
+                </label>
+            </div>
+
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_without_voice_horizontal_writing.setting.section_split.join['34']">
+                    レベル3と4を結合
+                </label>
+            </div>
+
+            <div class="checkbox" style="margin-left:30px;">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_without_voice_horizontal_writing.setting.section_split.split['4']">
+                    レベル4同士は分割
+                </label>
+            </div>
+
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_without_voice_horizontal_writing.setting.section_split.join['45']">
+                    レベル4と5を結合
+                </label>
+            </div>
+
+            <div class="checkbox" style="margin-left:30px;">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_without_voice_horizontal_writing.setting.section_split.split['5']">
+                    レベル5同士は分割
+                </label>
+            </div>
+
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_without_voice_horizontal_writing.setting.section_split.join['56']">
+                    レベル5と6を結合
+                </label>
+            </div>
+
+            <div class="checkbox" style="margin-left:30px;">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_without_voice_horizontal_writing.setting.section_split.split['6']">
+                    レベル6同士は分割
+                </label>
+            </div>
+
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_without_voice_horizontal_writing.setting.section_split.page_break">
+                    改ページで分割
+                </label>
+            </div>
+        </div>
+    </div>
+
+
+            <div class="section buttons">
+                <button class="btn btn-primary btn-lg" data-bind="enable: requestStatus() == '', text: buttonMessage, click: convertButtonPushed"></button>
+                <button class="btn btn-default btn-lg" data-bind="enable: requestStatus() == '', text: buttonAsDefaultMessage, click: convertAsDefaultButtonPushed"></button>
+                <a class="btn btn-default" data-bind="click: resetButtonPushed">設定をリセットする</a>
+                <a class="btn btn-default" data-bind="click: cancelButtonPushed">キャンセル</a>
+            </div>
+        </div>
+
+        <div class="right-detail epub3_setting" id="epub3_without_voice_vertical_writing" data-bind="css: {active: target() == 'epub3_without_voice_vertical_writing'}">
+            
+    <div class="section">
+        <h3>メタデータ</h3>
+        <div class="section2">
+
+            <div class="form-group">
+                <label>タイトル</label>
+                <input type="text" class="form-control" data-bind="value: epub3_without_voice_vertical_writing.setting.metadata.title">
+            </div>
+
+            <div class="form-group">
+                <label>原本著者</label>
+                <input type="text" class="form-control" data-bind="value: epub3_without_voice_vertical_writing.setting.metadata.original_author">
+            </div>
+
+            <div class="form-group">
+                <label>EPUB発行者</label>
+                <input type="text" class="form-control" data-bind="value: epub3_without_voice_vertical_writing.setting.metadata.epub_publisher">
+            </div>
+
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>全般設定</h3>
+        <div class="section2">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_without_voice_vertical_writing.setting.general.no_page_number">
+                    ページ番号を出力しない
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>数式変換設定</h3>
+        <div class="section2">
+            <div class="form-group">
+                <label>出力型式</label>
+                <select class="form-control" data-bind="value: epub3_without_voice_vertical_writing.setting.equation.format">
+                    <option value="mathml">MathML</option>
+                    <option value="image">画像</option>
+                </select>
+            </div>
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_without_voice_vertical_writing.setting.equation.text">
+                    一部をテキストで表現
+                </label>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="section">
+        <h3>セクション分割/統合設定</h3>
+
+        <div class="section2">
+
+            <div class="checkbox" style="margin-left:30px;">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_without_voice_vertical_writing.setting.section_split.split['1']">
+                    レベル1同士は分割
+                </label>
+            </div>
+
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_without_voice_vertical_writing.setting.section_split.join['12']">
+                    レベル1と2を結合
+                </label>
+            </div>
+
+            <div class="checkbox" style="margin-left:30px;">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_without_voice_vertical_writing.setting.section_split.split['2']">
+                    レベル2同士は分割
+                </label>
+            </div>
+
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_without_voice_vertical_writing.setting.section_split.join['23']">
+                    レベル2と3を結合
+                </label>
+            </div>
+
+            <div class="checkbox" style="margin-left:30px;">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_without_voice_vertical_writing.setting.section_split.split['3']">
+                    レベル3同士は分割
+                </label>
+            </div>
+
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_without_voice_vertical_writing.setting.section_split.join['34']">
+                    レベル3と4を結合
+                </label>
+            </div>
+
+            <div class="checkbox" style="margin-left:30px;">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_without_voice_vertical_writing.setting.section_split.split['4']">
+                    レベル4同士は分割
+                </label>
+            </div>
+
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_without_voice_vertical_writing.setting.section_split.join['45']">
+                    レベル4と5を結合
+                </label>
+            </div>
+
+            <div class="checkbox" style="margin-left:30px;">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_without_voice_vertical_writing.setting.section_split.split['5']">
+                    レベル5同士は分割
+                </label>
+            </div>
+
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_without_voice_vertical_writing.setting.section_split.join['56']">
+                    レベル5と6を結合
+                </label>
+            </div>
+
+            <div class="checkbox" style="margin-left:30px;">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_without_voice_vertical_writing.setting.section_split.split['6']">
+                    レベル6同士は分割
+                </label>
+            </div>
+
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_without_voice_vertical_writing.setting.section_split.page_break">
+                    改ページで分割
+                </label>
+            </div>
+        </div>
+    </div>
+
+
+            <div class="section buttons">
+                <button class="btn btn-primary btn-lg" data-bind="enable: requestStatus() == '', text: buttonMessage, click: convertButtonPushed"></button>
+                <button class="btn btn-default btn-lg" data-bind="enable: requestStatus() == '', text: buttonAsDefaultMessage, click: convertAsDefaultButtonPushed"></button>
+                <a class="btn btn-default" data-bind="click: resetButtonPushed">設定をリセットする</a>
+                <a class="btn btn-default" data-bind="click: cancelButtonPushed">キャンセル</a>
+            </div>
+        </div>
+
+        <div class="right-detail epub3_setting" id="epub3_with_voice_horizontal_writing_ibooks" data-bind="css: {active: target() == 'epub3_with_voice_horizontal_writing_ibooks'}">
+            
+    <div class="section">
+        <h3>メタデータ</h3>
+        <div class="section2">
+
+            <div class="form-group">
+                <label>タイトル</label>
+                <input type="text" class="form-control" data-bind="value: epub3_with_voice_horizontal_writing_ibooks.setting.metadata.title">
+            </div>
+
+            <div class="form-group">
+                <label>原本著者</label>
+                <input type="text" class="form-control" data-bind="value: epub3_with_voice_horizontal_writing_ibooks.setting.metadata.original_author">
+            </div>
+
+            <div class="form-group">
+                <label>EPUB発行者</label>
+                <input type="text" class="form-control" data-bind="value: epub3_with_voice_horizontal_writing_ibooks.setting.metadata.epub_publisher">
+            </div>
+
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>全般設定</h3>
+        <div class="section2">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_with_voice_horizontal_writing_ibooks.setting.general.no_page_number">
+                    ページ番号を出力しない
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>数式変換設定</h3>
+        <div class="section2">
+            <div class="form-group">
+                <label>出力型式</label>
+                <select class="form-control" data-bind="value: epub3_with_voice_horizontal_writing_ibooks.setting.equation.format">
+                    <option value="mathml">MathML</option>
+                    <option value="image">画像</option>
+                </select>
+            </div>
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_with_voice_horizontal_writing_ibooks.setting.equation.text">
+                    一部をテキストで表現
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>音声出力設定</h3>
+
+        <div class="section2">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_with_voice_horizontal_writing_ibooks.setting.audio.concat">
+                    音声ファイルを結合する
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label>フォーマット</label>
+                <select class="form-control" data-bind="value: epub3_with_voice_horizontal_writing_ibooks.setting.audio.file_type.format">
+                    <option value="mp3">mp3</option>
+                    <option value="wav">wav</option>
+                </select>
+            </div>
+
+            <div class="form-group" >
+                <label>mp3 のビットレート</label>
+                <select class="form-control" data-bind="value: epub3_with_voice_horizontal_writing_ibooks.setting.audio.file_type.bitrate, enable: epub3_with_voice_horizontal_writing_ibooks.setting.audio.file_type.format() == 'mp3';" >
+                    <option value="32">32</option>
+                    <option value="64">64</option>
+                    <option value="96">96</option>
+                    <option value="128">128</option>
+                    <option value="192">192</option>
+                </select>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>セクション分割/統合設定</h3>
+
+        <div class="section2">
+
+            <div class="checkbox" style="margin-left:30px;">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_with_voice_horizontal_writing_ibooks.setting.section_split.split['1']">
+                    レベル1同士は分割
+                </label>
+            </div>
+
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_with_voice_horizontal_writing_ibooks.setting.section_split.join['12']">
+                    レベル1と2を結合
+                </label>
+            </div>
+
+            <div class="checkbox" style="margin-left:30px;">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_with_voice_horizontal_writing_ibooks.setting.section_split.split['2']">
+                    レベル2同士は分割
+                </label>
+            </div>
+
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_with_voice_horizontal_writing_ibooks.setting.section_split.join['23']">
+                    レベル2と3を結合
+                </label>
+            </div>
+
+            <div class="checkbox" style="margin-left:30px;">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_with_voice_horizontal_writing_ibooks.setting.section_split.split['3']">
+                    レベル3同士は分割
+                </label>
+            </div>
+
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_with_voice_horizontal_writing_ibooks.setting.section_split.join['34']">
+                    レベル3と4を結合
+                </label>
+            </div>
+
+            <div class="checkbox" style="margin-left:30px;">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_with_voice_horizontal_writing_ibooks.setting.section_split.split['4']">
+                    レベル4同士は分割
+                </label>
+            </div>
+
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_with_voice_horizontal_writing_ibooks.setting.section_split.join['45']">
+                    レベル4と5を結合
+                </label>
+            </div>
+
+            <div class="checkbox" style="margin-left:30px;">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_with_voice_horizontal_writing_ibooks.setting.section_split.split['5']">
+                    レベル5同士は分割
+                </label>
+            </div>
+
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_with_voice_horizontal_writing_ibooks.setting.section_split.join['56']">
+                    レベル5と6を結合
+                </label>
+            </div>
+
+            <div class="checkbox" style="margin-left:30px;">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_with_voice_horizontal_writing_ibooks.setting.section_split.split['6']">
+                    レベル6同士は分割
+                </label>
+            </div>
+
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: epub3_with_voice_horizontal_writing_ibooks.setting.section_split.page_break">
+                    改ページで分割
+                </label>
+            </div>
+        </div>
+    </div>
+
+
+            <div class="section buttons">
+                <button class="btn btn-primary btn-lg" data-bind="enable: requestStatus() == '', text: buttonMessage, click: convertButtonPushed"></button>
+                <button class="btn btn-default btn-lg" data-bind="enable: requestStatus() == '', text: buttonAsDefaultMessage, click: convertAsDefaultButtonPushed"></button>
+                <a class="btn btn-default" data-bind="click: resetButtonPushed">設定をリセットする</a>
+                <a class="btn btn-default" data-bind="click: cancelButtonPushed">キャンセル</a>
+            </div>
+        </div>
+
+        <div class="right-detail" id="imlx" data-bind="css: {active: target() == 'imlx'}">
+            <button class="btn btn-primary btn-lg" data-bind="enable: requestStatus() == '', text: buttonMessage, click: convertButtonPushed"></button>
+            <a class="#" data-bind="click: cancelButtonPushed">キャンセル</a>
+        </div>
+
+        <div class="right-detail" id="cio" data-bind="css: {active: target() == 'cio'}">
+            <button class="btn btn-primary btn-lg" data-bind="enable: requestStatus() == '', text: buttonMessage, click: convertButtonPushed"></button>
+            <a class="#" data-bind="click: cancelButtonPushed">キャンセル</a>
+        </div>
+
+</div>
+
+  </body>
+</html>

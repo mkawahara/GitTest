@@ -1,0 +1,187 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Always force latest IE rendering engine or request Chrome Frame -->
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>音声設定</title>
+
+    <link href="stylesheets/all.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="../../../../js/communicator.js"></script>
+    <script src="javascripts/all.js" type="text/javascript"></script>
+  </head>
+
+  <body class="japanese" data-spy="scroll" data-target="#menu" data-offset="160">
+    	<div class="container">
+		<div class="header">
+			<h2>日本語音声設定</h2>
+		</div>
+
+
+		<div class="menu" id="menu">
+			<ul class="nav">
+				<li><a href="#voice">音声設定</a></li>
+				<li><a href="#highlight">フレーズ区切り設定</a></li>
+			</ul>
+
+		</div>
+
+
+		<div class="contents">
+			<div id="voice">
+				<a name="voice" class="anchor">&nbsp;</a>
+				<h3>音声設定</h3>
+
+				<div class="form-group">
+					<label>標準話者</label>
+					<select class="form-control" data-bind="value: japanese.voice.name">
+						<option value="nozomi">のぞみ</option>
+						<option value="seiji">せいじ</option>
+					</select>
+				</div>
+
+				<div class="form-group number-control">
+					<label>速度</label>
+										<div class="input-group">
+						<span class="slider-label">0.5</span>
+						<input class="form-control" type="range" min="0.5" max="4.0" step="0.1" data-bind="value: japanese.voice.speed, ">
+						<span class="slider-label">4.0</span>
+						<input class="form-control" type="number" min="0.5" max="4.0" step="0.1" data-bind="value: japanese.voice.speed, ">
+					</div>
+
+				</div>
+
+				<div class="form-group number-control">
+					<label>音程</label>
+										<div class="input-group">
+						<span class="slider-label">0.5</span>
+						<input class="form-control" type="range" min="0.5" max="2.0" step="0.1" data-bind="value: japanese.voice.pitch, ">
+						<span class="slider-label">2.0</span>
+						<input class="form-control" type="number" min="0.5" max="2.0" step="0.1" data-bind="value: japanese.voice.pitch, ">
+					</div>
+
+				</div>
+
+				<div class="form-group number-control">
+					<label>音量</label>
+										<div class="input-group">
+						<span class="slider-label">0.0</span>
+						<input class="form-control" type="range" min="0.0" max="2.0" step="0.1" data-bind="value: japanese.voice.volume, ">
+						<span class="slider-label">2.0</span>
+						<input class="form-control" type="number" min="0.0" max="2.0" step="0.1" data-bind="value: japanese.voice.volume, ">
+					</div>
+
+				</div>
+
+				<button id="test-button-japanese" class="btn btn-default">サンプル音声を再生</button>
+
+			</div>
+
+
+			<div id="highlight">
+				<a name="highlight" class="anchor">&nbsp;</a>
+				<h3>フレーズ区切り設定</h3>
+
+				<div class="highlight-sample-box">
+					<span class="text">
+						今日の、<span class="split" data-bind="style: {'background-color': japanese.highlight.split_comma() ? 'white' : 'transparent' }">&nbsp;</span>
+						天気は<span class="split" data-bind="style: {'background-color': japanese.highlight.split_begin_parenthesis() ? 'white' : 'transparent' }">&nbsp;</span>
+						「晴れ <span class="split" data-bind="style: {'background-color': japanese.highlight.split_space() ? 'white' : 'transparent' }">&nbsp;</span>
+						のち雨」<span class="split" data-bind="style: {'background-color': japanese.highlight.split_end_parenthesis() ? 'white' : 'transparent' }">&nbsp;</span>
+						です。<span class="split" data-bind="style: {'background-color': japanese.highlight.split_period() ? 'white' : 'transparent' }">&nbsp;</span>
+						書式<span class="split" data-bind="style: {'background-color': japanese.highlight.split_bold() ? 'white' : 'transparent' }">&nbsp;</span>
+						<b>太字</b><span class="split" data-bind="style: {'background-color': japanese.highlight.split_bold() ? 'white' : 'transparent' }">&nbsp;</span>
+						・<span class="split" data-bind="style: {'background-color': japanese.highlight.split_italic() ? 'white' : 'transparent' }">&nbsp;</span>
+						<i>斜体</i><span class="split" data-bind="style: {'background-color': japanese.highlight.split_italic() ? 'white' : 'transparent' }">&nbsp;</span>
+						…
+					</span>
+				</div>
+
+
+				<div class="checkbox">
+				    <label>
+				      <input type="checkbox" data-bind="checked: japanese.highlight.split_comma"> 読点「、」と「，」で分割
+				    </label>
+				</div>
+
+
+				<div class="checkbox">
+				    <label>
+				      <input type="checkbox" data-bind="checked: japanese.highlight.split_period"> 句点「。」と「．」で分割
+				    </label>
+				</div>
+
+
+				<div class="checkbox">
+				    <label>
+				      <input type="checkbox" data-bind="checked: japanese.highlight.split_italic"> イタリックの前後で分割
+				    </label>
+				</div>
+
+
+				<div class="checkbox">
+				    <label>
+				      <input type="checkbox" data-bind="checked: japanese.highlight.split_bold"> ボールドの前後で分割
+				    </label>
+				</div>
+
+
+				<div class="checkbox">
+				    <label>
+				      <input type="checkbox" data-bind="checked: japanese.highlight.split_space"> スペースで分割
+				    </label>
+				</div>
+
+
+				<div class="checkbox">
+				    <label>
+				      <input type="checkbox" data-bind="checked: japanese.highlight.split_multispaces"> 連続したスペースで分割
+				    </label>
+				</div>
+
+
+				<div class="checkbox">
+				    <label>
+				      <input type="checkbox" data-bind="checked: japanese.highlight.split_begin_parenthesis"> 開始かっこで分割
+				    </label>
+				</div>
+
+
+				<div class="checkbox">
+				    <label>
+				      <input type="checkbox" data-bind="checked: japanese.highlight.split_end_parenthesis"> 閉じかっこで分割
+				    </label>
+				</div>
+
+
+				<div class="checkbox">
+				    <label>
+				      <input type="checkbox" data-bind="checked: japanese.highlight.split_before_image"> 画像の前で分割
+				    </label>
+				</div>
+
+
+				<div class="checkbox">
+				    <label>
+				      <input type="checkbox" data-bind="checked: japanese.highlight.split_after_image"> 画像の後で分割
+				    </label>
+				</div>
+
+
+			</div>
+		</div>
+
+		<div class="save-box">
+			<button id="save-button" class="btn btn-primary btn-lg">OK</button>
+			<button id="save-as-default-button" class="btn btn-default btn-lg">既定に設定</button>
+			<button id="reset-button" class="btn btn-default">初期設定に戻す</button>
+			<button id="cancel-button" class="btn btn-default">キャンセル</button>
+		</div>
+	</div>
+
+    <audio id="audio-tag" style="visibility: hidden"></audio>
+  </body>
+</html>

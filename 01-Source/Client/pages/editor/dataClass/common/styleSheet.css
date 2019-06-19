@@ -1,0 +1,346 @@
+/* Project: [PJ-0136] ChattyInfty */
+/* Module : DVM_C_Display         */
+/* ========================================================================= */
+/* ==                         ChattyInftyOnline                          == */
+/* ==                                                                     == */
+/* ==                      株式会社知能情報システム                       == */
+/* ========================================================================= */
+/* -    ファイル名     ： DC_styleSheet.css                                  */
+/* -                                                                         */
+/* -    概      要     ： データクラス用スタイルシート                       */
+/* -                                                                         */
+/* -  開  発  環  境   ： Wiondows 8.1 Pro 64bit, Firefox 35.0.1             */
+/* -                                                                         */
+/* -  担当 / 最終更新  ： 湯本 直杉 / 2015年05月25日                         */
+
+/*
+*********************** 動的に変更されるスタイルクラス *****************************
+*/
+
+/* ------------- 段落のフォントサイズ */
+/* 適用先: Paragraph 段落クラス */
+.font-x-small {
+	font-size: x-small;
+}
+
+.font-small {
+	font-size: small;
+}
+
+.font-medium {
+	font-size: medium;
+}
+
+.font-large {
+	font-size: x-large;
+}
+
+.font-x-large {
+	font-size: xx-large;
+}
+
+/* エディタペインの動的変更スタイルクラス */
+div.editpaneStyle {
+	font-family: 'ＭＳ Ｐ明朝';
+	color: black;
+	background-color: white;
+}
+
+/* 入力用テキストボックス */
+/* スタイルを後から書き換えるため、ここに移動させました。 */
+span.EDT_FrontTextBox {
+	border: none;
+//	top : -999px;
+	position: absolute;
+	background: rgba(255,255,255,255);
+	border-right: solid 0px black;
+	height: 16pt;
+	z-index: 13;
+	padding: 0px;
+}
+
+/* 空白文字の色設定クラス：書き換え対象 */
+span.space {
+	color: silver;
+}
+
+/* 空白文字の色設定クラス：書き換え対象 */
+span.mathspace {
+	color: silver;
+}
+
+/* 数式フォントの配色 */
+span.mathcolor {
+	color: blue;
+}
+
+/* 化学式の配色 */
+span.chemcolor {
+	color: green;
+}
+
+/* ルビ文字の配色 */
+.rubycolor {
+	color: red;
+}
+
+/* ハイライトの前景色 */
+.highlightColor {
+	background-color: yellow;
+}
+
+/* ハイライトの背景色 */
+.highlightBgColor {
+	background-color: light-breen;
+}
+
+/*
+*********************** 動的に変更されないスタイルクラス *****************************
+*/
+
+/* テキストにおける囲み枠 */
+/* 数式、化学式中での囲み枠は、CSS クラスで指定しても解除されるため、 */
+/* 各要素で直接指定する必要があります。 */
+.box-border-normal {
+	border-color: black;
+	border-width: 1px;
+	border-style: solid;
+	display: inline-block;
+}
+
+.box-border-double {
+	border-color: black;
+	border-width: 3px;
+	border-style: double;
+	display: inline-block;
+}
+
+.box-border-round {
+	border-color: black;
+	border-width: 1px;
+	border-style: solid;
+	border-radius: 5px;
+	display: inline-block;
+}
+
+.box-border-bround {
+	border-color: black;
+	border-width: 2px;
+	border-style: solid;
+	border-radius: 5px;
+	display: inline-block;
+}
+
+.box-border-shadow {
+	border-color: black;
+	border-width: 1px;
+	border-style: solid;
+	box-shadow: 1px 1px;
+	display: inline-block;
+}
+
+.box-border-circle {
+	border-color: black;
+	border-width: 1px;
+	border-style: solid;
+	border-radius: 100px;
+	display: inline-block;
+}
+
+
+
+/* ------------- 文字修飾 */
+span.underline { /* ------------- 下線 */
+	border-bottom: 1px solid black;
+	display:       inline-block;
+}
+
+span.strike {    /* ------------- 打消線 */
+	text-decoration: line-through;
+}
+
+
+/* ------------- 読み上げ機能 */
+.silence { /* ------------- 無音領域 */
+	background-image:url('../../img/silence.png');
+	background-color: transparent;
+	display: inline-block;
+}
+
+/* 本文中の話者背景色 */
+.speaker0 { /* ------------- 話者0 */
+	background-color: #ffa0a0;
+}
+
+.speaker1 { /* ------------- 話者1 */
+	background-color: #a0ffa0;
+}
+
+.speaker2 { /* ------------- 話者2 */
+	background-color: #a0a0ff;
+}
+
+.speaker3 { /* ------------- 話者3 */
+	background-color: #ffffa0;
+}
+
+.speaker4 { /* ------------- 話者4 */
+	background-color: #a0ffff;
+}
+
+.speaker5 { /* ------------- 話者5 */
+	background-color: #ffa0ff;
+}
+
+.speaker6 { /* ------------- 話者6 */
+	background-color: #a0ceff;
+}
+
+.speaker7 { /* ------------- 話者7 */
+	background-color: #a0ffce;
+}
+
+.speaker8 { /* ------------- 話者8 */
+	background-color: #ffa0ce;
+}
+
+.speaker9 { /* ------------- 話者9 */
+	background-color: #cea0ff;
+}
+
+/* 話者メニュー上のアイコン表示色 */
+.speaker0_mark { /* ------------- 話者0 */
+	color: #ffa0a0;
+}
+
+.speaker1_mark { /* ------------- 話者1 */
+	color: #a0ffa0;
+}
+
+.speaker2_mark { /* ------------- 話者2 */
+	color: #a0a0ff;
+}
+
+.speaker3_mark { /* ------------- 話者3 */
+	color: #ffffa0;
+}
+
+.speaker4_mark { /* ------------- 話者4 */
+	color: #a0ffff;
+}
+
+.speaker5_mark { /* ------------- 話者5 */
+	color: #ffa0ff;
+}
+
+.speaker6_mark { /* ------------- 話者6 */
+	color: #a0ceff;
+}
+
+.speaker7_mark { /* ------------- 話者7 */
+	color: #a0ffce;
+}
+
+.speaker8_mark { /* ------------- 話者8 */
+	color: #ffa0ce;
+}
+
+.speaker9_mark { /* ------------- 話者9 */
+	color: #cea0ff;
+}
+
+/* 選択された話者メニュー上のアイコンに枠をつける */
+.speaker_selected {
+	border: 1px solid black;
+}
+
+
+
+/* 改ページ */
+hr.pagedelimitor {
+	border-top: dashed 1px silver;
+	color: white;
+	page-break-before: always;
+}
+
+/* 数式番号・ページ番号属性 */
+sub.number_attr {
+    color: red;
+    background-color: lightgray;
+    padding: 2px;
+    font-family: 'ＭＳ Ｐゴシック';
+    font-size: 9pt;
+}
+
+/* 段落の表示スペース調整 */
+div.paragraph {
+	padding: 0em 0.5em;
+}
+
+/* 読み要素 (カーソル無し) */
+.noCaretReadingStyle {
+	border-bottom: solid 1px #BBBB00;
+}
+
+/* カーソルがある時のルビ、読み要素 */
+.hasCaretStyle {
+	border-bottom: solid 1px #BBBB00;
+	-webkit-animation:blink 0.3s ease-in-out infinite alternate;	/* Chrome, Safari */
+	animation:blink 0.3s ease-in-out infinite alternate;			/* html 採用 */
+}
+
+/* カーソルがある時の囲み枠要素 */
+.hasCaretDecoStyle {
+	-webkit-animation:blink 0.3s ease-in-out infinite alternate;	/* Chrome, Safari */
+	animation:blink 0.3s ease-in-out infinite alternate;			/* html 採用 */
+}
+
+/* 以下２つは枠線点滅用 */
+@-webkit-keyframes blink{
+	0%		{border-color: #BBBB00;}
+	100%	{border-color: black;}
+}
+
+@keyframes blink{
+	0%		{border-color: #BBBB00;}
+	100%	{border-color: black;}
+}
+
+table.readrow {
+	background-image: url("../../icons/dll0013.png");
+	background-repeat: no-repeat;
+}
+
+
+.pauseShort {
+	color: white;
+	background-color: #EF7F7F;
+
+}
+
+.pauseLong {
+	color: white;
+	background-color: #AF7F7F;
+}
+
+/* ハイライト結合要素の表示スタイル */
+.highlight_combine {
+    width: 2.5mm;
+    height: 6mm;
+}
+
+/* ハイライト分割要素の表示スタイル */
+span.highlight_divide {
+	color: red;
+}
+
+/* カーソルがないときのフレーズ枠の装飾 */
+span.phrase {
+  border: 1px solid red;
+}
+
+/* カーソルがあるときのフレーズ枠の追加装飾 (読み要素と同じ) */
+.hasPhraseCaretStyle {
+	-webkit-animation:blink 0.3s ease-in-out infinite alternate;
+	animation:blink 0.3s ease-in-out infinite alternate;
+}

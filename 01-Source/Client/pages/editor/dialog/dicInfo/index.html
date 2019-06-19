@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>単語辞書情報</title>
+
+	<link rel="stylesheet" type="text/css" href="../dialog.css">
+
+	<script src="../../../../lib/jquery-1.11.2.min.js"></script>
+	<script src="main.js"></script>
+	<script src="../../../../js/communicator.js"></script>
+	<script src="../../managers/serverManager.js"></script>
+	<script src="../dialogCommon.js"></script>
+
+	<style>
+
+	table {
+		width: 100%;
+		border: solid 1px silver;
+		background-color: white;
+		border-collapse: collapse;
+	}
+
+	td {
+		border: solid 1px silver;
+		padding: 4px;
+	}
+
+	td.label {
+		width: 40%;
+	}
+
+	</style>
+</head>
+
+<body>
+	<table>
+		<tr>
+			<td class="label">辞書名
+			<td id="_dicName">
+		</tr>
+		<tr>
+			<td class="label">登録単語数
+			<td id="_wordCount">
+		</tr>
+		<tr>
+			<td class="label">最終更新日時
+			<td id="_lastModified">
+		</tr>
+	</table>
+	<div style="text-align: center; margin-top: 1em;">
+	<input type="button" class="button" value="OK" onclick="onOK()">
+	</div>
+</body>
+</html>

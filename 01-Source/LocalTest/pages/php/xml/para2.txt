@@ -1,0 +1,1 @@
+<paragraph id='2' align='left' class='font-medium'><c ital>あ</c><c ital>め</c><c ital>ん</c><c ital>ぼ</c><br/></paragraph>

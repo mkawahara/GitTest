@@ -1,0 +1,327 @@
+﻿@CHARSET "UTF-8";
+/* -  担当 / 最終更新  ： 湯本 直杉 / 2015年07月03日                         */
+
+/* ------------- マウスドラッグ防止用クラス: (空) */
+.cl_TBC_PrevDrag {}
+
+/* ------------- マウス押下時の濃いハイライトエリア識別用クラス: (空) */
+.cl_TBC_DarkHighlight {}
+
+/* ========================= コンテキストメニュー========================= */
+li table {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+}
+
+ul {
+	display: none;
+	/* エディタページでは html による箇条書きは使用しないため問題ありません。 */
+}
+
+/* ------------- コンテキストメニューであることの識別用クラス: */
+.cl_TBC_DropDownMenu {
+	position: absolute;
+	top:      -100px;
+	z-index:  900;   /* 最前面表示のための苦肉の策です */
+	background-color:black;
+	width: 260px;
+}
+
+/* メニューの幅を狭くするクラス */
+.cl_TBC_DropDownMenuWidthNarrow {
+	width: 160px;
+}
+
+/* ------------- コンテキストメニュー 1列目 (TDタグ用) */
+.cl_TBC_Menu_Col1_TD {
+	position: relative;
+}
+
+/* ------------- コンテキストメニュー 1列目 (アイコンIMGタグ用) */
+.cl_TBC_Menu_Col1_Icon {
+	width:  18px;
+	height: 18px;	/* ここでの高さ指定は、ブラウザで動作が変わる。良くない*/
+	border: 1px solid transparent;
+}
+
+/* ------------- コンテキストメニュー 2列目 (項目名文字列) */
+.cl_TBC_Menu_Col2_Title {
+	white-space: nowrap;
+}
+
+/* ------------- コンテキストメニュー 3列目 (ショートカットキー) */
+.cl_TBC_Menu_Col3_ShortCut {
+	width:      100%;
+	text-align: right;
+	padding-right:6px;
+}
+
+/* ------------- コンテキストメニュー用セパレータ設定 */
+.cl_TBC_Menu_Separator {
+	/* ★デザインの都合上、コメントアウト中 */
+	/*border-bottom: 1px solid silver;*/
+}
+
+/* ------------- アイコンチェックマークエリア識別用 */
+.cl_TBC_CheckArea {
+	position: relative;
+	left:     -1px;
+	top:      -1px;
+}
+
+/* ------------- アイコン類ハイライト及び隣との間隙 */
+.cl_TBC_Main_Highlight {
+	float:            left;
+	margin-left:      0px;
+	margin-right:     0px;
+	position:         relative;
+	border:           1px transparent solid;	/* ★一見意味がないが、枠線の領域確保になる */
+	border-radius:    3px;
+}
+
+/* ------------- ハイライト時のカラーと枠線指定:
+   アイコンハイライト時に、1px幅のボーダーラインを使用します。
+   非ハイライト時は、ボーダーラインを透明色にしています。
+   バックグランドカラーも、同上。
+---------------- */
+.cl_TBC_Highlight_Style {
+	border:           1px transparent solid;	/* ★一見意味がないが、枠線の領域確保になる */
+	border-radius:    3px;
+}
+
+/* ------------- アイコンのセンター表示設定 */
+.cl_TBC_Centering {
+	position: absolute;
+	top:      0;
+	left:     0;
+	right:    0;
+	bottom:   0;
+	margin:   auto;
+}
+
+/* ------------- メニューバー系共通フォント設定 */
+.cl_TBC_MenuFont {
+	font-style:	normal;
+	font-size: 12px;
+	/* ★0.8em とすると親に対する相対サイズとなり、サブメニューでフォントが更に小さくなります */
+	/* ex もサブメニューのフォントサイズに問題が発生します。 */
+}
+
+/* =============================================================== */
+
+/* エディタページ大枠 */
+div#ID_EditorPage {
+//	width: 5%%;
+//	height: 99.5%;
+//	position: relative;
+//	min-width: 900px;
+}
+
+/* 入力用テキストボックス */
+span.EDT_FrontTextBox {
+	border: none;
+//	top : -999px;
+	position: absolute;
+	background: rgba(255,255,255,255);
+	border-right: solid 0px black;
+	height: 10pt;
+	z-index: 13;
+	padding: 0px;
+}
+
+
+/* フロート解除 */
+div.cl_FloatClear {
+	clear: both;
+	margin: 0px;
+	position: relative;
+}
+
+/* 左フロート設定 */
+div.cl_FloatLeft {
+	float: left;
+}
+
+/* ------------- マスターレイヤ */
+.cl_MIC_MasterLayer {
+	width   : 100%;	/* ステータスバーのために必要 */
+	height  : 24px;	/* 高さを指定しないと、不要な余白が出来る */
+}
+
+/* ------------- 背景レイヤ */
+.cl_MIC_BackLayer {
+	position        : relative;
+	z-index         : 11;
+	height          : 24px;
+	margin-top      : 1px;
+/*	border-bottom   : solid 1px #d9d5b8;*/
+	border-bottom   : solid 1px gray;
+/*	background-image:url('../../../res/tile.png');*/
+/*	background-color:#f2f2f2;*/
+	background-color: #d5d5d5;
+	opacity         : 0.8;
+}
+
+/* ------------- 前面レイヤ */
+.cl_MIC_FrontLayer {
+	position: relative;
+	height  : 24px;
+	top     : -25px;
+}
+
+/* ------------- 検索置換ダイアログ用ツールバーアイコン */
+/* アイコンのX位置                                 結果X座標 =       前のX座標 + 前の横幅      ,このアイコン横幅 */
+div#ET_Format_Text                 { left:   0px; } /*  0px                                      w24px */
+div#ET_Format_Formula              { left:  24px; } /*  24px = pre left:   0px + pre width:24px, w24px */
+div#ET_Format_Chemical             { left:  48px; } /*  48px = pre left:  24px + pre width:24px, w24px */
+div#ET_Sep01                       { left:  72px; } /*  72px = pre left:  48px + pre width:24px, w 5px */
+div#ET_Format_Italic               { left:  77px; } /*  77px = pre left:  72px + pre width: 5px, w24px */
+div#ET_Format_Bold                 { left: 101px; } /* 101px = pre left:  77px + pre width:24px, w24px */
+div#ET_Format_Underline            { left: 125px; } /* 125px = pre left: 101px + pre width:24px, w24px */
+div#ET_Format_Strikethrough        { left: 149px; } /* 149px = pre left: 125px + pre width:24px, w24px */
+div#ET_Format_FootnoteTop          { left: 173px; } /* 173px = pre left: 149px + pre width:24px, w24px */
+div#ET_Format_FootnoteBottom       { left: 197px; } /* 197px = pre left: 173px + pre width:24px, w24px */
+div#ET_Sep02                       { left: 221px; } /* 221px = pre left: 197px + pre width:24px, w 5px */
+div#ET_Format_FrameBorder_Standard { left: 226px; } /* 226px = pre left: 221px + pre width: 5px, w33px */
+
+
+/* ------------- アイコンのみ時:
+   アイコンのハイライトエリアサイズ (枠線1px分は除外)
+   アイコン画像サイズの上下左右へ、マージンを加えたものです。
+   横: 3px + アイコンw16px + 3px = 22px
+   縦: 3px + アイコンh16px + 3px = 22px
+   ここへ、1px幅のボーダーラインが加わるので、
+   最終的に w24px x h24px を占有します。
+---------------- */
+.cl_MIC_Icon {
+	position: relative;
+	z-index: 11;
+	width : 22px;
+	height: 22px;
+	margin-bottom: -24px;
+}
+
+/* ------------- アイコン＋ドロップマーク時:
+   アイコン＋ドロップマークのハイライトエリアサイズ (枠線1px分は除外)
+   横: 3px + アイコンw16px + 2px + ドロップマークw7px + 3px = 31px
+   縦: 3px + 16px + 3px = 22px
+   ここへ、1px幅のボーダーラインが加わるので、
+   最終的に w33px x h24px を占有します。
+---------------- */
+.cl_MIC_DropMark {
+	position: relative;
+	z-index: 11;
+	width : 31px;
+	height: 22px;
+	margin-bottom: -24px;
+}
+
+/* ------------- アイコン＋ドロップマーク時:
+   アイコン部分の反応エリアサイズ
+   横: 3px + アイコンw16px = 19px
+   縦: 3px + 16px + 3px = 22px
+---------------- */
+.cl_MIC_IconDrop_IconArea {
+	float : left;
+	width : 19px;
+	height: 22px;
+}
+
+/* ------------- アイコン＋ドロップマーク時
+   ドロップマーク部分の反応エリアサイズ
+   横: 2px + ドロップマークw7px + 3px= 12px
+   縦: 3px + 16px + 3px = 22px
+---------------- */
+.cl_MIC_IconDrop_DropArea {
+	float : left;
+	width : 12px;
+	height: 22px;
+}
+
+/* ------------- アイコン＋ドロップマーク時:
+   アイコン画像の表示位置
+   左: 3px目
+   上: 3px目
+---------------- */
+.cl_MIC_IconDrop_IconStyle {
+	padding-left: 3px;
+	padding-top : 3px;
+}
+
+/* ------------- アイコン＋ドロップマーク時:
+   ドロップマーク画像の表示位置
+   左:  2px目
+   上: 13px目・・・(22px - ドロップマークh4px) / 2 = 9px
+---------------- */
+.cl_MIC_IconDrop_DropStyle {
+	padding-left: 2px;
+	padding-top : 9px;
+}
+
+/* ------------- 検索・置換ツールバー用のアイコンセパレータ */
+.cl_MIC_Separator {
+	position:     relative;
+	float:        left;
+	width:        1px;
+	height:       24px;
+	margin-left:  2px;
+	margin-right: 1px;
+	margin-bottom: -24px;
+	background-color:#f0f0f0;
+/*	border-left:  solid 1px #c5c5c5;*/
+	border-left:  solid 1px #404040;
+	border-right: solid 1px #ffffff;
+}
+
+/* インデックス操作エリアとエディタ部を包括するDIV */
+div#ID_MainOpeDiv {
+	width: 100%;
+	padding-bottom: 24px;
+}
+
+/* ope_area ----------------------- */
+div.id_editor_area {
+  float: left;
+  width: 75%;
+  height: 323px;
+}
+div.id_editor_area div.cl_MIC_MasterLayer {
+  border-right:solid 1px #d9d5b8;
+  position:relative;
+  left:-1px;
+}
+div.id_editor_area div.cl_MIC_FrontLayer {
+  position:relative;
+  left:8px;
+}
+
+/* エディタペイン 編集領域 */
+div.edt_master_layer {
+  width: 100%;
+  padding-left: 10px;
+  font-size: 12pt;
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+div.sb_master_layer {
+  position: absolute;
+  bottom: 0;
+  z-index:13;
+
+}
+
+div#SB_FrontLayer {
+	position: relative;
+	z-index: 12;
+}
+
+
+div.textPane {
+	display: table-cell;
+	vertical-align: middle;
+	width: 234px;
+	overflow: scroll;
+}

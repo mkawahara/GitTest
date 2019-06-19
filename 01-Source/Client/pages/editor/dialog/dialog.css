@@ -1,0 +1,57 @@
+@CHARSET "UTF-8";
+
+
+body {
+	background-color: lightgray;
+	font-size: 12px;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+	user-select: none;
+}
+
+.title {
+	margin: 0.5em 0em;
+}
+
+fieldset.frame, div.frame {
+	padding: 0.5em;
+	margin: 0.5em 0em;
+	background-color: #d0d0d0;
+}
+
+fieldset.box, div.box {
+	border-color: white;
+	border-style: groove;
+	border-radius: 5px;
+}
+
+div.multiColumn {
+	float: left;
+}
+
+div.oneColumn {
+	clear: both;
+}
+
+div.textPane {
+	border-color: white;
+	border-width: 2px;
+	border-style: inset;
+	border-radius: 3px;
+	background-color: white;
+	width: 240px;
+	height: 80px;
+	font-size: 18px;
+	overflow: auto;
+}
+
+input.button {
+	width: 6.5em;
+	height: 1.7em;
+}
+
+input.number {
+	width: 60px;
+	text-align: right;
+}

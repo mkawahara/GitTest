@@ -1,0 +1,41 @@
+@CHARSET "UTF-8";
+/* ファイラのデザイン                              */
+/* filer/page.css に対して上書きするデータのみ記述 */
+
+html, body {
+  height: 100%;
+}
+
+div.tab {
+  height: calc(100% - 50px);
+}
+
+div.list {
+  height: calc(100% - 60px);
+}
+
+div.list_container {
+  height: 100%;
+}
+
+div.tree {
+  width:250px;
+}
+
+div.file_area {
+  width: calc(100% - 260px);
+  background-color:#ffffff;
+  border:none;
+  padding: 0;
+}
+
+div.file_list {
+  height: 100%;
+  margin:0;
+}
+
+/* ボタンのデザイン   */
+input[type="button"] {
+  width: 6.5em;
+  height:1.7em;
+}
